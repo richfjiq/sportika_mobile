@@ -38,6 +38,13 @@ module.exports = {
 		'react/jsx-indent': [0],
 		'no-console': 1,
 		'no-unused-vars': 1,
+		'@typescript-eslint/no-empty-interface': [
+			'error',
+			{
+				allowSingleExtends: true,
+			},
+		],
+		'react-native/no-inline-styles': 0,
 	},
 	settings: {
 		react: {
