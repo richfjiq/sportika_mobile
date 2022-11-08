@@ -2,8 +2,9 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Icon from 'react-native-vector-icons/Ionicons';
 
 import { Home } from '../screens';
+import { colors } from '../theme/appTheme';
 import { CartStackNav } from './CartStackNav';
-import { SearchStackNav } from './SearchStackNav';
+import { MenuStackNav } from './MenuStackNav';
 import { UserStackNav } from './UserStackNav';
 
 export type RootTabsParams = {
@@ -24,11 +25,11 @@ export const BottomTabsNav = () => {
 			screenOptions={({ route }) => ({
 				tabBarActiveTintColor: 'black',
 				tabBarStyle: {
-					borderTopColor: '#DCDCDC',
+					borderTopColor: colors.inactiveGrey,
 					borderTopWidth: 0.5,
 					elevation: 0,
 				},
-				tabBarInactiveTintColor: '#DCDCDC',
+				tabBarInactiveTintColor: colors.inactiveGrey,
 				tabBarLabel: () => null,
 				tabBarLabelStyle: {
 					fontSize: 15,
@@ -42,7 +43,7 @@ export const BottomTabsNav = () => {
 							iconName = 'home-outline';
 							break;
 						case 'SearchStack':
-							iconName = 'search-outline';
+							iconName = 'menu-outline';
 							size = 24;
 							break;
 						case 'CartStack':
@@ -61,7 +62,7 @@ export const BottomTabsNav = () => {
 			})}
 		>
 			<Tab.Screen name="Home" component={Home} />
-			<Tab.Screen name="SearchStack" component={SearchStackNav} />
+			<Tab.Screen name="SearchStack" component={MenuStackNav} />
 			<Tab.Screen name="CartStack" component={CartStackNav} />
 			<Tab.Screen name="UserStack" component={UserStackNav} />
 		</Tab.Navigator>

@@ -2,13 +2,13 @@ import { createStackNavigator } from '@react-navigation/stack';
 
 import { Search } from '../screens';
 
-export type SearchStackParams = {
+export type MenuStackParams = {
 	SearchHome: undefined;
 };
 
-const Stack = createStackNavigator<SearchStackParams>();
+const Stack = createStackNavigator<MenuStackParams>();
 
-export const SearchStackNav = () => {
+export const MenuStackNav = () => {
 	return (
 		<Stack.Navigator
 			screenOptions={{
@@ -21,7 +21,7 @@ export const SearchStackNav = () => {
 				},
 			}}
 		>
-			<Stack.Screen name="SearchHome" options={{ title: 'Search Home' }} component={Search} />
+			<Stack.Screen name="SearchHome" options={{ headerShown: false }} component={Search} />
 		</Stack.Navigator>
 	);
 };
