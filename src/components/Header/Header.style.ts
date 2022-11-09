@@ -15,7 +15,7 @@ export const styles = StyleSheet.create({
 	},
 	searchContainer: {
 		flexDirection: 'row',
-		width: 100,
-		justifyContent: 'space-around',
+		width: 70,
+		justifyContent: 'space-between',
 	},
 });

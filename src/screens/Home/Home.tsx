@@ -12,7 +12,7 @@ import { styles } from './Home.style';
 const Home = () => {
 	return (
 		<ScrollView showsVerticalScrollIndicator={false}>
-			<Header />
+			<Header title="Sportika" />
 			<ImageBackground
 				source={{
 					uri: 'https://res.cloudinary.com/dlz1bhh8j/image/upload/v1667854319/sportika/mxr83dkv3dpz6a71ysun.jpg',
