@@ -45,6 +45,12 @@ module.exports = {
 			},
 		],
 		'react-native/no-inline-styles': 0,
+		'@typescript-eslint/no-misused-promises': [
+			'error',
+			{
+				checksVoidReturn: false,
+			},
+		],
 	},
 	settings: {
 		react: {

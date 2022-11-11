@@ -19,6 +19,7 @@ export const CartStackNav = () => {
 				cardStyle: {
 					backgroundColor: 'white',
 				},
+				headerShown: false,
 			}}
 		>
 			<Stack.Screen name="CartHome" options={{ title: 'CartHome' }} component={Cart} />

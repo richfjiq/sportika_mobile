@@ -19,6 +19,7 @@ export const UserStackNav = () => {
 				cardStyle: {
 					backgroundColor: 'white',
 				},
+				headerShown: false,
 			}}
 		>
 			<Stack.Screen name="Login" options={{ title: 'Login screen' }} component={Login} />

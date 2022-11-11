@@ -19,7 +19,7 @@ export const styles = StyleSheet.create({
 	},
 	buttonText: {
 		textTransform: 'uppercase',
-		fontSize: 12,
+		fontSize: 14,
 		fontWeight: '500',
 	},
 	imageBg: {
