@@ -48,10 +48,11 @@ const authStore = createSlice({
 			state.user = payload.user;
 		});
 
-		builder.addMatcher(isAnyOf(loginUser.rejected, registerUser.rejected), (state, { error }) => {
+		builder.addMatcher(isAnyOf(loginUser.rejected, registerUser.rejected), (state, payload) => {
+			console.log(payload);
 			state.loading = false;
 			state.error = true;
-			state.errorMessage = error.message;
+			state.errorMessage = payload.error.message;
 		});
 	},
 });

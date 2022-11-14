@@ -3,4 +3,5 @@ export const colors = {
 	inactiveGrey: '#DCDCDC',
 	white: '#FFFFFF',
 	greyText: '#A9A9A9',
+	error: '#FF0019',
 };

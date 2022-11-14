@@ -5,6 +5,7 @@ import { colors } from '../../theme/appTheme';
 export const styles = StyleSheet.create({
 	container: {
 		paddingHorizontal: 16,
+		height: '100%',
 	},
 	button: {
 		backgroundColor: colors.black,
@@ -22,6 +23,11 @@ export const styles = StyleSheet.create({
 		fontSize: 14,
 		fontWeight: '500',
 		color: colors.white,
+	},
+	errorText: {
+		color: colors.error,
+		marginTop: 5,
+		fontSize: 13,
 	},
 	googleButton: {
 		width: '100%',
@@ -51,6 +57,12 @@ export const styles = StyleSheet.create({
 		fontSize: 14,
 		color: 'blue',
 	},
+	logo: {
+		width: 150,
+		height: 150,
+		alignSelf: 'center',
+		marginBottom: 20,
+	},
 	title: {
 		fontSize: 20,
 		textTransform: 'uppercase',
@@ -59,22 +71,24 @@ export const styles = StyleSheet.create({
 	input: {
 		borderWidth: 0.5,
 		borderColor: colors.greyText,
-		marginTop: 10,
+		marginTop: 5,
 		height: 40,
 		borderRadius: 5,
 		fontSize: 16,
 		paddingHorizontal: 10,
 	},
 	inputContainer: {
-		marginTop: 20,
+		marginTop: 15,
 	},
 	socialAuthContainer: {
 		marginTop: 30,
+		marginBottom: 60,
 		borderTopWidth: 0.5,
 		borderColor: colors.greyText,
 	},
 	textContainer: {
+		flexDirection: 'row',
+		justifyContent: 'center',
 		marginTop: 10,
-		alignItems: 'flex-end',
 	},
 });

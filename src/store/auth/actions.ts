@@ -26,9 +26,15 @@ type LoginData = {
 
 export const loginUser = createAsyncThunk(
 	AUTH_LOGIN,
-	async ({ email, password }: LoginArguments): Promise<LoginData> => {
-		const response = await sportikaApi.post<LoginData>('/user/login', { email, password });
-		return response.data;
+	async ({ email, password }: LoginArguments, { rejectWithValue }) => {
+		try {
+			console.log(email, password);
+			const response = await sportikaApi.post<LoginData>('/user/login', { email, password });
+			console.log({ response });
+			return response.data;
+		} catch (error) {
+			return rejectWithValue(error);
+		}
 	},
 );
 

@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const baseURL = 'http://localhost:8080/api';
+const baseURL = 'https://sportika-server.herokuapp.com/api';
 
 const sportikaApi = axios.create({ baseURL });
 
