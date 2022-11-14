@@ -4,7 +4,7 @@ import { colors } from '../../theme/appTheme';
 
 export const styles = StyleSheet.create({
 	container: {
-		paddingHorizontal: 30,
+		paddingHorizontal: 16,
 	},
 	button: {
 		backgroundColor: colors.black,
