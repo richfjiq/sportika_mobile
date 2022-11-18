@@ -3,7 +3,7 @@ import { View, Text, TouchableOpacity } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import Icon from 'react-native-vector-icons/Ionicons';
 
-import { MenuCategories, MyAccount } from '../../components';
+import { MenuCategories, MyAccount, MyOrders } from '../../components';
 import { MyAddress } from '../../components/MyAddress';
 import { useAuth } from '../../store/auth/hooks';
 import { useUser } from '../../store/user/hooks';
@@ -30,7 +30,7 @@ const UserAccount = () => {
 			case 'address':
 				return <MyAddress />;
 			case 'orders':
-				return null;
+				return <MyOrders />;
 			default:
 				return <MyAccount />;
 		}

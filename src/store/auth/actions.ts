@@ -80,7 +80,7 @@ export const checkToken = createAsyncThunk(
 		const token = await AsyncStorage.getItem('token');
 
 		if (!token) {
-			dispatch(logout());
+			await dispatch(logout());
 		}
 
 		try {
@@ -97,6 +97,12 @@ export const checkToken = createAsyncThunk(
 	},
 );
 
-export const logout = createAction(AUTH_LOGOUT);
+export const logout = createAsyncThunk(AUTH_LOGOUT, async (_, { rejectWithValue }) => {
+	try {
+		await AsyncStorage.removeItem('token');
+	} catch (error) {
+		rejectWithValue('Server Error.');
+	}
+});
 
 export const removeError = createAction(REMOVE_ERROR);

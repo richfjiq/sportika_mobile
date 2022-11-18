@@ -65,7 +65,9 @@ const LoginForm = () => {
 	}, []);
 
 	useEffect(() => {
-		if (!errorMessage) return;
+		if (!errorMessage || errorMessage === 'Auth token is not valid.') {
+			return removeError();
+		}
 
 		Alert.alert('Login failed', errorMessage, [
 			{

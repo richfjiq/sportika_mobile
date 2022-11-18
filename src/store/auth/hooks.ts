@@ -10,6 +10,7 @@ import {
 } from './actions';
 import { RootState } from '../index';
 import { useAppDispatch, useAppSelector } from '../hooks';
+import { resetAddress } from '../user/actions';
 
 export const useAuth = () => {
 	const authState = useAppSelector((state: RootState) => state.auth, shallowEqual);
@@ -35,6 +36,7 @@ export const useAuth = () => {
 
 	const logout = useCallback(() => {
 		dispatch(logoutAction());
+		dispatch(resetAddress());
 	}, [dispatch]);
 
 	const removeError = useCallback(() => {

@@ -1,5 +1,5 @@
 import { createSlice, isAnyOf } from '@reduxjs/toolkit';
-import { getUserAddress, IAddress } from './actions';
+import { getUserAddress, IAddress, resetAddress } from './actions';
 
 interface State {
 	loading: boolean;
@@ -38,6 +38,13 @@ const userStore = createSlice({
 		builder.addCase(getUserAddress.fulfilled, (state, { payload }) => {
 			state.loading = false;
 			state.shippingAddress = payload as IAddress;
+		});
+
+		builder.addCase(resetAddress, (state) => {
+			state.loading = false;
+			state.error = false;
+			state.errorMessage = null;
+			state.shippingAddress = null;
 		});
 
 		builder.addMatcher(isAnyOf(getUserAddress.rejected), (state, action) => {

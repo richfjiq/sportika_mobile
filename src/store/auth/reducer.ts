@@ -64,9 +64,16 @@ const authStore = createSlice({
 			state.error = false;
 		});
 
-		builder.addCase(logout, (state) => {
+		builder.addCase(logout.pending, (state) => {
+			state.loading = true;
+		});
+
+		builder.addCase(logout.fulfilled, (state) => {
+			state.loading = false;
 			state.token = null;
 			state.user = null;
+			state.error = false;
+			state.errorMessage = null;
 		});
 
 		builder.addMatcher(

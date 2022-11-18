@@ -1,8 +1,9 @@
-import { createAsyncThunk } from '@reduxjs/toolkit';
+import { createAction, createAsyncThunk } from '@reduxjs/toolkit';
 
 import sportikaApi from '../../api/sportikaApi';
 
 const GET_USER_ADDRESS = 'user/GET_USER_ADDRESS';
+const RESET_ADDRESS = 'user/RESET_ADDRESS';
 
 export interface IAddress {
 	_id: string;
@@ -29,3 +30,5 @@ export const getUserAddress = createAsyncThunk(
 		}
 	},
 );
+
+export const resetAddress = createAction(RESET_ADDRESS);
