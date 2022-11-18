@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Icon from 'react-native-vector-icons/Ionicons';
 
@@ -6,6 +7,7 @@ import { colors } from '../theme/appTheme';
 import { CartStackNav } from './CartStackNav';
 import { MenuStackNav } from './MenuStackNav';
 import { UserStackNav } from './UserStackNav';
+import { useAuth } from '../store/auth/hooks';
 
 export type RootTabsParams = {
 	Home: undefined;
@@ -17,6 +19,13 @@ export type RootTabsParams = {
 const Tab = createBottomTabNavigator();
 
 export const BottomTabsNav = () => {
+	const { checkToken } = useAuth();
+	useEffect(() => {
+		// eslint-disable-next-line @typescript-eslint/no-floating-promises
+		checkToken();
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, []);
+
 	return (
 		<Tab.Navigator
 			sceneContainerStyle={{

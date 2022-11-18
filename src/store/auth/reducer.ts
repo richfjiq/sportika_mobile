@@ -1,5 +1,5 @@
 import { createSlice, isAnyOf } from '@reduxjs/toolkit';
-import { loginUser, registerUser } from './actions';
+import { loginUser, registerUser, removeError, checkToken, logout } from './actions';
 
 type User = {
 	email: string;
@@ -10,7 +10,7 @@ type User = {
 interface State {
 	loading: boolean;
 	error: boolean;
-	errorMessage: string | undefined;
+	errorMessage: string | null;
 	token: string | null;
 	user: User | null;
 }
@@ -18,7 +18,7 @@ interface State {
 const initialState: State = {
 	loading: false,
 	error: false,
-	errorMessage: undefined,
+	errorMessage: null,
 	token: null,
 	user: null,
 };
@@ -48,12 +48,35 @@ const authStore = createSlice({
 			state.user = payload.user;
 		});
 
-		builder.addMatcher(isAnyOf(loginUser.rejected, registerUser.rejected), (state, payload) => {
-			console.log(payload);
-			state.loading = false;
-			state.error = true;
-			state.errorMessage = payload.error.message;
+		builder.addCase(checkToken.pending, (state) => {
+			state.loading = true;
 		});
+
+		builder.addCase(checkToken.fulfilled, (state, { payload }) => {
+			state.loading = false;
+			state.token = payload.token;
+			state.user = payload.user;
+		});
+
+		builder.addCase(removeError, (state) => {
+			state.errorMessage = null;
+			state.error = false;
+		});
+
+		builder.addCase(logout, (state) => {
+			state.token = null;
+			state.user = null;
+		});
+
+		builder.addMatcher(
+			isAnyOf(loginUser.rejected, registerUser.rejected, checkToken.rejected),
+			(state, action) => {
+				state.loading = false;
+				state.error = true;
+				state.errorMessage = action.payload as string;
+				state.token = null;
+			},
+		);
 	},
 });
 

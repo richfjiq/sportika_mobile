@@ -55,7 +55,7 @@ export const styles = StyleSheet.create({
 	},
 	link: {
 		fontSize: 14,
-		color: 'blue',
+		color: colors.link,
 	},
 	logo: {
 		width: 150,

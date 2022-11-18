@@ -3,3 +3,4 @@ export * from './Search';
 export * from './Cart';
 export * from './Login';
 export * from './Menu';
+export * from './UserAccount';

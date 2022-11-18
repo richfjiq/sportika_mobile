@@ -8,6 +8,7 @@ import {
 	KeyboardAvoidingView,
 	Platform,
 	ScrollView,
+	Alert,
 } from 'react-native';
 import { GoogleSignin, statusCodes, User } from '@react-native-google-signin/google-signin';
 import Icon from 'react-native-vector-icons/Ionicons';
@@ -18,6 +19,7 @@ import { colors } from '../../theme/appTheme';
 import { styles } from './Login.style';
 import { loginValidation, registerValidation } from '../../utils';
 import { useAuth } from '../../store/auth/hooks';
+import { Loading } from '../Loading';
 
 interface GoogleError extends Error {
 	code: string;
@@ -33,7 +35,7 @@ type FormData = {
 const LoginForm = () => {
 	const [user, setUser] = useState<User>();
 	const [register, setRegister] = useState(false);
-	const { login } = useAuth();
+	const { loginUser, registerUser, removeError, errorMessage, loading } = useAuth();
 
 	const schemaValidation = register ? registerValidation : loginValidation;
 
@@ -53,11 +55,26 @@ const LoginForm = () => {
 
 	const toggleRegister = () => setRegister(!register);
 
+	// eslint-disable-next-line no-console
+	console.log({ user });
+
 	useEffect(() => {
 		GoogleSignin.configure({
 			iosClientId: '263541006661-ocgn0aiqes01haj7g3bauml5macjftsb.apps.googleusercontent.com',
 		});
 	}, []);
+
+	useEffect(() => {
+		if (!errorMessage) return;
+
+		Alert.alert('Login failed', errorMessage, [
+			{
+				text: 'Ok',
+				onPress: removeError,
+			},
+		]);
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [errorMessage]);
 
 	const signIn = async (): Promise<void> => {
 		try {
@@ -79,12 +96,11 @@ const LoginForm = () => {
 	};
 
 	const submit = async (data: FormData): Promise<void> => {
-		const { email, name, password, passwordRepeat } = data;
+		const { email, name, password } = data;
 		if (register) {
-			// register auth
+			await registerUser(email, password, name);
 		}
-
-		await login(email, password);
+		await loginUser(email, password);
 	};
 
 	return (
@@ -188,6 +204,7 @@ const LoginForm = () => {
 						<Text style={styles.googleLabel}>Sign in with Google</Text>
 					</TouchableOpacity>
 				</View>
+				<Loading modalVisible={loading} />
 			</ScrollView>
 		</KeyboardAvoidingView>
 	);

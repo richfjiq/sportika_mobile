@@ -3,3 +3,6 @@ export * from './Categories';
 export * from './ImageCategory';
 export * from './EmptyCart';
 export * from './Login';
+export * from './Loading';
+export * from './MenuCategories';
+export * from './MyAccount';

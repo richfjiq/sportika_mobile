@@ -4,3 +4,9 @@ export const categories = {
 	3: 'girls',
 	4: 'boys',
 };
+
+export const menuCategories = {
+	1: 'account',
+	2: 'address',
+	3: 'orders',
+};
