@@ -24,6 +24,7 @@ export type RegisterArguments = {
 type LoginData = {
 	token: string;
 	user: {
+		_id: string;
 		email: string;
 		name: string;
 		role: string;

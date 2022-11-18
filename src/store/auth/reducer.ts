@@ -2,6 +2,7 @@ import { createSlice, isAnyOf } from '@reduxjs/toolkit';
 import { loginUser, registerUser, removeError, checkToken, logout } from './actions';
 
 type User = {
+	_id: string;
 	email: string;
 	name: string;
 	role: string;

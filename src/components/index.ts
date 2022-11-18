@@ -6,3 +6,4 @@ export * from './Login';
 export * from './Loading';
 export * from './MenuCategories';
 export * from './MyAccount';
+export * from './MyAddress';

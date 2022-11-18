@@ -3,8 +3,12 @@ import { colors } from '../../theme/appTheme';
 
 export const styles = StyleSheet.create({
 	container: {
-		marginTop: 10,
-		paddingHorizontal: 16,
+		marginTop: 16,
+		marginHorizontal: 16,
+		borderRadius: 5,
+		padding: 15,
+		borderWidth: 0.5,
+		borderColor: colors.greyText,
 	},
 	editText: {
 		fontSize: 14,
@@ -14,7 +18,7 @@ export const styles = StyleSheet.create({
 	},
 	headerText: {
 		fontSize: 16,
-		fontWeight: '700',
+		fontWeight: '600',
 		textTransform: 'uppercase',
 		marginBottom: 5,
 	},
