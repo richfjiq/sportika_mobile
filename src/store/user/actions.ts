@@ -23,11 +23,9 @@ export const getUserAddress = createAsyncThunk(
 	async (id: string, { rejectWithValue }) => {
 		const response = await sportikaApi.get<IAddress[]>(`/address/${id}`);
 
-		if (response) {
-			return response.data[0];
-		} else {
-			rejectWithValue('Server error.');
-		}
+		if (response.data.length > 0) return response.data[0];
+		if (response.data.length === 0) return null;
+		rejectWithValue('Server error.');
 	},
 );
 

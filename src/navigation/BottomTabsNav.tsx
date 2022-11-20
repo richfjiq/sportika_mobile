@@ -11,12 +11,12 @@ import { useAuth } from '../store/auth/hooks';
 
 export type RootTabsParams = {
 	Home: undefined;
-	SearchStack: undefined;
+	MenuStack: undefined;
 	CartStack: undefined;
-	Tab4: undefined;
+	UserStack: undefined;
 };
 
-const Tab = createBottomTabNavigator();
+const Tab = createBottomTabNavigator<RootTabsParams>();
 
 export const BottomTabsNav = () => {
 	const { checkToken } = useAuth();
@@ -51,7 +51,7 @@ export const BottomTabsNav = () => {
 						case 'Home':
 							iconName = 'home-outline';
 							break;
-						case 'SearchStack':
+						case 'MenuStack':
 							iconName = 'menu-outline';
 							size = 24;
 							break;
@@ -71,7 +71,7 @@ export const BottomTabsNav = () => {
 			})}
 		>
 			<Tab.Screen name="Home" component={Home} />
-			<Tab.Screen name="SearchStack" component={MenuStackNav} />
+			<Tab.Screen name="MenuStack" component={MenuStackNav} />
 			<Tab.Screen name="CartStack" component={CartStackNav} />
 			<Tab.Screen name="UserStack" component={UserStackNav} />
 		</Tab.Navigator>

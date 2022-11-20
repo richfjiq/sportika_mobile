@@ -23,8 +23,8 @@ const Menu = () => {
 	};
 
 	useEffect(() => {
-		// eslint-disable-next-line no-console
-		getProducts().catch((e) => console.log(e));
+		// eslint-disable-next-line @typescript-eslint/no-floating-promises
+		getProducts();
 	}, []);
 
 	return (

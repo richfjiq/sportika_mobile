@@ -1,15 +1,19 @@
 import { View, Text, ImageBackground, ScrollView, TouchableOpacity } from 'react-native';
-// import { BottomTabScreenProps } from '@react-navigation/bottom-tabs';
+import { BottomTabScreenProps } from '@react-navigation/bottom-tabs';
 import Icon from 'react-native-vector-icons/Ionicons';
 import { Header } from '../../components';
 
 import { colors } from '../../theme/appTheme';
-// import { RootTabsParams } from '../../navigation/BottomTabsNav';
+import { RootTabsParams } from '../../navigation/BottomTabsNav';
 import { styles } from './Home.style';
 
-// interface Props extends BottomTabScreenProps<RootTabsParams, 'Home'> {}
+interface Props extends BottomTabScreenProps<RootTabsParams, 'Home'> {}
 
-const Home = () => {
+const Home = ({ navigation }: Props) => {
+	const goToBuy = () => {
+		navigation.navigate('MenuStack');
+	};
+
 	return (
 		<ScrollView showsVerticalScrollIndicator={false}>
 			<Header title="Sportika" />
@@ -23,7 +27,7 @@ const Home = () => {
 					<View style={styles.phraseContainer}>
 						<Text style={styles.phraseText}>Reinvent your Impulse</Text>
 					</View>
-					<TouchableOpacity style={styles.button} activeOpacity={0.7}>
+					<TouchableOpacity style={styles.button} activeOpacity={0.7} onPress={goToBuy}>
 						<Text style={styles.buttonText}>Buy now</Text>
 						<Icon name={'arrow-forward-outline'} size={20} color={colors.black} />
 					</TouchableOpacity>
@@ -39,7 +43,7 @@ const Home = () => {
 					<View style={styles.phraseContainer}>
 						<Text style={styles.phraseText}>Ready for a hit session?</Text>
 					</View>
-					<TouchableOpacity style={styles.button} activeOpacity={0.7}>
+					<TouchableOpacity style={styles.button} activeOpacity={0.7} onPress={goToBuy}>
 						<Text style={styles.buttonText}>Buy now</Text>
 						<Icon name={'arrow-forward-outline'} size={20} color={colors.black} />
 					</TouchableOpacity>
@@ -55,7 +59,7 @@ const Home = () => {
 					<View style={styles.phraseContainer}>
 						<Text style={styles.phraseText}>Maximum Comfort, infinite poss...</Text>
 					</View>
-					<TouchableOpacity style={styles.button} activeOpacity={0.7}>
+					<TouchableOpacity style={styles.button} activeOpacity={0.7} onPress={goToBuy}>
 						<Text style={styles.buttonText}>Buy now</Text>
 						<Icon name={'arrow-forward-outline'} size={20} color={colors.black} />
 					</TouchableOpacity>
@@ -71,7 +75,7 @@ const Home = () => {
 					<View style={styles.phraseContainer}>
 						<Text style={styles.phraseText}>Imagine your world</Text>
 					</View>
-					<TouchableOpacity style={styles.button} activeOpacity={0.7}>
+					<TouchableOpacity style={styles.button} activeOpacity={0.7} onPress={goToBuy}>
 						<Text style={styles.buttonText}>Buy now</Text>
 						<Icon name={'arrow-forward-outline'} size={20} color={colors.black} />
 					</TouchableOpacity>
