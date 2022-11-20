@@ -1,31 +1,21 @@
-import { useEffect, useState } from 'react';
+import { useMemo, useState } from 'react';
 import { View, ScrollView, TextInput } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
-import sportikaApi from '../../api/sportikaApi';
 
-import { Categories, Header, ImageCategory } from '../../components';
+import { Categories, Header, ImageCategory, ProductsCard } from '../../components';
+import { useProducts } from '../../store/products/hooks';
 import { colors } from '../../theme/appTheme';
 import { categories } from '../../utils';
 import { styles } from './Menu.style';
 
 const Menu = () => {
 	const [activeCategory, setActiveCategory] = useState(categories[1]);
+	const { allProducts } = useProducts();
 
-	const getProducts = async () => {
-		try {
-			const products = await sportikaApi.get('/products');
-			// eslint-disable-next-line no-console
-			console.log(products);
-		} catch (error) {
-			// eslint-disable-next-line no-console
-			console.log(error);
-		}
-	};
-
-	useEffect(() => {
-		// eslint-disable-next-line @typescript-eslint/no-floating-promises
-		getProducts();
-	}, []);
+	const productsByCategory = useMemo(
+		() => allProducts.filter((product) => product.gender.toLowerCase() === activeCategory),
+		[allProducts, activeCategory],
+	);
 
 	return (
 		<ScrollView>
@@ -40,6 +30,7 @@ const Menu = () => {
 				</View>
 			</View>
 			<ImageCategory category={activeCategory} />
+			<ProductsCard products={productsByCategory} />
 		</ScrollView>
 	);
 };

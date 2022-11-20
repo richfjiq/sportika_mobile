@@ -8,8 +8,6 @@ import { styles } from './MyAddress.style';
 const MyAddress = () => {
 	const { shippingAddress } = useUser();
 
-	console.log({ shippingAddress });
-
 	return (
 		<>
 			{shippingAddress ? (

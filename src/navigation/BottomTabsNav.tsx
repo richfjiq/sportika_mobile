@@ -8,6 +8,7 @@ import { CartStackNav } from './CartStackNav';
 import { MenuStackNav } from './MenuStackNav';
 import { UserStackNav } from './UserStackNav';
 import { useAuth } from '../store/auth/hooks';
+import { useProducts } from '../store/products/hooks';
 
 export type RootTabsParams = {
 	Home: undefined;
@@ -20,9 +21,17 @@ const Tab = createBottomTabNavigator<RootTabsParams>();
 
 export const BottomTabsNav = () => {
 	const { checkToken } = useAuth();
+	const { getAllProducts } = useProducts();
+
 	useEffect(() => {
 		// eslint-disable-next-line @typescript-eslint/no-floating-promises
 		checkToken();
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, []);
+
+	useEffect(() => {
+		// eslint-disable-next-line @typescript-eslint/no-floating-promises
+		getAllProducts();
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
