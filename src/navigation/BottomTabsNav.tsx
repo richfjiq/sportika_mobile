@@ -5,14 +5,14 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import { Home } from '../screens';
 import { colors } from '../theme/appTheme';
 import { CartStackNav } from './CartStackNav';
-import { MenuStackNav } from './MenuStackNav';
+import { MenuStackNav, MenuStackParams } from './MenuStackNav';
 import { UserStackNav } from './UserStackNav';
 import { useAuth } from '../store/auth/hooks';
 import { useProducts } from '../store/products/hooks';
 
 export type RootTabsParams = {
 	Home: undefined;
-	MenuStack: undefined;
+	MenuStack: MenuStackParams;
 	CartStack: undefined;
 	UserStack: undefined;
 };

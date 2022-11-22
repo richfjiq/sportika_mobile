@@ -7,18 +7,29 @@ import { useProducts } from '../../store/products/hooks';
 import { colors } from '../../theme/appTheme';
 import { categories } from '../../utils';
 import { styles } from './Menu.style';
+import { MenuStackParams } from '../../navigation/MenuStackNav';
+import { StackScreenProps } from '@react-navigation/stack';
 
-const Menu = () => {
+interface Props extends StackScreenProps<MenuStackParams, 'Menu'> {}
+
+const Menu = ({ navigation }: Props) => {
 	const [activeCategory, setActiveCategory] = useState(categories[1]);
 	const { allProducts } = useProducts();
 
-	const productsByCategory = useMemo(
-		() => allProducts.filter((product) => product.gender.toLowerCase() === activeCategory),
-		[allProducts, activeCategory],
-	);
+	const productsByCategory = useMemo(() => {
+		if (allProducts && allProducts.length > 0) {
+			return allProducts?.filter((product) => product.gender.toLowerCase() === activeCategory);
+		}
+
+		return [];
+	}, [allProducts, activeCategory]);
+
+	const goToDetails = (slug: string) => {
+		navigation.navigate('ProductDetails', { slug });
+	};
 
 	return (
-		<ScrollView>
+		<ScrollView showsVerticalScrollIndicator={false}>
 			<Header title="Store" search={false} />
 			<Categories active={activeCategory} setActive={setActiveCategory} />
 			<View style={styles.searchContainer}>
@@ -30,7 +41,7 @@ const Menu = () => {
 				</View>
 			</View>
 			<ImageCategory category={activeCategory} />
-			<ProductsCard products={productsByCategory} />
+			<ProductsCard products={productsByCategory} goToDetails={goToDetails} />
 		</ScrollView>
 	);
 };

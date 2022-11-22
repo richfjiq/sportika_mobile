@@ -11,7 +11,7 @@ interface Props extends BottomTabScreenProps<RootTabsParams, 'Home'> {}
 
 const Home = ({ navigation }: Props) => {
 	const goToBuy = () => {
-		navigation.navigate('MenuStack');
+		navigation.navigate('MenuStack' as never, { screen: 'Menu' } as never);
 	};
 
 	return (

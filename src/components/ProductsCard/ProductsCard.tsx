@@ -1,16 +1,22 @@
-import { View, Text, ImageBackground } from 'react-native';
+import { View, Text, ImageBackground, TouchableOpacity } from 'react-native';
 import { IProduct } from '../../interfaces';
 import { styles } from './ProductsCard.style';
 
 interface Props {
 	products: IProduct[];
+	goToDetails: (slug: string) => void;
 }
 
-const ProductsCard = ({ products }: Props) => {
+const ProductsCard = ({ products, goToDetails }: Props) => {
 	return (
 		<View style={styles.container}>
 			{products.map((item) => (
-				<View key={item.slug} style={styles.cardContainer}>
+				<TouchableOpacity
+					key={item.slug}
+					style={styles.cardContainer}
+					activeOpacity={0.6}
+					onPress={() => goToDetails(item.slug)}
+				>
 					<ImageBackground
 						source={{
 							uri: `${item.images[0]}`,
@@ -23,7 +29,7 @@ const ProductsCard = ({ products }: Props) => {
 							<Text style={styles.textTitle}>{item.title}</Text>
 						</View>
 					</ImageBackground>
-				</View>
+				</TouchableOpacity>
 			))}
 		</View>
 	);

@@ -1,16 +1,13 @@
 import { createSlice, isAnyOf } from '@reduxjs/toolkit';
 import { IProduct } from '../../interfaces';
-import { getAllProducts } from './actions';
+import { getAllProducts, getProductBySlug } from './actions';
 
 interface State {
 	loading: boolean;
 	error: boolean;
 	errorMessage: string | null;
 	allProducts: IProduct[] | [];
-	menProducts: IProduct[] | [];
-	womenProducts: IProduct[] | [];
-	girlsProducts: IProduct[] | [];
-	boysProducts: IProduct[] | [];
+	product: IProduct | null;
 }
 
 const initialState: State = {
@@ -18,10 +15,7 @@ const initialState: State = {
 	error: false,
 	errorMessage: null,
 	allProducts: [],
-	menProducts: [],
-	womenProducts: [],
-	girlsProducts: [],
-	boysProducts: [],
+	product: null,
 };
 const productsStore = createSlice({
 	name: 'products',
@@ -37,11 +31,23 @@ const productsStore = createSlice({
 			state.allProducts = payload as IProduct[];
 		});
 
-		builder.addMatcher(isAnyOf(getAllProducts.rejected), (state, action) => {
-			state.loading = false;
-			state.error = true;
-			state.errorMessage = action.payload as string;
+		builder.addCase(getProductBySlug.pending, (state) => {
+			state.loading = true;
 		});
+
+		builder.addCase(getProductBySlug.fulfilled, (state, { payload }) => {
+			state.loading = false;
+			state.product = payload as IProduct;
+		});
+
+		builder.addMatcher(
+			isAnyOf(getAllProducts.rejected, getProductBySlug.rejected),
+			(state, action) => {
+				state.loading = false;
+				state.error = true;
+				state.errorMessage = action.payload as string;
+			},
+		);
 	},
 });
 

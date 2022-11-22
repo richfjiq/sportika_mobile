@@ -35,6 +35,7 @@ export const useAuth = () => {
 	}, [dispatch]);
 
 	const logout = useCallback(() => {
+		// eslint-disable-next-line @typescript-eslint/no-floating-promises
 		dispatch(logoutAction());
 		dispatch(resetAddress());
 	}, [dispatch]);

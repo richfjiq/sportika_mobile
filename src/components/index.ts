@@ -9,3 +9,6 @@ export * from './MyAccount';
 export * from './MyAddress';
 export * from './MyOrders';
 export * from './ProductsCard';
+export * from './ItemQuantity';
+export * from './SizeSelector';
+export * from './ImageCarousel';
