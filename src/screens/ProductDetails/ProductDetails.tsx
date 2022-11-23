@@ -5,7 +5,7 @@ import { StackScreenProps } from '@react-navigation/stack';
 import Icon from 'react-native-vector-icons/Ionicons';
 
 import { MenuStackParams } from '../../navigation/MenuStackNav';
-import { useProducts } from '../../store/products/hooks';
+import { useCart, useProducts } from '../../store';
 import { ImageCarousel, ItemQuantity, Loading, SizeSelector } from '../../components';
 import { colors } from '../../theme/appTheme';
 import { styles } from './ProductDetails.style';
@@ -15,6 +15,7 @@ interface Props extends StackScreenProps<MenuStackParams, 'ProductDetails'> {}
 
 const ProductDetails = ({ route, navigation }: Props) => {
 	const { loading, product, getProductBySlug } = useProducts();
+	const { addProductToCart } = useCart();
 	const [tempCartProducts, setTempCartProducts] = useState<ICartProduct>({
 		_id: product?._id as string,
 		image: product?.images[0] as string,
@@ -36,12 +37,33 @@ const ProductDetails = ({ route, navigation }: Props) => {
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
+	useEffect(() => {
+		if (product) {
+			setTempCartProducts({
+				_id: product._id,
+				image: product.images[0],
+				price: product.price,
+				size: undefined,
+				slug: product.slug,
+				title: product.title,
+				gender: product.gender,
+				quantity: 1,
+			});
+		}
+	}, [product]);
+
 	const onSelectedSize = (size: ISize) => {
 		setTempCartProducts((prevState) => ({ ...prevState, size }));
 	};
 
 	const updateQuantity = (quantity: number) => {
 		setTempCartProducts((prevState) => ({ ...prevState, quantity }));
+	};
+
+	const onAddProduct = async () => {
+		if (!tempCartProducts.size) return;
+		await addProductToCart(tempCartProducts);
+		navigation.navigate('CartStack' as never, { screen: 'Home' } as never);
 	};
 
 	if (loading) return <Loading modalVisible={loading} />;
@@ -72,8 +94,10 @@ const ProductDetails = ({ route, navigation }: Props) => {
 					onSelectedSize={onSelectedSize}
 				/>
 
-				<TouchableOpacity style={styles.button} activeOpacity={0.7}>
-					<Text style={styles.buttonText}>Add to cart</Text>
+				<TouchableOpacity style={styles.button} activeOpacity={0.7} onPress={onAddProduct}>
+					<Text style={styles.buttonText}>
+						{tempCartProducts.size ? 'Add to cart' : 'Choose a size'}
+					</Text>
 					<Icon name={'add-outline'} size={20} color={colors.white} />
 				</TouchableOpacity>
 				<Text style={styles.subHeader}>Description</Text>

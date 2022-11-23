@@ -18,7 +18,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { colors } from '../../theme/appTheme';
 import { styles } from './Login.style';
 import { loginValidation, registerValidation } from '../../utils';
-import { useAuth } from '../../store/auth/hooks';
+import { useAuth } from '../../store';
 import { Loading } from '../Loading';
 
 interface GoogleError extends Error {

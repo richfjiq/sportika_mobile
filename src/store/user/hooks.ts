@@ -1,8 +1,8 @@
 import { shallowEqual } from 'react-redux';
-
-import { RootState } from '../index';
-import { useAppDispatch, useAppSelector } from '../hooks';
 import { useCallback } from 'react';
+
+import { RootState } from '../store';
+import { useAppDispatch, useAppSelector } from '../hooks';
 import { getUserAddress as getUserAddressAction } from './actions';
 
 export const useUser = () => {

@@ -10,3 +10,5 @@ export const menuCategories = {
 	2: 'address',
 	3: 'orders',
 };
+
+export const TAX_RATE = 0.15;

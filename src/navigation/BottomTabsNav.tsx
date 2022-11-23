@@ -7,8 +7,8 @@ import { colors } from '../theme/appTheme';
 import { CartStackNav } from './CartStackNav';
 import { MenuStackNav, MenuStackParams } from './MenuStackNav';
 import { UserStackNav } from './UserStackNav';
-import { useAuth } from '../store/auth/hooks';
-import { useProducts } from '../store/products/hooks';
+import { useAuth } from '../store';
+import { useProducts } from '../store';
 
 export type RootTabsParams = {
 	Home: undefined;

@@ -1,7 +1,7 @@
 import { View, Text, TouchableOpacity } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
-import { useUser } from '../../store/user/hooks';
 
+import { useUser } from '../../store';
 import { colors } from '../../theme/appTheme';
 import { styles } from './MyAddress.style';
 

@@ -1,7 +1,7 @@
 import { createStackNavigator } from '@react-navigation/stack';
 
 import { Login, UserAccount } from '../screens';
-import { useAuth } from '../store/auth/hooks';
+import { useAuth } from '../store';
 
 export type UserStackParams = {
 	UserAccount: undefined;

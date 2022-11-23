@@ -1,4 +1,5 @@
 import { createSlice, isAnyOf } from '@reduxjs/toolkit';
+
 import { IProduct } from '../../interfaces';
 import { getAllProducts, getProductBySlug } from './actions';
 

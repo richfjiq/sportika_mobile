@@ -5,8 +5,7 @@ import Icon from 'react-native-vector-icons/Ionicons';
 
 import { MenuCategories, MyAccount, MyOrders } from '../../components';
 import { MyAddress } from '../../components/MyAddress';
-import { useAuth } from '../../store/auth/hooks';
-import { useUser } from '../../store/user/hooks';
+import { useAuth, useUser } from '../../store';
 import { colors } from '../../theme/appTheme';
 import { menuCategories } from '../../utils';
 import { styles } from './UserAccount.style';

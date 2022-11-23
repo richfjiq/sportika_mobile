@@ -8,9 +8,9 @@ import {
 	checkToken as checkTokenAction,
 	logout as logoutAction,
 } from './actions';
-import { RootState } from '../index';
 import { useAppDispatch, useAppSelector } from '../hooks';
-import { resetAddress } from '../user/actions';
+import { resetAddress } from '../user';
+import { RootState } from '../store';
 
 export const useAuth = () => {
 	const authState = useAppSelector((state: RootState) => state.auth, shallowEqual);

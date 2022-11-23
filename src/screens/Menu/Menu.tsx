@@ -1,14 +1,14 @@
 import { useMemo, useState } from 'react';
 import { View, ScrollView, TextInput } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
+import { StackScreenProps } from '@react-navigation/stack';
 
 import { Categories, Header, ImageCategory, ProductsCard } from '../../components';
-import { useProducts } from '../../store/products/hooks';
+import { useProducts } from '../../store';
 import { colors } from '../../theme/appTheme';
 import { categories } from '../../utils';
 import { styles } from './Menu.style';
 import { MenuStackParams } from '../../navigation/MenuStackNav';
-import { StackScreenProps } from '@react-navigation/stack';
 
 interface Props extends StackScreenProps<MenuStackParams, 'Menu'> {}
 

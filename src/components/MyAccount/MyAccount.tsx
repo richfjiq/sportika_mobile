@@ -1,5 +1,5 @@
 import { View, Text, TouchableOpacity } from 'react-native';
-import { useAuth } from '../../store/auth/hooks';
+import { useAuth } from '../../store';
 import { styles } from './MyAccount.style';
 
 const MyAccount = () => {

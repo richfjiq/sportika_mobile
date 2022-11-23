@@ -1,12 +1,12 @@
 import { shallowEqual } from 'react-redux';
+import { useCallback } from 'react';
 
-import { RootState } from '../index';
+import { RootState } from '../store';
 import { useAppDispatch, useAppSelector } from '../hooks';
 import {
 	getAllProducts as getAllProductsAction,
 	getProductBySlug as getProductBySlugAction,
 } from './actions';
-import { useCallback } from 'react';
 
 export const useProducts = () => {
 	const productsState = useAppSelector((state: RootState) => state.products, shallowEqual);

@@ -3,9 +3,9 @@ import { useNavigation } from '@react-navigation/native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import Icon from 'react-native-vector-icons/Ionicons';
 
-import { useAuth } from '../../store/auth/hooks';
 import { colors } from '../../theme/appTheme';
 import { styles } from './Header.style';
+import { useAuth } from '../../store';
 
 interface Props {
 	title: string;

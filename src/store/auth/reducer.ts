@@ -1,5 +1,5 @@
 import { createSlice, isAnyOf } from '@reduxjs/toolkit';
-import { loginUser, registerUser, removeError, checkToken, logout } from './actions';
+import { registerUser, removeError, checkToken, logout, loginUser } from './actions';
 
 type User = {
 	_id: string;
