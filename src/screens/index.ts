@@ -1,6 +1,6 @@
 export * from './Home';
 export * from './Search';
-export * from './Cart';
+export * from './ShoppingCart';
 export * from './Login';
 export * from './Menu';
 export * from './UserAccount';

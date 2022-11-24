@@ -12,3 +12,6 @@ export * from './ProductsCard';
 export * from './ItemQuantity';
 export * from './SizeSelector';
 export * from './ImageCarousel';
+export * from './Cart';
+export * from './ProductCart';
+export * from './Checkout';

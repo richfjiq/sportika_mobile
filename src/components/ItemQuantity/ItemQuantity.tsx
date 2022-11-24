@@ -7,9 +7,10 @@ import { styles } from './ItemQuantity.style';
 interface Props {
 	quantity: number;
 	updateQuantity: (value: number) => void;
+	cart?: boolean;
 }
 
-const ItemQuantity = ({ quantity, updateQuantity }: Props) => {
+const ItemQuantity = ({ quantity, updateQuantity, cart = false }: Props) => {
 	const updateItemQuantity = (value: number) => {
 		if (value === -1) {
 			if (quantity === 1) return;
@@ -21,14 +22,14 @@ const ItemQuantity = ({ quantity, updateQuantity }: Props) => {
 
 	return (
 		<>
-			<Text style={styles.subHeader}>Quantity</Text>
-			<View style={styles.quantityContainer}>
+			<Text style={cart ? styles.subHeaderCart : styles.subHeader}>Quantity</Text>
+			<View style={cart ? styles.quantityContainerCart : styles.quantityContainer}>
 				<TouchableOpacity onPress={() => updateItemQuantity(-1)}>
-					<Icon name={'remove-circle-outline'} size={30} color={colors.black} />
+					<Icon name={'remove-circle-outline'} size={cart ? 20 : 30} color={colors.black} />
 				</TouchableOpacity>
-				<Text style={styles.quantity}>{quantity}</Text>
+				<Text style={cart ? styles.quantityCart : styles.quantity}>{quantity}</Text>
 				<TouchableOpacity onPress={() => updateItemQuantity(1)}>
-					<Icon name={'add-circle-outline'} size={30} color={colors.black} />
+					<Icon name={'add-circle-outline'} size={cart ? 20 : 30} color={colors.black} />
 				</TouchableOpacity>
 			</View>
 		</>

@@ -20,4 +20,22 @@ export const styles = StyleSheet.create({
 		alignItems: 'center',
 		marginBottom: 20,
 	},
+	subHeaderCart: {
+		fontSize: 14,
+		textTransform: 'uppercase',
+		fontWeight: '400',
+		marginBottom: 5,
+	},
+	quantityCart: {
+		width: '25%',
+		textAlign: 'center',
+		fontSize: 14,
+	},
+	quantityContainerCart: {
+		flexDirection: 'row',
+		width: wp('20%'),
+		justifyContent: 'space-between',
+		alignItems: 'center',
+		marginBottom: 5,
+	},
 });
