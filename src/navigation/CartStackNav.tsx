@@ -1,9 +1,10 @@
 import { createStackNavigator } from '@react-navigation/stack';
 
-import { ShoppingCart } from '../screens';
+import { Checkout, ShoppingCart } from '../screens';
 
 export type CartStackParams = {
 	ShoppingCart: undefined;
+	Checkout: undefined;
 };
 
 const Stack = createStackNavigator<CartStackParams>();
@@ -23,6 +24,7 @@ export const CartStackNav = () => {
 			}}
 		>
 			<Stack.Screen name="ShoppingCart" component={ShoppingCart} />
+			<Stack.Screen name="Checkout" component={Checkout} />
 		</Stack.Navigator>
 	);
 };

@@ -14,4 +14,6 @@ export * from './SizeSelector';
 export * from './ImageCarousel';
 export * from './Cart';
 export * from './ProductCart';
-export * from './Checkout';
+export * from './SummaryOrder';
+export * from './CartProducts';
+export * from './AddressModal';

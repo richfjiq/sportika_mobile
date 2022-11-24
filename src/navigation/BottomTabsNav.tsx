@@ -7,8 +7,10 @@ import { colors } from '../theme/appTheme';
 import { CartStackNav } from './CartStackNav';
 import { MenuStackNav, MenuStackParams } from './MenuStackNav';
 import { UserStackNav } from './UserStackNav';
-import { useAuth } from '../store';
+import { useAuth, useCart } from '../store';
 import { useProducts } from '../store';
+import { Text, View } from 'react-native';
+import { styles } from './BottomTabsNav.style';
 
 export type RootTabsParams = {
 	Home: undefined;
@@ -22,6 +24,7 @@ const Tab = createBottomTabNavigator<RootTabsParams>();
 export const BottomTabsNav = () => {
 	const { checkToken } = useAuth();
 	const { getAllProducts } = useProducts();
+	const { numberOfItems } = useCart();
 
 	useEffect(() => {
 		// eslint-disable-next-line @typescript-eslint/no-floating-promises
@@ -72,6 +75,17 @@ export const BottomTabsNav = () => {
 							iconName = 'person-circle-outline';
 							size = 24;
 							break;
+					}
+
+					if (route.name === 'CartStack' && numberOfItems !== 0) {
+						return (
+							<View>
+								<View style={styles.container}>
+									<Text style={styles.text}>{numberOfItems}</Text>
+								</View>
+								<Icon name={iconName} size={size} color={color} />
+							</View>
+						);
 					}
 
 					return <Icon name={iconName} size={size} color={color} />;

@@ -6,9 +6,11 @@ const ShoppingCart = () => {
 	const { cart } = useCart();
 
 	if (cart.length === 0) {
-		<View>
-			<EmptyCart />
-		</View>;
+		return (
+			<View>
+				<EmptyCart />
+			</View>
+		);
 	}
 
 	return (
