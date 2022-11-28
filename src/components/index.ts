@@ -17,3 +17,4 @@ export * from './ProductCart';
 export * from './SummaryOrder';
 export * from './CartProducts';
 export * from './AddressModal';
+export * from './AddressForm';

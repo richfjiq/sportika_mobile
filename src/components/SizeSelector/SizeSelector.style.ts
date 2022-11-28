@@ -23,12 +23,12 @@ export const styles = StyleSheet.create({
 		marginBottom: 5,
 	},
 	size: {
-		fontSize: 20,
+		fontSize: 16,
 		textTransform: 'uppercase',
 		fontWeight: '400',
 	},
 	sizeSelected: {
-		fontSize: 20,
+		fontSize: 16,
 		textTransform: 'uppercase',
 		fontWeight: '400',
 		color: colors.white,

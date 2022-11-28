@@ -3,7 +3,7 @@ import { View, Text, TouchableOpacity } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import Icon from 'react-native-vector-icons/Ionicons';
 
-import { MenuCategories, MyAccount, MyOrders } from '../../components';
+import { Loading, MenuCategories, MyAccount, MyOrders } from '../../components';
 import { MyAddress } from '../../components/MyAddress';
 import { useAuth, useUser } from '../../store';
 import { colors } from '../../theme/appTheme';
@@ -14,7 +14,7 @@ const UserAccount = () => {
 	const [activeCategory, setActiveCategory] = useState(menuCategories[1]);
 	const { top } = useSafeAreaInsets();
 	const { logout, user } = useAuth();
-	const { getUserAddress } = useUser();
+	const { getUserAddress, loading } = useUser();
 
 	useEffect(() => {
 		if (user) {
@@ -45,6 +45,7 @@ const UserAccount = () => {
 			</View>
 			<MenuCategories active={activeCategory} setActive={setActiveCategory} />
 			{renderComponent()}
+			<Loading modalVisible={loading} />
 		</View>
 	);
 };

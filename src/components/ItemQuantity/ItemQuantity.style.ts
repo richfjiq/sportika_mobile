@@ -9,16 +9,16 @@ export const styles = StyleSheet.create({
 		marginBottom: 5,
 	},
 	quantity: {
-		width: '25%',
+		width: '27%',
 		textAlign: 'center',
-		fontSize: 20,
+		fontSize: 18,
 	},
 	quantityContainer: {
 		flexDirection: 'row',
 		width: wp('30%'),
 		justifyContent: 'space-between',
 		alignItems: 'center',
-		marginBottom: 20,
+		marginBottom: 10,
 	},
 	subHeaderCart: {
 		fontSize: 14,

@@ -25,11 +25,11 @@ const ItemQuantity = ({ quantity, updateQuantity, cart = false }: Props) => {
 			<Text style={cart ? styles.subHeaderCart : styles.subHeader}>Quantity</Text>
 			<View style={cart ? styles.quantityContainerCart : styles.quantityContainer}>
 				<TouchableOpacity onPress={() => updateItemQuantity(-1)}>
-					<Icon name={'remove-circle-outline'} size={cart ? 20 : 30} color={colors.black} />
+					<Icon name={'remove-circle-outline'} size={cart ? 20 : 25} color={colors.black} />
 				</TouchableOpacity>
 				<Text style={cart ? styles.quantityCart : styles.quantity}>{quantity}</Text>
 				<TouchableOpacity onPress={() => updateItemQuantity(1)}>
-					<Icon name={'add-circle-outline'} size={cart ? 20 : 30} color={colors.black} />
+					<Icon name={'add-circle-outline'} size={cart ? 20 : 25} color={colors.black} />
 				</TouchableOpacity>
 			</View>
 		</>

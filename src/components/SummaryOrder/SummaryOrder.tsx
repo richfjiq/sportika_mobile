@@ -1,17 +1,23 @@
 import { useNavigation } from '@react-navigation/native';
 import { View, Text, TouchableOpacity } from 'react-native';
 
-import { useCart, useUser } from '../../store';
+import { useAuth, useCart, useUser } from '../../store';
 import { currencyFormat, TAX_RATE } from '../../utils';
+import { AddressModal } from '../AddressModal';
 import { styles } from './SummaryOrder.style';
+import { useState } from 'react';
+import { AddressForm } from '../AddressForm';
 
 interface Props {
 	checkout?: boolean;
 }
 
 const SummaryOrder = ({ checkout = false }: Props) => {
+	const [isVisible, setIsVisible] = useState(false);
+	const [modalFormVisible, setModalFormVisible] = useState(false);
 	const { numberOfItems, subTotal, tax, total } = useCart();
 	const { shippingAddress } = useUser();
+	const { user } = useAuth();
 	const navigator = useNavigation();
 
 	const goToCheckout = () => {
@@ -22,7 +28,11 @@ const SummaryOrder = ({ checkout = false }: Props) => {
 		navigator.navigate('CartStack' as never, { screen: 'ShoppingCart' } as never);
 	};
 
-	// const goToLogin = () => {};
+	const onAddAddress = () => {
+		if (!user) return setIsVisible(!isVisible);
+
+		setModalFormVisible(!modalFormVisible);
+	};
 
 	const clientName = `${shippingAddress?.firstName as string} ${
 		shippingAddress?.lastName as string
@@ -39,7 +49,7 @@ const SummaryOrder = ({ checkout = false }: Props) => {
 				<>
 					<View style={styles.rowHeader}>
 						<Text style={styles.orderTitleAddress}>Delivery Address</Text>
-						<TouchableOpacity>
+						<TouchableOpacity onPress={() => setModalFormVisible(!modalFormVisible)}>
 							<Text style={styles.removeText}>Edit</Text>
 						</TouchableOpacity>
 					</View>
@@ -52,7 +62,7 @@ const SummaryOrder = ({ checkout = false }: Props) => {
 			);
 		} else {
 			return (
-				<TouchableOpacity style={styles.button} activeOpacity={0.7} onPress={goToCheckout}>
+				<TouchableOpacity style={styles.button} activeOpacity={0.7} onPress={onAddAddress}>
 					<Text style={styles.buttonText}>Add Address</Text>
 				</TouchableOpacity>
 			);
@@ -94,6 +104,9 @@ const SummaryOrder = ({ checkout = false }: Props) => {
 			<TouchableOpacity style={styles.button} activeOpacity={0.7} onPress={goToCheckout}>
 				<Text style={styles.buttonText}>{checkout ? 'Confirm Order' : 'Checkout'}</Text>
 			</TouchableOpacity>
+
+			<AddressModal visible={isVisible} setVisible={setIsVisible} />
+			<AddressForm visible={modalFormVisible} setVisible={setModalFormVisible} />
 		</View>
 	);
 };

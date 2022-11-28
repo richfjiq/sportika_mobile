@@ -1,6 +1,12 @@
 import { createSlice, isAnyOf } from '@reduxjs/toolkit';
 
-import { getUserAddress, IAddress, resetAddress } from './actions';
+import {
+	createUserAddress,
+	getUserAddress,
+	IAddress,
+	resetAddress,
+	updateUserAddress,
+} from './actions';
 
 interface State {
 	loading: boolean;
@@ -14,6 +20,7 @@ interface State {
 		address: string;
 		zip: string;
 		city: string;
+		state: string;
 		country: string;
 		code: string;
 		phone: string;
@@ -41,6 +48,24 @@ const userStore = createSlice({
 			state.shippingAddress = payload as IAddress;
 		});
 
+		builder.addCase(createUserAddress.pending, (state) => {
+			state.loading = true;
+		});
+
+		builder.addCase(createUserAddress.fulfilled, (state, { payload }) => {
+			state.loading = false;
+			state.shippingAddress = payload as IAddress;
+		});
+
+		builder.addCase(updateUserAddress.pending, (state) => {
+			state.loading = true;
+		});
+
+		builder.addCase(updateUserAddress.fulfilled, (state, { payload }) => {
+			state.loading = false;
+			state.shippingAddress = payload as IAddress;
+		});
+
 		builder.addCase(resetAddress, (state) => {
 			state.loading = false;
 			state.error = false;
@@ -48,11 +73,14 @@ const userStore = createSlice({
 			state.shippingAddress = null;
 		});
 
-		builder.addMatcher(isAnyOf(getUserAddress.rejected), (state, action) => {
-			state.loading = false;
-			state.error = true;
-			state.errorMessage = action.payload as string;
-		});
+		builder.addMatcher(
+			isAnyOf(getUserAddress.rejected, createUserAddress.rejected, updateUserAddress.rejected),
+			(state, action) => {
+				state.loading = false;
+				state.error = true;
+				state.errorMessage = action.payload as string;
+			},
+		);
 	},
 });
 

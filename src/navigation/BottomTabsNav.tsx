@@ -28,13 +28,13 @@ export const BottomTabsNav = () => {
 
 	useEffect(() => {
 		// eslint-disable-next-line @typescript-eslint/no-floating-promises
-		checkToken();
+		getAllProducts();
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
 	useEffect(() => {
 		// eslint-disable-next-line @typescript-eslint/no-floating-promises
-		getAllProducts();
+		checkToken();
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 

@@ -7,7 +7,7 @@ interface Props {
 	modalVisible: boolean;
 }
 
-const Loading: FC<Props> = ({ modalVisible = false }) => {
+const Loading: FC<Props> = ({ modalVisible }) => {
 	return (
 		<Modal animationType="fade" transparent={true} visible={modalVisible}>
 			<View style={styles.container}>

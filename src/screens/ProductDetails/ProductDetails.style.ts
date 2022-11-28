@@ -30,7 +30,7 @@ export const styles = StyleSheet.create({
 		marginBottom: 16,
 	},
 	headerTitle: {
-		fontSize: 18,
+		fontSize: 16,
 		fontWeight: '600',
 		textTransform: 'uppercase',
 	},
@@ -40,9 +40,9 @@ export const styles = StyleSheet.create({
 		marginBottom: 50,
 	},
 	infoTitle: {
-		fontSize: 20,
+		fontSize: 16,
 		textTransform: 'uppercase',
-		fontWeight: '700',
+		fontWeight: '500',
 		marginBottom: 5,
 	},
 	description: {
@@ -52,9 +52,9 @@ export const styles = StyleSheet.create({
 		marginBottom: 5,
 	},
 	infoPrice: {
-		fontSize: 20,
-		fontWeight: '400',
-		marginBottom: 20,
+		fontSize: 16,
+		fontWeight: '700',
+		marginBottom: 10,
 	},
 	subHeader: {
 		fontSize: 16,
