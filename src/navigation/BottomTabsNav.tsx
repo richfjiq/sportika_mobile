@@ -7,7 +7,7 @@ import { colors } from '../theme/appTheme';
 import { CartStackNav } from './CartStackNav';
 import { MenuStackNav, MenuStackParams } from './MenuStackNav';
 import { UserStackNav } from './UserStackNav';
-import { useAuth, useCart } from '../store';
+import { useAuth, useCart, useUser } from '../store';
 import { useProducts } from '../store';
 import { Text, View } from 'react-native';
 import { styles } from './BottomTabsNav.style';
@@ -22,9 +22,18 @@ export type RootTabsParams = {
 const Tab = createBottomTabNavigator<RootTabsParams>();
 
 export const BottomTabsNav = () => {
-	const { checkToken } = useAuth();
+	const { user, checkToken } = useAuth();
 	const { getAllProducts } = useProducts();
 	const { numberOfItems } = useCart();
+	const { getUserAddress } = useUser();
+
+	useEffect(() => {
+		if (user) {
+			// eslint-disable-next-line @typescript-eslint/no-floating-promises
+			getUserAddress(user._id);
+		}
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [user]);
 
 	useEffect(() => {
 		// eslint-disable-next-line @typescript-eslint/no-floating-promises

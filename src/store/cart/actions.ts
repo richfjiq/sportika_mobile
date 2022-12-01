@@ -15,8 +15,7 @@ const ADD_CART_FROM_COOKIES = 'ADD_CART_FROM_COOKIES';
 // const LOAD_ADDRESS_FROM_COOKIES = 'LOAD_ADDRESS_FROM_COOKIES';
 const ADD_ADDRESS = 'ADD_ADDRESS';
 const CREATE_ORDER = 'CREATE_ORDER';
-// const SET_ORDER_CREATED = 'SET_ORDER_CREATED';
-// const NEW_ORDER_CREATED = 'NEW_ORDER_CREATED';
+const SET_ORDER_ID = 'SET_ORDER_ID';
 
 export const addProductToCart = createAction(ADD_PRODUCT_TO_CART, (product: ICartProduct) => {
 	return {
@@ -81,11 +80,23 @@ export const addAddress = createAction(ADD_ADDRESS, (address: ShippingAddress) =
 });
 
 export const createOrder = createAsyncThunk(CREATE_ORDER, async (_, { rejectWithValue }) => {
-	const { cart } = store.getState();
+	const { cart, user } = store.getState();
+
+	const shippingAddress = {
+		firstName: user.shippingAddress?.firstName as string,
+		lastName: user.shippingAddress?.lastName as string,
+		address: user.shippingAddress?.address as string,
+		zip: user.shippingAddress?.zip as string,
+		city: user.shippingAddress?.city as string,
+		state: user.shippingAddress?.state as string,
+		country: user.shippingAddress?.country as string,
+		code: user.shippingAddress?.code as string,
+		phone: user.shippingAddress?.phone as string,
+	};
 
 	const body = {
 		orderItems: cart.cart,
-		shippingAddress: cart.shippingAddress,
+		shippingAddress,
 		numberOfItems: cart.numberOfItems,
 		subTotal: cart.subTotal,
 		tax: cart.tax,
@@ -99,4 +110,10 @@ export const createOrder = createAsyncThunk(CREATE_ORDER, async (_, { rejectWith
 	} catch (error) {
 		rejectWithValue('Server Error.');
 	}
+});
+
+export const setOrderId = createAction(SET_ORDER_ID, (orderId: string) => {
+	return {
+		payload: orderId,
+	};
 });

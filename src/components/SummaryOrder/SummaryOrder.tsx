@@ -7,6 +7,7 @@ import { AddressModal } from '../AddressModal';
 import { styles } from './SummaryOrder.style';
 import { useState } from 'react';
 import { AddressForm } from '../AddressForm';
+import { Loading } from '../Loading';
 
 interface Props {
 	checkout?: boolean;
@@ -15,12 +16,17 @@ interface Props {
 const SummaryOrder = ({ checkout = false }: Props) => {
 	const [isVisible, setIsVisible] = useState(false);
 	const [modalFormVisible, setModalFormVisible] = useState(false);
-	const { numberOfItems, subTotal, tax, total } = useCart();
+	const { numberOfItems, subTotal, tax, total, loading, createOrder } = useCart();
 	const { shippingAddress } = useUser();
 	const { user } = useAuth();
 	const navigator = useNavigation();
 
-	const goToCheckout = () => {
+	const goToCheckout = async () => {
+		if (checkout) {
+			await createOrder();
+			navigator.navigate('CartStack' as never, { screen: 'Order' } as never);
+			return;
+		}
 		navigator.navigate('CartStack' as never, { screen: 'Checkout' } as never);
 	};
 
@@ -107,6 +113,7 @@ const SummaryOrder = ({ checkout = false }: Props) => {
 
 			<AddressModal visible={isVisible} setVisible={setIsVisible} />
 			<AddressForm visible={modalFormVisible} setVisible={setModalFormVisible} />
+			<Loading modalVisible={loading} />
 		</View>
 	);
 };

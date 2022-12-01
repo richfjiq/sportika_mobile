@@ -1,15 +1,18 @@
 import { createStackNavigator } from '@react-navigation/stack';
 
-import { Checkout, ShoppingCart } from '../screens';
+import { Checkout, Order, ShoppingCart } from '../screens';
+import { useCart } from '../store';
 
 export type CartStackParams = {
 	ShoppingCart: undefined;
 	Checkout: undefined;
+	Order: { orderId: string };
 };
 
 const Stack = createStackNavigator<CartStackParams>();
 
 export const CartStackNav = () => {
+	const { numberOfItems } = useCart();
 	return (
 		<Stack.Navigator
 			screenOptions={{
@@ -21,10 +24,12 @@ export const CartStackNav = () => {
 					backgroundColor: 'white',
 				},
 				headerShown: false,
+				gestureEnabled: false,
 			}}
 		>
 			<Stack.Screen name="ShoppingCart" component={ShoppingCart} />
-			<Stack.Screen name="Checkout" component={Checkout} />
+			{numberOfItems !== 0 && <Stack.Screen name="Checkout" component={Checkout} />}
+			<Stack.Screen name="Order" component={Order} />
 		</Stack.Navigator>
 	);
 };

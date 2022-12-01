@@ -18,3 +18,6 @@ export * from './SummaryOrder';
 export * from './CartProducts';
 export * from './AddressModal';
 export * from './AddressForm';
+export * from './ProductsOrder';
+export * from './PaymentStatus';
+export * from './SummaryBill';

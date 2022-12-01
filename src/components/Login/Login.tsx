@@ -35,7 +35,7 @@ type FormData = {
 const LoginForm = () => {
 	const [user, setUser] = useState<User>();
 	const [register, setRegister] = useState(false);
-	const { loginUser, registerUser, removeError, errorMessage, loading } = useAuth();
+	const { loginUser, registerUser, removeError, errorMessage, loading: loadingAuth } = useAuth();
 
 	const schemaValidation = register ? registerValidation : loginValidation;
 
@@ -206,7 +206,7 @@ const LoginForm = () => {
 						<Text style={styles.googleLabel}>Sign in with Google</Text>
 					</TouchableOpacity>
 				</View>
-				<Loading modalVisible={loading} />
+				<Loading modalVisible={loadingAuth} />
 			</ScrollView>
 		</KeyboardAvoidingView>
 	);

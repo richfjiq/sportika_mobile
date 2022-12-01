@@ -24,6 +24,7 @@ export const UserStackNav = () => {
 					backgroundColor: 'white',
 				},
 				headerShown: false,
+				gestureEnabled: false,
 			}}
 		>
 			{token ? (

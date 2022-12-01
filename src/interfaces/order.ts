@@ -27,5 +27,12 @@ export interface IOrderItem {
 	slug: string;
 	image: string;
 	price: number;
-	gender: string;
+	gender?: string;
+}
+
+export interface IAllOrders {
+	_id?: string;
+	shippingAddress: ShippingAddress;
+	isPaid: boolean;
+	updatedAt?: string;
 }

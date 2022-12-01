@@ -6,6 +6,7 @@ import { styles } from './Checkout.style';
 
 const Checkout = () => {
 	const { cart } = useCart();
+
 	return (
 		<ScrollView showsVerticalScrollIndicator={false}>
 			<Header title="Order Summary" search={false} />

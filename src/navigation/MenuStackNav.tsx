@@ -20,6 +20,7 @@ export const MenuStackNav = () => {
 				cardStyle: {
 					backgroundColor: 'white',
 				},
+				gestureEnabled: false,
 			}}
 		>
 			<Stack.Screen name="Menu" options={{ headerShown: false }} component={Menu} />

@@ -77,6 +77,8 @@ const AddressForm = ({ visible, setVisible }: Props) => {
 
 		if (shippingAddress) {
 			await updateUserAddress(address);
+			setVisible(!visible);
+			return;
 		}
 
 		await createUserAddress(address);

@@ -9,6 +9,7 @@ import {
 	addProductToCart,
 	createOrder,
 	removeProductFromCart,
+	setOrderId,
 	updateCartQuantity,
 } from './actions';
 
@@ -16,8 +17,7 @@ export interface CartState {
 	loading: boolean;
 	error: boolean;
 	errorMessage: string | null;
-	orderCreated: string | null;
-	newOrder: boolean;
+	orderId: string | null;
 	isCartLoaded: boolean;
 	cart: ICartProduct[];
 	numberOfItems: number;
@@ -31,8 +31,7 @@ const initialState: CartState = {
 	loading: false,
 	error: false,
 	errorMessage: null,
-	orderCreated: null,
-	newOrder: false,
+	orderId: null,
 	isCartLoaded: false,
 	cart: [],
 	numberOfItems: 0,
@@ -93,12 +92,21 @@ const cartStore = createSlice({
 		builder.addCase(addAddress, (state, action) => {
 			state.shippingAddress = action.payload;
 		});
+		builder.addCase(setOrderId, (state, action) => {
+			state.orderId = action.payload;
+		});
 		builder.addCase(createOrder.pending, (state) => {
 			state.loading = true;
 		});
 		builder.addCase(createOrder.fulfilled, (state, { payload }) => {
 			state.loading = false;
-			state.orderCreated = payload as string;
+			state.orderId = payload as string;
+			state.numberOfItems = 0;
+			state.subTotal = 0;
+			state.tax = 0;
+			state.total = 0;
+			state.cart = [];
+			state.shippingAddress = null;
 		});
 		builder.addMatcher(isAnyOf(createOrder.rejected), (state, { payload }) => {
 			state.loading = false;

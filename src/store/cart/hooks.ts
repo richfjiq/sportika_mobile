@@ -12,6 +12,7 @@ import {
 	addCartFromCookies as addCartFromCookiesAction,
 	addAddress as addAddressAction,
 	createOrder as createOrderAction,
+	setOrderId as setOrderIdAction,
 } from './actions';
 
 export const useCart = () => {
@@ -64,6 +65,13 @@ export const useCart = () => {
 		await dispatch(createOrderAction());
 	}, [dispatch]);
 
+	const setOrderId = useCallback(
+		(orderId: string) => {
+			dispatch(setOrderIdAction(orderId));
+		},
+		[dispatch],
+	);
+
 	return {
 		...cartState,
 		addProductToCart,
@@ -72,5 +80,6 @@ export const useCart = () => {
 		addCartFromCookies,
 		addAddress,
 		createOrder,
+		setOrderId,
 	};
 };

@@ -1,4 +1,5 @@
-import { Text, TouchableOpacity, FlatList } from 'react-native';
+import { Text, View } from 'react-native';
+import { SelectList } from 'react-native-dropdown-select-list';
 
 import { ISize } from '../../interfaces';
 import { styles } from './SizeSelector.style';
@@ -13,30 +14,14 @@ const SizeSelector = ({ selectedSize, sizes, onSelectedSize }: Props) => {
 	return (
 		<>
 			<Text style={styles.subHeader}>Sizes</Text>
-			<FlatList
-				data={sizes}
-				renderItem={({ item }) => {
-					const styleSizeSelected = () => {
-						if (selectedSize === item) return styles.sizeSelected;
-						return styles.size;
-					};
-
-					const containerStyle =
-						selectedSize === item ? styles.sizeContainerSelected : styles.sizeContainer;
-
-					return (
-						<TouchableOpacity
-							style={containerStyle}
-							key={item}
-							onPress={() => onSelectedSize(item)}
-						>
-							<Text style={styleSizeSelected()}>{item}</Text>
-						</TouchableOpacity>
-					);
-				}}
-				horizontal
-				showsHorizontalScrollIndicator={false}
-			/>
+			<View style={styles.selectContainer}>
+				<SelectList
+					defaultOption={{ key: selectedSize, value: selectedSize }}
+					setSelected={(val: ISize) => onSelectedSize(val)}
+					data={sizes}
+					boxStyles={styles.selectInput}
+				/>
+			</View>
 		</>
 	);
 };
