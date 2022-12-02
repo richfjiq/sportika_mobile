@@ -9,8 +9,13 @@ import { MenuStackNav, MenuStackParams } from './MenuStackNav';
 import { UserStackNav } from './UserStackNav';
 import { useAuth, useCart, useUser } from '../store';
 import { useProducts } from '../store';
-import { Text, View } from 'react-native';
+import { Alert, Text, View } from 'react-native';
 import { styles } from './BottomTabsNav.style';
+import axios from 'axios';
+import Config from 'react-native-config';
+import { IProduct } from '../interfaces';
+
+const baseURL = Config.API_URL || '';
 
 export type RootTabsParams = {
 	Home: undefined;
@@ -23,9 +28,18 @@ const Tab = createBottomTabNavigator<RootTabsParams>();
 
 export const BottomTabsNav = () => {
 	const { user, checkToken } = useAuth();
-	const { getAllProducts } = useProducts();
+	const { setAllProducts } = useProducts();
 	const { numberOfItems } = useCart();
 	const { getUserAddress } = useUser();
+
+	const getProducts = async () => {
+		try {
+			const response = await axios.get<IProduct[]>(`${baseURL}/products`);
+			setAllProducts(response.data);
+		} catch (error) {
+			Alert.alert('Error', 'Error Server');
+		}
+	};
 
 	useEffect(() => {
 		if (user) {
@@ -37,13 +51,13 @@ export const BottomTabsNav = () => {
 
 	useEffect(() => {
 		// eslint-disable-next-line @typescript-eslint/no-floating-promises
-		getAllProducts();
+		checkToken();
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
 	useEffect(() => {
 		// eslint-disable-next-line @typescript-eslint/no-floating-promises
-		checkToken();
+		getProducts();
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 

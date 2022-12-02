@@ -1,7 +1,7 @@
 import { createSlice, isAnyOf } from '@reduxjs/toolkit';
 
 import { IProduct } from '../../interfaces';
-import { getAllProducts, getProductBySlug } from './actions';
+import { getAllProducts, getProductBySlug, setAllProducts } from './actions';
 
 interface State {
 	loading: boolean;
@@ -39,6 +39,10 @@ const productsStore = createSlice({
 		builder.addCase(getProductBySlug.fulfilled, (state, { payload }) => {
 			state.loading = false;
 			state.product = payload as IProduct;
+		});
+
+		builder.addCase(setAllProducts, (state, { payload }) => {
+			state.allProducts = payload;
 		});
 
 		builder.addMatcher(
