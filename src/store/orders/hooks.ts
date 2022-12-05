@@ -3,7 +3,7 @@ import { shallowEqual } from 'react-redux';
 
 import { useAppDispatch, useAppSelector } from '../hooks';
 import { RootState } from '../store';
-import { getOrderById as getOrderByIdAction } from './actions';
+import { getOrderById as getOrderByIdAction, resetOrder as resetOrderAction } from './actions';
 
 export const useOrders = () => {
 	const ordersState = useAppSelector((state: RootState) => state.orders, shallowEqual);
@@ -16,8 +16,13 @@ export const useOrders = () => {
 		[dispatch],
 	);
 
+	const resetOrder = useCallback(() => {
+		dispatch(resetOrderAction());
+	}, [dispatch]);
+
 	return {
 		...ordersState,
 		getOrderById,
+		resetOrder,
 	};
 };

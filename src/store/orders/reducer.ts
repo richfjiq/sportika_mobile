@@ -1,6 +1,6 @@
 import { createSlice, isAnyOf } from '@reduxjs/toolkit';
 import { IAllOrders, IOrder } from '../../interfaces';
-import { getOrderById } from './actions';
+import { getOrderById, resetOrder } from './actions';
 
 interface OrderState {
 	loading: boolean;
@@ -23,6 +23,9 @@ const ordersStore = createSlice({
 	initialState,
 	reducers: {},
 	extraReducers: (builder) => {
+		builder.addCase(resetOrder, (state, { payload }) => {
+			state.order = payload;
+		});
 		builder.addCase(getOrderById.pending, (state) => {
 			state.loading = true;
 		});

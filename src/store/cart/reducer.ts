@@ -2,6 +2,7 @@ import { createSlice, isAnyOf } from '@reduxjs/toolkit';
 
 import { ICartProduct } from '../../interfaces';
 import { ShippingAddress } from '../../interfaces/address';
+import { resetOrderId } from './actions';
 import {
 	addAddress,
 	addCartFromCookies,
@@ -95,18 +96,21 @@ const cartStore = createSlice({
 		builder.addCase(setOrderId, (state, action) => {
 			state.orderId = action.payload;
 		});
-		builder.addCase(createOrder.pending, (state) => {
-			state.loading = true;
-		});
-		builder.addCase(createOrder.fulfilled, (state, { payload }) => {
-			state.loading = false;
-			state.orderId = payload as string;
+		builder.addCase(resetOrderId, (state, { payload }) => {
+			state.orderId = payload;
 			state.numberOfItems = 0;
 			state.subTotal = 0;
 			state.tax = 0;
 			state.total = 0;
 			state.cart = [];
 			state.shippingAddress = null;
+		});
+		builder.addCase(createOrder.pending, (state) => {
+			state.loading = true;
+		});
+		builder.addCase(createOrder.fulfilled, (state, { payload }) => {
+			state.loading = false;
+			state.orderId = payload as string;
 		});
 		builder.addMatcher(isAnyOf(createOrder.rejected), (state, { payload }) => {
 			state.loading = false;

@@ -13,6 +13,7 @@ import {
 	addAddress as addAddressAction,
 	createOrder as createOrderAction,
 	setOrderId as setOrderIdAction,
+	resetOrderId as resetOrderIdAction,
 } from './actions';
 
 export const useCart = () => {
@@ -72,6 +73,10 @@ export const useCart = () => {
 		[dispatch],
 	);
 
+	const resetOrderId = useCallback(() => {
+		dispatch(resetOrderIdAction());
+	}, [dispatch]);
+
 	return {
 		...cartState,
 		addProductToCart,
@@ -81,5 +86,6 @@ export const useCart = () => {
 		addAddress,
 		createOrder,
 		setOrderId,
+		resetOrderId,
 	};
 };

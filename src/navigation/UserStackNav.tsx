@@ -4,7 +4,7 @@ import { Login, UserAccount } from '../screens';
 import { useAuth } from '../store';
 
 export type UserStackParams = {
-	UserAccount: undefined;
+	UserAccount: { orderConfirmed: boolean };
 	Login: undefined;
 };
 

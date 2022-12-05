@@ -6,16 +6,17 @@ import { store } from '../';
 import sportikaApi from '../../api/sportikaApi';
 import { TAX_RATE } from '../../utils';
 
-const ADD_PRODUCT_TO_CART = 'ADD_PRODUCT_TO_CART';
-const UPDATE_CART_QUANTITY = 'UPDATE_CART_QUANTITY';
-const REMOVE_PRODUCT_FROM_CART = 'REMOVE_PRODUCT_FROM_CART';
-const ADD_ORDER_SUMMARY = 'ADD_ORDER_SUMMARY';
-const UPDATE_CART_IN_COOKIES = 'UPDATE_CART_IN_COOKIES';
-const ADD_CART_FROM_COOKIES = 'ADD_CART_FROM_COOKIES';
+const ADD_PRODUCT_TO_CART = 'cart/ADD_PRODUCT_TO_CART';
+const UPDATE_CART_QUANTITY = 'cart/UPDATE_CART_QUANTITY';
+const REMOVE_PRODUCT_FROM_CART = 'cart/REMOVE_PRODUCT_FROM_CART';
+const ADD_ORDER_SUMMARY = 'cart/ADD_ORDER_SUMMARY';
+const UPDATE_CART_IN_COOKIES = 'cart/UPDATE_CART_IN_COOKIES';
+const ADD_CART_FROM_COOKIES = 'cart/ADD_CART_FROM_COOKIES';
 // const LOAD_ADDRESS_FROM_COOKIES = 'LOAD_ADDRESS_FROM_COOKIES';
-const ADD_ADDRESS = 'ADD_ADDRESS';
-const CREATE_ORDER = 'CREATE_ORDER';
-const SET_ORDER_ID = 'SET_ORDER_ID';
+const ADD_ADDRESS = 'cart/ADD_ADDRESS';
+const CREATE_ORDER = 'cart/CREATE_ORDER';
+const SET_ORDER_ID = 'cart/SET_ORDER_ID';
+const RESET_ORDER_ID = 'cart/RESET_ORDER_ID';
 
 export const addProductToCart = createAction(ADD_PRODUCT_TO_CART, (product: ICartProduct) => {
 	return {
@@ -115,5 +116,11 @@ export const createOrder = createAsyncThunk(CREATE_ORDER, async (_, { rejectWith
 export const setOrderId = createAction(SET_ORDER_ID, (orderId: string) => {
 	return {
 		payload: orderId,
+	};
+});
+
+export const resetOrderId = createAction(RESET_ORDER_ID, () => {
+	return {
+		payload: null,
 	};
 });

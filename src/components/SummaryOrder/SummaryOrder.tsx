@@ -23,6 +23,7 @@ const SummaryOrder = ({ checkout = false }: Props) => {
 
 	const goToCheckout = async () => {
 		if (checkout) {
+			if (!shippingAddress) return setIsVisible(!isVisible);
 			await createOrder();
 			navigator.navigate('CartStack' as never, { screen: 'Order' } as never);
 			return;

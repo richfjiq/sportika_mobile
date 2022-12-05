@@ -13,6 +13,7 @@ const Stack = createStackNavigator<CartStackParams>();
 
 export const CartStackNav = () => {
 	const { numberOfItems } = useCart();
+
 	return (
 		<Stack.Navigator
 			screenOptions={{
@@ -29,7 +30,7 @@ export const CartStackNav = () => {
 		>
 			<Stack.Screen name="ShoppingCart" component={ShoppingCart} />
 			{numberOfItems !== 0 && <Stack.Screen name="Checkout" component={Checkout} />}
-			<Stack.Screen name="Order" component={Order} />
+			{numberOfItems !== 0 && <Stack.Screen name="Order" component={Order} />}
 		</Stack.Navigator>
 	);
 };
