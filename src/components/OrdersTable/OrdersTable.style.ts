@@ -1,23 +1,8 @@
 import { StyleSheet } from 'react-native';
+
 import { colors } from '../../theme/appTheme';
 
 export const styles = StyleSheet.create({
-	container: {
-		paddingHorizontal: 16,
-		paddingTop: 20,
-		flex: 1,
-	},
-	warningContainer: {
-		paddingHorizontal: 16,
-		paddingBottom: 20,
-		alignItems: 'center',
-	},
-	warningText: {
-		textTransform: 'uppercase',
-		fontWeight: '400',
-		color: colors.red,
-		fontSize: 12,
-	},
 	rowContainer: {
 		flexDirection: 'row',
 		paddingVertical: 10,
@@ -46,5 +31,30 @@ export const styles = StyleSheet.create({
 	headerText: {
 		textTransform: 'uppercase',
 		fontWeight: '400',
+	},
+	text: {
+		textTransform: 'uppercase',
+		fontWeight: '300',
+	},
+	textPaid: {
+		textTransform: 'uppercase',
+		fontWeight: '400',
+		color: colors.green,
+	},
+	textPending: {
+		textTransform: 'uppercase',
+		fontWeight: '400',
+		color: colors.red,
+	},
+	buttonText: {
+		textTransform: 'uppercase',
+		fontWeight: '500',
+		color: colors.white,
+	},
+	button: {
+		backgroundColor: colors.black,
+		paddingHorizontal: 15,
+		paddingVertical: 3,
+		borderRadius: 10,
 	},
 });

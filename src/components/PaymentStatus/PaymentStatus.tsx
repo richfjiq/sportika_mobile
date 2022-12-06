@@ -10,9 +10,11 @@ interface Props {
 
 const PaymentStatus = ({ isPaid = false }: Props) => {
 	return (
-		<View style={styles.paymentStatus}>
+		<View style={isPaid ? styles.statusPaid : styles.statusPending}>
 			<Icon name={'card-outline'} size={25} color={isPaid ? colors.green : colors.red} />
-			<Text style={styles.textStatus}>{isPaid ? 'Paid Order' : 'Pending Payment'}</Text>
+			<Text style={isPaid ? styles.textPaid : styles.textPending}>
+				{isPaid ? 'Paid Order' : 'Pending Payment'}
+			</Text>
 		</View>
 	);
 };

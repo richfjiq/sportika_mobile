@@ -29,13 +29,14 @@ const Order = ({ navigation }: Props) => {
 	const [loading, setLoading] = useState(false);
 	const { orderId } = useCart();
 	const { top } = useSafeAreaInsets();
-	const { order, getOrderById, loading: loadingOrder } = useOrders();
+	const { order, getOrderById, loading: loadingOrder, confirmPayment } = useOrders();
 
 	// eslint-disable-next-line no-console
 	console.log({ loading });
 
 	const initializePaymentSheet = async (id: string) => {
 		try {
+			setLoading(true);
 			const data = await fetchPaymentSheetParams(id);
 			const { customer, ephemeralKey, paymentIntent } = data as Params;
 			setClientSecret(paymentIntent);
@@ -67,9 +68,15 @@ const Order = ({ navigation }: Props) => {
 		// eslint-disable-next-line no-console
 		console.log({ paymentIntent });
 		if (error) {
-			Alert.alert(`Error code: ${error.code}`, error.message);
+			Alert.alert(`${error.code}`, error.message);
 		} else {
-			Alert.alert('Success', 'Your order is confirmed!', [
+			await confirmPayment({
+				orderId: orderId as string,
+				isPaid: true,
+				paidAt: paymentIntent?.created as string,
+				paymentId: paymentIntent?.id as string,
+			});
+			Alert.alert('Success', 'Your order is paid!', [
 				{
 					text: 'OK',
 					onPress: () => {
@@ -82,6 +89,13 @@ const Order = ({ navigation }: Props) => {
 			]);
 			setLoading(false);
 		}
+	};
+
+	const payLater = () => {
+		navigation.navigate(
+			'UserStack' as never,
+			{ screen: 'UserAccount', params: { orderConfirmed: true } } as never,
+		);
 	};
 
 	useEffect(() => {
@@ -99,28 +113,39 @@ const Order = ({ navigation }: Props) => {
 		}
 	}, [order]);
 
-	if (loadingOrder) {
-		return <Loading modalVisible={loadingOrder} />;
-	}
-
 	return (
-		<ScrollView style={{ paddingTop: top, ...styles.container }}>
+		<ScrollView
+			style={{ paddingTop: top, ...styles.container }}
+			showsVerticalScrollIndicator={false}
+		>
 			<View style={styles.headerContainer}>
 				<Text style={styles.title}>Order: </Text>
 				<Text style={styles.titleBold}> {orderId}</Text>
 			</View>
+
 			<PaymentStatus isPaid={order?.isPaid as boolean} />
 			<ProductsOrder />
 			<SummaryBill />
-			<TouchableOpacity
-				style={styles.button}
-				activeOpacity={0.7}
-				onPress={openPaymentSheet}
-				// disabled={loading}
-			>
-				<Text style={styles.buttonText}>Pay now</Text>
-				<Icon name={'cash-outline'} size={20} color={colors.white} />
-			</TouchableOpacity>
+
+			{!loadingOrder && !order?.isPaid && (
+				<>
+					<TouchableOpacity
+						style={styles.button}
+						activeOpacity={0.7}
+						onPress={openPaymentSheet}
+						// disabled={loading}
+					>
+						<Text style={styles.buttonText}>Pay now</Text>
+						<Icon name={'cash-outline'} size={20} color={colors.white} />
+					</TouchableOpacity>
+
+					<TouchableOpacity style={styles.buttonLater} activeOpacity={0.7} onPress={payLater}>
+						<Text style={styles.buttonText}>Pay Later</Text>
+					</TouchableOpacity>
+				</>
+			)}
+
+			<Loading modalVisible={loadingOrder} />
 		</ScrollView>
 	);
 };

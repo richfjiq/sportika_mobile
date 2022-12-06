@@ -19,8 +19,16 @@ const UserAccount = ({ route }: Props) => {
 	const { top } = useSafeAreaInsets();
 	const { logout, user } = useAuth();
 	const { resetOrderId } = useCart();
-	const { resetOrder } = useOrders();
+	const { resetOrder, getOrdersByUser } = useOrders();
 	const orderConfirmed = route.params?.orderConfirmed ?? false;
+
+	useEffect(() => {
+		if (user?._id) {
+			// eslint-disable-next-line @typescript-eslint/no-floating-promises
+			getOrdersByUser(user._id);
+		}
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [user]);
 
 	useEffect(() => {
 		if (orderConfirmed) {

@@ -21,3 +21,4 @@ export * from './AddressForm';
 export * from './ProductsOrder';
 export * from './PaymentStatus';
 export * from './SummaryBill';
+export * from './OrdersTable';
