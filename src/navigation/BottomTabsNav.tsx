@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Icon from 'react-native-vector-icons/Ionicons';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import { Home } from '../screens';
 import { colors } from '../theme/appTheme';
@@ -13,7 +14,7 @@ import { Alert, Text, View } from 'react-native';
 import { styles } from './BottomTabsNav.style';
 import axios from 'axios';
 import Config from 'react-native-config';
-import { IProduct } from '../interfaces';
+import { ICartProduct, IProduct } from '../interfaces';
 
 const baseURL = Config.API_URL || '';
 
@@ -29,26 +30,39 @@ const Tab = createBottomTabNavigator<RootTabsParams>();
 export const BottomTabsNav = () => {
 	const { checkToken } = useAuth();
 	const { setAllProducts } = useProducts();
-	const { numberOfItems } = useCart();
+	const { numberOfItems, addCartFromCookies } = useCart();
 
 	const getProducts = async () => {
 		try {
 			const response = await axios.get<IProduct[]>(`${baseURL}/products`);
 			setAllProducts(response.data);
+			await checkToken();
 		} catch (error) {
 			Alert.alert('Get Products', 'Error Server');
 		}
 	};
 
+	const getCartFromCookies = async () => {
+		const cart = await AsyncStorage.getItem('cart');
+		if (cart) {
+			const cartParsed = JSON.parse(cart) as ICartProduct[];
+			addCartFromCookies(cartParsed);
+		}
+	};
+
 	useEffect(() => {
 		// eslint-disable-next-line @typescript-eslint/no-floating-promises
-		getProducts();
+		getCartFromCookies();
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
 	useEffect(() => {
-		// eslint-disable-next-line @typescript-eslint/no-floating-promises
-		checkToken();
+		const products = setTimeout(() => {
+			// eslint-disable-next-line @typescript-eslint/no-floating-promises
+			getProducts();
+		}, 1000);
+
+		return () => clearTimeout(products);
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 

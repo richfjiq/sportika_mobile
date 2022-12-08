@@ -10,8 +10,13 @@ export const styles = StyleSheet.create({
 		borderWidth: 0.5,
 		borderColor: colors.greyText,
 	},
+	editRow: {
+		flexDirection: 'row',
+		justifyContent: 'space-between',
+		alignItems: 'center',
+	},
 	editText: {
-		fontSize: 14,
+		fontSize: 16,
 		fontWeight: '300',
 		textTransform: 'uppercase',
 		color: colors.link,
@@ -30,5 +35,8 @@ export const styles = StyleSheet.create({
 	},
 	rowContainer: {
 		marginBottom: 20,
+	},
+	rowLastContainer: {
+		marginBottom: 0,
 	},
 });

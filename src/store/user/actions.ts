@@ -14,7 +14,7 @@ export interface IAddressPost {
 	address: string;
 	zip: string;
 	city: string;
-	state: string;
+	state?: string;
 	country: string;
 	code: string;
 	phone: string;

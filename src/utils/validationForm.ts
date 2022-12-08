@@ -26,3 +26,13 @@ export const addressValidation = yup.object().shape({
 	code: yup.string().min(1).required(),
 	phone: yup.string().min(10).required(),
 });
+
+export const userDataValidation = yup.object().shape({
+	name: yup.string().min(2).required(),
+	email: yup.string().email().required(),
+	newPassword: yup.string().min(6).required(),
+	newPassword2: yup
+		.string()
+		.required('please retype your password')
+		.oneOf([yup.ref('newPassword'), null], 'passwords must match'),
+});
