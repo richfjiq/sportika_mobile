@@ -1,11 +1,12 @@
 import { createStackNavigator } from '@react-navigation/stack';
 
-import { Login, UserAccount } from '../screens';
+import { Login, PayOrder, UserAccount } from '../screens';
 import { useAuth } from '../store';
 
 export type UserStackParams = {
-	UserAccount: { orderConfirmed: boolean };
+	UserAccount: undefined;
 	Login: undefined;
+	PayOrder: undefined;
 };
 
 const Stack = createStackNavigator<UserStackParams>();
@@ -28,11 +29,14 @@ export const UserStackNav = () => {
 			}}
 		>
 			{token ? (
-				<Stack.Screen
-					name="UserAccount"
-					options={{ title: 'Login screen' }}
-					component={UserAccount}
-				/>
+				<>
+					<Stack.Screen
+						name="UserAccount"
+						options={{ title: 'Login screen' }}
+						component={UserAccount}
+					/>
+					<Stack.Screen name="PayOrder" component={PayOrder} />
+				</>
 			) : (
 				<Stack.Screen name="Login" options={{ title: 'Login screen' }} component={Login} />
 			)}

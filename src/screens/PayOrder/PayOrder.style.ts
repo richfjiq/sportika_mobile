@@ -1,24 +1,37 @@
 import { StyleSheet } from 'react-native';
-
 import { colors } from '../../theme/appTheme';
 
 export const styles = StyleSheet.create({
 	container: {
-		paddingHorizontal: 16,
+		flex: 1,
 	},
 	headerContainer: {
-		marginVertical: 10,
+		flexDirection: 'row',
+		paddingHorizontal: 16,
+		justifyContent: 'space-between',
+		alignItems: 'center',
+		marginVertical: 16,
+	},
+	headerRow: {
 		flexDirection: 'row',
 	},
-	title: {
-		textTransform: 'uppercase',
+	headerText: {
+		fontSize: 16,
 		fontWeight: '300',
-		fontSize: 16,
-	},
-	titleBold: {
 		textTransform: 'uppercase',
-		fontWeight: '500',
+	},
+	headerTitle: {
 		fontSize: 16,
+		fontWeight: '600',
+		textTransform: 'uppercase',
+	},
+	divider: {
+		borderWidth: 0.5,
+		borderColor: colors.inactiveGrey,
+	},
+	scrollContainer: {
+		paddingTop: 15,
+		paddingHorizontal: 16,
 	},
 	button: {
 		backgroundColor: colors.black,
@@ -32,25 +45,22 @@ export const styles = StyleSheet.create({
 		marginTop: 40,
 		marginBottom: 20,
 	},
-	buttonLater: {
+	buttonCenter: {
 		backgroundColor: colors.black,
 		width: '100%',
-		paddingHorizontal: 10,
+		paddingHorizontal: 20,
 		paddingVertical: 10,
 		flexDirection: 'row',
 		justifyContent: 'center',
 		alignItems: 'center',
 		alignSelf: 'center',
-		marginTop: 20,
-		marginBottom: 100,
+		marginTop: 40,
+		marginBottom: 20,
 	},
 	buttonText: {
 		textTransform: 'uppercase',
 		fontSize: 14,
 		fontWeight: '500',
 		color: colors.white,
-	},
-	activityIndicator: {
-		alignSelf: 'center',
 	},
 });

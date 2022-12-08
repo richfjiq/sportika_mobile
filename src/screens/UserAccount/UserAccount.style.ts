@@ -23,4 +23,9 @@ export const styles = StyleSheet.create({
 		fontWeight: '500',
 		textTransform: 'uppercase',
 	},
+	loaderContainer: {
+		flex: 1,
+		justifyContent: 'center',
+		alignItems: 'center',
+	},
 });

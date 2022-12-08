@@ -17,6 +17,7 @@ const ADD_ADDRESS = 'cart/ADD_ADDRESS';
 const CREATE_ORDER = 'cart/CREATE_ORDER';
 const SET_ORDER_ID = 'cart/SET_ORDER_ID';
 const RESET_ORDER_ID = 'cart/RESET_ORDER_ID';
+const SET_ORDER_CONFIRMED = 'cart/SET_ORDER_CONFIRMED';
 
 export const addProductToCart = createAction(ADD_PRODUCT_TO_CART, (product: ICartProduct) => {
 	return {
@@ -122,5 +123,11 @@ export const setOrderId = createAction(SET_ORDER_ID, (orderId: string) => {
 export const resetOrderId = createAction(RESET_ORDER_ID, () => {
 	return {
 		payload: null,
+	};
+});
+
+export const setOrderConfirmed = createAction(SET_ORDER_CONFIRMED, (value: boolean) => {
+	return {
+		payload: value,
 	};
 });

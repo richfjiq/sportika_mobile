@@ -47,4 +47,19 @@ export const styles = StyleSheet.create({
 		textTransform: 'uppercase',
 		fontWeight: '400',
 	},
+	noOrders: {
+		flexDirection: 'row',
+		justifyContent: 'center',
+		alignItems: 'center',
+	},
+	noOrdersText: {
+		textTransform: 'uppercase',
+		fontWeight: '500',
+		fontSize: 18,
+	},
+	loaderContainer: {
+		flex: 1,
+		justifyContent: 'center',
+		alignItems: 'center',
+	},
 });

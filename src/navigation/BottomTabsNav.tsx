@@ -7,7 +7,7 @@ import { colors } from '../theme/appTheme';
 import { CartStackNav } from './CartStackNav';
 import { MenuStackNav, MenuStackParams } from './MenuStackNav';
 import { UserStackNav } from './UserStackNav';
-import { useAuth, useCart, useUser } from '../store';
+import { useAuth, useCart } from '../store';
 import { useProducts } from '../store';
 import { Alert, Text, View } from 'react-native';
 import { styles } from './BottomTabsNav.style';
@@ -27,37 +27,28 @@ export type RootTabsParams = {
 const Tab = createBottomTabNavigator<RootTabsParams>();
 
 export const BottomTabsNav = () => {
-	const { user, checkToken } = useAuth();
+	const { checkToken } = useAuth();
 	const { setAllProducts } = useProducts();
 	const { numberOfItems } = useCart();
-	const { getUserAddress } = useUser();
 
 	const getProducts = async () => {
 		try {
 			const response = await axios.get<IProduct[]>(`${baseURL}/products`);
 			setAllProducts(response.data);
 		} catch (error) {
-			Alert.alert('Error', 'Error Server');
+			Alert.alert('Get Products', 'Error Server');
 		}
 	};
 
 	useEffect(() => {
-		if (user) {
-			// eslint-disable-next-line @typescript-eslint/no-floating-promises
-			getUserAddress(user._id);
-		}
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [user]);
-
-	useEffect(() => {
 		// eslint-disable-next-line @typescript-eslint/no-floating-promises
-		checkToken();
+		getProducts();
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
 	useEffect(() => {
 		// eslint-disable-next-line @typescript-eslint/no-floating-promises
-		getProducts();
+		checkToken();
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 

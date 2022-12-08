@@ -1,45 +1,66 @@
-import { StackScreenProps } from '@react-navigation/stack';
-import { useEffect, useState } from 'react';
-import { View, Text, TouchableOpacity } from 'react-native';
+import { useIsFocused } from '@react-navigation/native';
+import { useCallback, useEffect, useState } from 'react';
+import { View, Text, TouchableOpacity, ActivityIndicator } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import Icon from 'react-native-vector-icons/Ionicons';
 
 import { MenuCategories, MyAccount, MyOrders } from '../../components';
 import { MyAddress } from '../../components/MyAddress';
-import { UserStackParams } from '../../navigation/UserStackNav';
-import { useAuth, useCart, useOrders } from '../../store';
+import { useAuth, useCart, useOrders, useUser } from '../../store';
 import { colors } from '../../theme/appTheme';
 import { menuCategories } from '../../utils';
 import { styles } from './UserAccount.style';
 
-interface Props extends StackScreenProps<UserStackParams, 'UserAccount'> {}
-
-const UserAccount = ({ route }: Props) => {
+const UserAccount = () => {
 	const [activeCategory, setActiveCategory] = useState(menuCategories[1]);
 	const { top } = useSafeAreaInsets();
-	const { logout, user } = useAuth();
-	const { resetOrderId } = useCart();
-	const { resetOrder, getOrdersByUser } = useOrders();
-	const orderConfirmed = route.params?.orderConfirmed ?? false;
+	const { loading: loadingAuth, logout, user } = useAuth();
+	const { orderConfirmed, resetOrderId, setOrderConfirmed } = useCart();
+	const { loading: loadingOrders, getOrdersByUser, resetOrder } = useOrders();
+	const { loading: loadingAddress, getUserAddress } = useUser();
+	const isFocused = useIsFocused();
 
-	useEffect(() => {
-		if (user?._id) {
-			// eslint-disable-next-line @typescript-eslint/no-floating-promises
-			getOrdersByUser(user._id);
+	const getOrders = useCallback(async () => {
+		if (user) {
+			await getOrdersByUser(user._id);
+			await getUserAddress(user._id);
 		}
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [user]);
 
-	useEffect(() => {
+	const goToOrders = useCallback(() => {
 		if (orderConfirmed) {
-			resetOrderId();
-			resetOrder();
 			setActiveCategory(menuCategories[3]);
 		}
-		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [orderConfirmed]);
 
+	useEffect(() => {
+		if (isFocused && orderConfirmed) {
+			resetOrderId();
+			resetOrder();
+			setOrderConfirmed(false);
+		}
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [isFocused, orderConfirmed]);
+
+	useEffect(() => {
+		// eslint-disable-next-line @typescript-eslint/no-floating-promises
+		getOrders();
+	}, [getOrders]);
+
+	useEffect(() => {
+		goToOrders();
+	}, [goToOrders]);
+
 	const renderComponent = () => {
+		if (loadingOrders || loadingAddress || loadingAuth) {
+			return (
+				<View style={styles.loaderContainer}>
+					<ActivityIndicator size="large" color={colors.black} />
+				</View>
+			);
+		}
+
 		switch (activeCategory) {
 			case 'address':
 				return <MyAddress />;

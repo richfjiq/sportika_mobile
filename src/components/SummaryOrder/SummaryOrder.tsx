@@ -16,7 +16,8 @@ interface Props {
 const SummaryOrder = ({ checkout = false }: Props) => {
 	const [isVisible, setIsVisible] = useState(false);
 	const [modalFormVisible, setModalFormVisible] = useState(false);
-	const { numberOfItems, subTotal, tax, total, loading, createOrder } = useCart();
+	const { numberOfItems, subTotal, tax, total, loading, createOrder, setOrderConfirmed } =
+		useCart();
 	const { shippingAddress } = useUser();
 	const { user } = useAuth();
 	const navigator = useNavigation();
@@ -25,6 +26,7 @@ const SummaryOrder = ({ checkout = false }: Props) => {
 		if (checkout) {
 			if (!shippingAddress) return setIsVisible(!isVisible);
 			await createOrder();
+			setOrderConfirmed(true);
 			navigator.navigate('CartStack' as never, { screen: 'Order' } as never);
 			return;
 		}

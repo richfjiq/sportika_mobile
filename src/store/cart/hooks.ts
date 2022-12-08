@@ -14,6 +14,7 @@ import {
 	createOrder as createOrderAction,
 	setOrderId as setOrderIdAction,
 	resetOrderId as resetOrderIdAction,
+	setOrderConfirmed as setOrderConfirmedAction,
 } from './actions';
 
 export const useCart = () => {
@@ -77,6 +78,13 @@ export const useCart = () => {
 		dispatch(resetOrderIdAction());
 	}, [dispatch]);
 
+	const setOrderConfirmed = useCallback(
+		(value: boolean) => {
+			dispatch(setOrderConfirmedAction(value));
+		},
+		[dispatch],
+	);
+
 	return {
 		...cartState,
 		addProductToCart,
@@ -87,5 +95,6 @@ export const useCart = () => {
 		createOrder,
 		setOrderId,
 		resetOrderId,
+		setOrderConfirmed,
 	};
 };

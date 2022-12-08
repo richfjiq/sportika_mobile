@@ -2,7 +2,7 @@ import { createSlice, isAnyOf } from '@reduxjs/toolkit';
 
 import { ICartProduct } from '../../interfaces';
 import { ShippingAddress } from '../../interfaces/address';
-import { resetOrderId } from './actions';
+import { resetOrderId, setOrderConfirmed } from './actions';
 import {
 	addAddress,
 	addCartFromCookies,
@@ -18,6 +18,7 @@ export interface CartState {
 	loading: boolean;
 	error: boolean;
 	errorMessage: string | null;
+	orderConfirmed: boolean;
 	orderId: string | null;
 	isCartLoaded: boolean;
 	cart: ICartProduct[];
@@ -32,6 +33,7 @@ const initialState: CartState = {
 	loading: false,
 	error: false,
 	errorMessage: null,
+	orderConfirmed: false,
 	orderId: null,
 	isCartLoaded: false,
 	cart: [],
@@ -104,6 +106,9 @@ const cartStore = createSlice({
 			state.total = 0;
 			state.cart = [];
 			state.shippingAddress = null;
+		});
+		builder.addCase(setOrderConfirmed, (state, { payload }) => {
+			state.orderConfirmed = payload;
 		});
 		builder.addCase(createOrder.pending, (state) => {
 			state.loading = true;
