@@ -186,7 +186,9 @@ const LoginForm = () => {
 					</View>
 				)}
 				<View style={styles.textContainer}>
-					<Text>{register ? 'Have an account?' : `Don't have an account?`} </Text>
+					<Text style={styles.accountText}>
+						{register ? 'Have an account?' : `Don't have an account?`}{' '}
+					</Text>
 					<TouchableOpacity activeOpacity={0.7} onPress={toggleRegister}>
 						<Text style={styles.link}>{register ? 'Log in here' : 'Sign Up'}</Text>
 					</TouchableOpacity>

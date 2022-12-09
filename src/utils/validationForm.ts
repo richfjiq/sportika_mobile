@@ -30,9 +30,10 @@ export const addressValidation = yup.object().shape({
 export const userDataValidation = yup.object().shape({
 	name: yup.string().min(2).required(),
 	email: yup.string().email().required(),
-	newPassword: yup.string().min(6).required(),
+	currentPassword: yup.string().min(6, 'Must be at least 6 characters').required(),
+	newPassword: yup.string().min(6, 'Must be at least 6 characters').required(),
 	newPassword2: yup
 		.string()
-		.required('please retype your password')
+		.required('please retype your new password')
 		.oneOf([yup.ref('newPassword'), null], 'passwords must match'),
 });

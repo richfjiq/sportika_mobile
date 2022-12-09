@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useCallback, useEffect } from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Icon from 'react-native-vector-icons/Ionicons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -8,7 +8,7 @@ import { colors } from '../theme/appTheme';
 import { CartStackNav } from './CartStackNav';
 import { MenuStackNav, MenuStackParams } from './MenuStackNav';
 import { UserStackNav } from './UserStackNav';
-import { useAuth, useCart } from '../store';
+import { useAuth, useCart, useOrders, useUser } from '../store';
 import { useProducts } from '../store';
 import { Alert, Text, View } from 'react-native';
 import { styles } from './BottomTabsNav.style';
@@ -28,7 +28,9 @@ export type RootTabsParams = {
 const Tab = createBottomTabNavigator<RootTabsParams>();
 
 export const BottomTabsNav = () => {
-	const { checkToken } = useAuth();
+	const { getOrdersByUser } = useOrders();
+	const { user, checkToken } = useAuth();
+	const { getUserAddress, setLoadingUserInfo } = useUser();
 	const { setAllProducts } = useProducts();
 	const { numberOfItems, addCartFromCookies } = useCart();
 
@@ -50,6 +52,16 @@ export const BottomTabsNav = () => {
 		}
 	};
 
+	const getUserAccountInfo = useCallback(async () => {
+		if (user) {
+			setLoadingUserInfo(true);
+			await getOrdersByUser(user._id);
+			await getUserAddress(user._id);
+			setLoadingUserInfo(false);
+		}
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [user]);
+
 	useEffect(() => {
 		// eslint-disable-next-line @typescript-eslint/no-floating-promises
 		getCartFromCookies();
@@ -65,6 +77,11 @@ export const BottomTabsNav = () => {
 		return () => clearTimeout(products);
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
+
+	useEffect(() => {
+		// eslint-disable-next-line @typescript-eslint/no-floating-promises
+		getUserAccountInfo();
+	}, [getUserAccountInfo]);
 
 	return (
 		<Tab.Navigator

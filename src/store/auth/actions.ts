@@ -3,12 +3,14 @@ import { AxiosError } from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import sportikaApi from '../../api/sportikaApi';
+import { IUserUpdate } from '../../interfaces/user';
 
 const AUTH_LOGIN = 'auth/AUTH_LOGIN';
 const AUTH_REGISTER = 'auth/AUTH_REGISTER';
 const CHECK_TOKEN = 'auth/CHECK_TOKEN';
 const AUTH_LOGOUT = 'auth/AUTH_LOGOUT';
 const REMOVE_ERROR = 'auth/REMOVE_ERROR';
+const UPDATE_USER = 'auth/UPDATE_USER';
 
 export type LoginArguments = {
 	email: string;
@@ -21,7 +23,7 @@ export type RegisterArguments = {
 	name: string;
 };
 
-type LoginData = {
+export type LoginData = {
 	token: string;
 	user: {
 		_id: string;
@@ -70,6 +72,30 @@ export const registerUser = createAsyncThunk(
 			}
 
 			return rejectWithValue(error);
+		}
+	},
+);
+
+export const updateUser = createAsyncThunk(
+	UPDATE_USER,
+	async (
+		{ userId, name, email, currentPassword, newPassword, newPassword2 }: IUserUpdate,
+		{ rejectWithValue },
+	) => {
+		try {
+			const response = await sportikaApi.put(`user/${userId as string}`, {
+				name,
+				email,
+				currentPassword,
+				newPassword,
+				newPassword2,
+			});
+			return response.data as LoginData;
+		} catch (error) {
+			if (error instanceof AxiosError) {
+				const err = error.response?.data as ErrorRequest;
+				return rejectWithValue(err.message);
+			}
 		}
 	},
 );

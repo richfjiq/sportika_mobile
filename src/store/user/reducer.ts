@@ -4,6 +4,7 @@ import {
 	createUserAddress,
 	getUserAddress,
 	IAddress,
+	loadingUserInfo,
 	resetAddress,
 	updateUserAddress,
 } from './actions';
@@ -25,6 +26,7 @@ interface State {
 		code: string;
 		phone: string;
 	} | null;
+	loadingUserInfo: boolean;
 }
 
 const initialState: State = {
@@ -32,6 +34,7 @@ const initialState: State = {
 	error: false,
 	errorMessage: null,
 	shippingAddress: null,
+	loadingUserInfo: false,
 };
 
 const userStore = createSlice({
@@ -71,6 +74,10 @@ const userStore = createSlice({
 			state.error = false;
 			state.errorMessage = null;
 			state.shippingAddress = null;
+		});
+
+		builder.addCase(loadingUserInfo, (state, { payload }) => {
+			state.loadingUserInfo = payload;
 		});
 
 		builder.addMatcher(

@@ -16,7 +16,7 @@ export const styles = StyleSheet.create({
 		alignItems: 'center',
 	},
 	editText: {
-		fontSize: 16,
+		fontSize: 14,
 		fontWeight: '300',
 		textTransform: 'uppercase',
 		color: colors.link,
@@ -25,7 +25,6 @@ export const styles = StyleSheet.create({
 		fontSize: 16,
 		fontWeight: '600',
 		textTransform: 'uppercase',
-		marginBottom: 5,
 	},
 	text: {
 		fontSize: 16,
@@ -34,7 +33,7 @@ export const styles = StyleSheet.create({
 		marginBottom: 5,
 	},
 	rowContainer: {
-		marginBottom: 20,
+		marginBottom: 15,
 	},
 	rowLastContainer: {
 		marginBottom: 0,

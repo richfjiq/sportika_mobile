@@ -19,7 +19,6 @@ import { useAuth, useUser } from '../../store';
 import { colors } from '../../theme/appTheme';
 import { addressValidation } from '../../utils';
 import { styles } from './AddressForm.style';
-import { Loading } from '../Loading';
 
 interface Props {
 	visible: boolean;
@@ -27,7 +26,7 @@ interface Props {
 }
 
 const AddressForm = ({ visible, setVisible }: Props) => {
-	const { shippingAddress, loading, createUserAddress, updateUserAddress } = useUser();
+	const { shippingAddress, createUserAddress, updateUserAddress } = useUser();
 	const { user } = useAuth();
 	const { top } = useSafeAreaInsets();
 
@@ -284,7 +283,7 @@ const AddressForm = ({ visible, setVisible }: Props) => {
 					</View>
 				</ScrollView>
 			</KeyboardAvoidingView>
-			<Loading modalVisible={loading} />
+			{/* <Loading modalVisible={loading} /> */}
 		</Modal>
 	);
 };

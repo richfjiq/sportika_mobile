@@ -7,10 +7,12 @@ import {
 	removeError as removeErrorAction,
 	checkToken as checkTokenAction,
 	logout as logoutAction,
+	updateUser as updateUserAction,
 } from './actions';
 import { useAppDispatch, useAppSelector } from '../hooks';
 import { resetAddress } from '../user';
 import { RootState } from '../store';
+import { IUserUpdate } from '../../interfaces';
 
 export const useAuth = () => {
 	const authState = useAppSelector((state: RootState) => state.auth, shallowEqual);
@@ -44,6 +46,15 @@ export const useAuth = () => {
 		dispatch(removeErrorAction());
 	}, [dispatch]);
 
+	const updateUser = useCallback(
+		async ({ userId, name, email, currentPassword, newPassword, newPassword2 }: IUserUpdate) => {
+			await dispatch(
+				updateUserAction({ userId, name, email, currentPassword, newPassword, newPassword2 }),
+			);
+		},
+		[dispatch],
+	);
+
 	return {
 		...authState,
 		loginUser,
@@ -51,5 +62,6 @@ export const useAuth = () => {
 		removeError,
 		checkToken,
 		logout,
+		updateUser,
 	};
 };

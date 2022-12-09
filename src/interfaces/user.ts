@@ -9,8 +9,10 @@ export interface IUser {
 }
 
 export interface IUserUpdate {
+	userId?: string;
 	name: string;
 	email: string;
+	currentPassword: string;
 	newPassword: string;
 	newPassword2: string;
 }

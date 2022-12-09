@@ -6,6 +6,7 @@ const CREATE_USER_ADDRESS = 'user/CREATE_USER_ADDRESS';
 const UPDATE_USER_ADDRESS = 'user/UPDATE_USER_ADDRESS';
 const GET_USER_ADDRESS = 'user/GET_USER_ADDRESS';
 const RESET_ADDRESS = 'user/RESET_ADDRESS';
+const LOADING_USER_INFO = 'user/LOADING_USER_INFO';
 
 export interface IAddressPost {
 	user: string;
@@ -14,7 +15,7 @@ export interface IAddressPost {
 	address: string;
 	zip: string;
 	city: string;
-	state?: string;
+	state: string;
 	country: string;
 	code: string;
 	phone: string;
@@ -51,5 +52,11 @@ export const getUserAddress = createAsyncThunk(
 		rejectWithValue('Server error.');
 	},
 );
+
+export const loadingUserInfo = createAction(LOADING_USER_INFO, (value: boolean) => {
+	return {
+		payload: value,
+	};
+});
 
 export const resetAddress = createAction(RESET_ADDRESS);

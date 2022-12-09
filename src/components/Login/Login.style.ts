@@ -27,7 +27,9 @@ export const styles = StyleSheet.create({
 	errorText: {
 		color: colors.error,
 		marginTop: 5,
-		fontSize: 13,
+		fontSize: 12,
+		textTransform: 'uppercase',
+		fontWeight: '300',
 	},
 	googleButton: {
 		width: '100%',
@@ -44,6 +46,8 @@ export const styles = StyleSheet.create({
 	},
 	googleLabel: {
 		fontSize: 16,
+		textTransform: 'uppercase',
+		fontWeight: '400',
 	},
 	googleIcon: {
 		height: 30,
@@ -51,11 +55,20 @@ export const styles = StyleSheet.create({
 		marginRight: 20,
 	},
 	label: {
+		textTransform: 'uppercase',
+		fontWeight: '300',
 		fontSize: 16,
 	},
 	link: {
-		fontSize: 14,
+		textTransform: 'uppercase',
+		fontWeight: '400',
+		fontSize: 12,
 		color: colors.link,
+	},
+	accountText: {
+		textTransform: 'uppercase',
+		fontWeight: '400',
+		fontSize: 12,
 	},
 	logo: {
 		width: 150,

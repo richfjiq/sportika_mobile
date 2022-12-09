@@ -7,6 +7,7 @@ import {
 	getUserAddress as getUserAddressAction,
 	createUserAddress as createUserAddressAction,
 	updateUserAddress as updateUserAddressAction,
+	loadingUserInfo as loadingUserInfoAction,
 	IAddressPost,
 } from './actions';
 
@@ -35,10 +36,18 @@ export const useUser = () => {
 		[dispatch],
 	);
 
+	const setLoadingUserInfo = useCallback(
+		(value: boolean) => {
+			dispatch(loadingUserInfoAction(value));
+		},
+		[dispatch],
+	);
+
 	return {
 		...userState,
 		getUserAddress,
 		createUserAddress,
 		updateUserAddress,
+		setLoadingUserInfo,
 	};
 };

@@ -24,10 +24,14 @@ export const styles = StyleSheet.create({
 	errorText: {
 		color: colors.error,
 		marginTop: 5,
-		fontSize: 13,
+		fontSize: 12,
 		marginBottom: 10,
+		textTransform: 'uppercase',
+		fontWeight: '300',
 	},
 	label: {
+		textTransform: 'uppercase',
+		fontWeight: '300',
 		fontSize: 16,
 		marginBottom: 0,
 	},
@@ -41,8 +45,27 @@ export const styles = StyleSheet.create({
 		paddingRight: 10,
 		paddingLeft: 15,
 	},
+	iconContainer: {
+		position: 'absolute',
+		zIndex: 10,
+		marginTop: 5,
+		right: 0,
+		height: 40,
+		width: 50,
+		justifyContent: 'center',
+		alignItems: 'center',
+	},
 	formContainer: {
 		paddingHorizontal: 30,
+	},
+	cancelButton: {
+		backgroundColor: colors.black,
+		width: '100%',
+		paddingHorizontal: 10,
+		paddingVertical: 10,
+		flexDirection: 'row',
+		justifyContent: 'center',
+		marginVertical: 20,
 	},
 	button: {
 		backgroundColor: colors.black,

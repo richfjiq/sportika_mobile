@@ -13,9 +13,7 @@ const SummaryBill = () => {
 
 	const clientName = `${shippingAddress.firstName} ${shippingAddress.lastName}`;
 	const address = shippingAddress.address;
-	const city = `${shippingAddress.city}, ${shippingAddress.state as string}, ${
-		shippingAddress.zip
-	}`;
+	const city = `${shippingAddress.city}, ${shippingAddress.state}, ${shippingAddress.zip}`;
 	const country = shippingAddress.country;
 	const phone = shippingAddress.phone;
 

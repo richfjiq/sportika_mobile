@@ -4,7 +4,7 @@ export interface ShippingAddress {
 	address: string;
 	zip: string;
 	city: string;
-	state?: string | undefined;
+	state: string;
 	country: string;
 	code: string;
 	phone: string;
