@@ -1,19 +1,20 @@
-import { useMemo, useState } from 'react';
-import { View, ScrollView, TextInput } from 'react-native';
-import Icon from 'react-native-vector-icons/Ionicons';
+import { useCallback, useEffect, useMemo, useState } from 'react';
+import { View, ScrollView } from 'react-native';
 import { StackScreenProps } from '@react-navigation/stack';
 
-import { Categories, Header, ImageCategory, ProductsCard } from '../../components';
+import { Categories, Header, ImageCategory, ProductsCard, SearchInput } from '../../components';
 import { useProducts } from '../../store';
-import { colors } from '../../theme/appTheme';
 import { categories } from '../../utils';
 import { styles } from './Menu.style';
 import { MenuStackParams } from '../../navigation/MenuStackNav';
+import { IProduct } from '../../interfaces';
 
 interface Props extends StackScreenProps<MenuStackParams, 'Menu'> {}
 
 const Menu = ({ navigation }: Props) => {
+	const [term, setTerm] = useState('');
 	const [activeCategory, setActiveCategory] = useState(categories[1]);
+	const [productsFiltered, setProductsFiltered] = useState<IProduct[]>([]);
 	const { allProducts } = useProducts();
 
 	const productsByCategory = useMemo(() => {
@@ -24,6 +25,24 @@ const Menu = ({ navigation }: Props) => {
 		return [];
 	}, [allProducts, activeCategory]);
 
+	const filterByTerm = useCallback(() => {
+		if (term.length === 0) {
+			return setProductsFiltered([]);
+		}
+
+		setProductsFiltered(
+			(productsByCategory ?? []).filter(
+				(product) =>
+					product?.title.toLocaleLowerCase().includes(term.toLocaleLowerCase()) ||
+					product?.description.toLocaleLowerCase().includes(term.toLocaleLowerCase()),
+			),
+		);
+	}, [term, productsByCategory]);
+
+	useEffect(() => {
+		filterByTerm();
+	}, [filterByTerm]);
+
 	const goToDetails = (slug: string) => {
 		navigation.navigate('ProductDetails', { slug });
 	};
@@ -32,18 +51,16 @@ const Menu = ({ navigation }: Props) => {
 		<View style={styles.flex}>
 			<Header title="Store" search={false} />
 			<Categories active={activeCategory} setActive={setActiveCategory} />
-			<View style={styles.searchContainer}>
-				<View>
-					<View style={styles.searchIcon}>
-						<Icon name={'search-outline'} size={24} color={colors.greyText} />
-					</View>
-					<TextInput style={styles.searchInput} />
-				</View>
-			</View>
-			<View style={styles.separator} />
+			<SearchInput products={productsByCategory} onDebounce={(value: string) => setTerm(value)} />
 			<ScrollView showsVerticalScrollIndicator={false} style={styles.flex}>
-				<ImageCategory category={activeCategory} />
-				<ProductsCard products={productsByCategory} goToDetails={goToDetails} />
+				{term ? (
+					<ProductsCard products={productsFiltered} goToDetails={goToDetails} />
+				) : (
+					<>
+						<ImageCategory category={activeCategory} />
+						<ProductsCard products={productsByCategory} goToDetails={goToDetails} />
+					</>
+				)}
 			</ScrollView>
 		</View>
 	);
