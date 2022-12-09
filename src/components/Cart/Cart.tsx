@@ -1,4 +1,4 @@
-import { View } from 'react-native';
+import { ScrollView, View } from 'react-native';
 
 import { useCart } from '../../store';
 import { CartProducts } from '../CartProducts';
@@ -10,12 +10,13 @@ const Cart = () => {
 	const { cart } = useCart();
 
 	return (
-		<View>
+		<View style={styles.flex}>
 			<Header title="Shopping Cart" search={false} />
-			<View style={styles.container}>
+			<View style={styles.separator} />
+			<ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
 				<CartProducts cart={cart} />
 				<SummaryOrder />
-			</View>
+			</ScrollView>
 		</View>
 	);
 };

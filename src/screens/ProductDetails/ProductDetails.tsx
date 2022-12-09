@@ -69,41 +69,39 @@ const ProductDetails = ({ route, navigation }: Props) => {
 	if (loading) return <Loading modalVisible={loading} />;
 
 	return (
-		<ScrollView
-			style={{ paddingTop: top, ...styles.container }}
-			showsVerticalScrollIndicator={false}
-		>
+		<View style={{ paddingTop: top, ...styles.container }}>
 			<View style={styles.headerContainer}>
 				<Text style={styles.headerTitle}>{product?.title}</Text>
 				<TouchableOpacity onPress={() => navigation.goBack()}>
 					<Icon name={'close-outline'} size={28} color={colors.black} />
 				</TouchableOpacity>
 			</View>
+			<ScrollView showsVerticalScrollIndicator={false}>
+				<ImageCarousel data={product?.images as string[]} />
 
-			<ImageCarousel data={product?.images as string[]} />
+				<View style={styles.infoContainer}>
+					<Text style={styles.infoTitle}>{product?.title}</Text>
+					<Text style={styles.infoPrice}>$ {product?.price}</Text>
 
-			<View style={styles.infoContainer}>
-				<Text style={styles.infoTitle}>{product?.title}</Text>
-				<Text style={styles.infoPrice}>$ {product?.price}</Text>
+					<ItemQuantity quantity={tempCartProducts.quantity} updateQuantity={updateQuantity} />
 
-				<ItemQuantity quantity={tempCartProducts.quantity} updateQuantity={updateQuantity} />
+					<SizeSelector
+						selectedSize={tempCartProducts.size}
+						sizes={product?.sizes as ISize[]}
+						onSelectedSize={onSelectedSize}
+					/>
 
-				<SizeSelector
-					selectedSize={tempCartProducts.size}
-					sizes={product?.sizes as ISize[]}
-					onSelectedSize={onSelectedSize}
-				/>
-
-				<TouchableOpacity style={styles.button} activeOpacity={0.7} onPress={onAddProduct}>
-					<Text style={styles.buttonText}>
-						{tempCartProducts.size ? 'Add to cart' : 'Choose a size'}
-					</Text>
-					<Icon name={'add-outline'} size={20} color={colors.white} />
-				</TouchableOpacity>
-				<Text style={styles.subHeader}>Description</Text>
-				<Text style={styles.description}>{product?.description}</Text>
-			</View>
-		</ScrollView>
+					<TouchableOpacity style={styles.button} activeOpacity={0.7} onPress={onAddProduct}>
+						<Text style={styles.buttonText}>
+							{tempCartProducts.size ? 'Add to cart' : 'Choose a size'}
+						</Text>
+						<Icon name={'add-outline'} size={20} color={colors.white} />
+					</TouchableOpacity>
+					<Text style={styles.subHeader}>Description</Text>
+					<Text style={styles.description}>{product?.description}</Text>
+				</View>
+			</ScrollView>
+		</View>
 	);
 };
 

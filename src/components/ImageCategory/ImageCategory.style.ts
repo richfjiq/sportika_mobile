@@ -5,8 +5,6 @@ import { colors } from '../../theme/appTheme';
 
 export const styles = StyleSheet.create({
 	container: {
-		borderTopWidth: 0.5,
-		borderTopColor: colors.inactiveGrey,
 		flex: 1,
 	},
 	containerCategory: {

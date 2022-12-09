@@ -7,6 +7,9 @@ import {
 import { colors } from '../../theme/appTheme';
 
 export const styles = StyleSheet.create({
+	flex: {
+		flex: 1,
+	},
 	button: {
 		backgroundColor: colors.white,
 		width: wp('70%'),
@@ -37,8 +40,11 @@ export const styles = StyleSheet.create({
 		textTransform: 'uppercase',
 		fontWeight: '500',
 	},
-
 	subContainer: {
 		paddingVertical: 40,
+	},
+	separator: {
+		borderWidth: 0.5,
+		borderColor: colors.inactiveGrey,
 	},
 });

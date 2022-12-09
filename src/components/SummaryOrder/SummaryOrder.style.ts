@@ -9,6 +9,7 @@ export const styles = StyleSheet.create({
 		borderColor: colors.inactiveGrey,
 		borderRadius: 10,
 		padding: 16,
+		marginBottom: 30,
 	},
 	separator: {
 		marginVertical: 10,

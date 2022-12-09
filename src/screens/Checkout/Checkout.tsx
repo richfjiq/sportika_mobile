@@ -8,13 +8,14 @@ const Checkout = () => {
 	const { cart } = useCart();
 
 	return (
-		<ScrollView showsVerticalScrollIndicator={false}>
+		<View style={{ flex: 1 }}>
 			<Header title="Order Summary" search={false} />
-			<View style={styles.container}>
+			<View style={styles.separator} />
+			<ScrollView showsVerticalScrollIndicator={false} style={styles.container}>
 				<CartProducts cart={cart} checkout={true} />
 				<SummaryOrder checkout={true} />
-			</View>
-		</ScrollView>
+			</ScrollView>
+		</View>
 	);
 };
 

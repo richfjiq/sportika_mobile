@@ -1,4 +1,4 @@
-import { ScrollView, View } from 'react-native';
+import { View } from 'react-native';
 import { Cart, EmptyCart } from '../../components';
 import { useCart } from '../../store';
 
@@ -13,11 +13,7 @@ const ShoppingCart = () => {
 		);
 	}
 
-	return (
-		<ScrollView showsVerticalScrollIndicator={false}>
-			<Cart />
-		</ScrollView>
-	);
+	return <Cart />;
 };
 
 export default ShoppingCart;

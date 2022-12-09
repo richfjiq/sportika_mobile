@@ -37,7 +37,7 @@ export const styles = StyleSheet.create({
 	infoContainer: {
 		flex: 1,
 		padding: 16,
-		marginBottom: 50,
+		marginBottom: 10,
 	},
 	infoTitle: {
 		fontSize: 16,

@@ -34,58 +34,57 @@ const Order = ({ navigation }: Props) => {
 	}, [orderId]);
 
 	return (
-		<ScrollView
-			style={{ paddingTop: top, ...styles.container }}
-			showsVerticalScrollIndicator={false}
-		>
+		<View style={{ paddingTop: top, ...styles.container }}>
 			<View style={styles.headerContainer}>
 				<Text style={styles.title}>Order: </Text>
 				<Text style={styles.titleBold}> {orderId}</Text>
 			</View>
+			<View style={styles.separator} />
+			<ScrollView showsVerticalScrollIndicator={false} style={styles.bodyContainer}>
+				<PaymentStatus isPaid={order?.isPaid as boolean} />
+				<ProductsOrder />
+				<SummaryBill />
 
-			<PaymentStatus isPaid={order?.isPaid as boolean} />
-			<ProductsOrder />
-			<SummaryBill />
+				{!loadingOrder && !order?.isPaid && (
+					<>
+						<TouchableOpacity
+							style={loadingPS ? styles.buttonCenter : styles.button}
+							activeOpacity={0.7}
+							onPress={openPaymentSheet}
+							disabled={loadingPS}
+						>
+							{loadingPS ? (
+								<ActivityIndicator
+									style={styles.activityIndicator}
+									size="small"
+									color={colors.white}
+								/>
+							) : (
+								<>
+									<Text style={styles.buttonText}>Pay now</Text>
+									<Icon name={'cash-outline'} size={20} color={colors.white} />
+								</>
+							)}
+						</TouchableOpacity>
 
-			{!loadingOrder && !order?.isPaid && (
-				<>
-					<TouchableOpacity
-						style={styles.button}
-						activeOpacity={0.7}
-						onPress={openPaymentSheet}
-						disabled={loadingPS}
-					>
-						{loadingPS ? (
-							<ActivityIndicator
-								style={styles.activityIndicator}
-								size="small"
-								color={colors.white}
-							/>
-						) : (
-							<>
-								<Text style={styles.buttonText}>Pay now</Text>
-								<Icon name={'cash-outline'} size={20} color={colors.white} />
-							</>
-						)}
-					</TouchableOpacity>
+						<TouchableOpacity
+							style={styles.buttonLater}
+							activeOpacity={0.7}
+							onPress={payLater}
+							disabled={loadingPS}
+						>
+							{loadingPS ? (
+								<ActivityIndicator size="small" color={colors.white} />
+							) : (
+								<Text style={styles.buttonText}>Pay Later</Text>
+							)}
+						</TouchableOpacity>
+					</>
+				)}
 
-					<TouchableOpacity
-						style={styles.buttonLater}
-						activeOpacity={0.7}
-						onPress={payLater}
-						disabled={loadingPS}
-					>
-						{loadingPS ? (
-							<ActivityIndicator size="small" color={colors.white} />
-						) : (
-							<Text style={styles.buttonText}>Pay Later</Text>
-						)}
-					</TouchableOpacity>
-				</>
-			)}
-
-			<Loading modalVisible={loadingOrder} />
-		</ScrollView>
+				<Loading modalVisible={loadingOrder} />
+			</ScrollView>
+		</View>
 	);
 };
 

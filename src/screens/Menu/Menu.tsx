@@ -29,7 +29,7 @@ const Menu = ({ navigation }: Props) => {
 	};
 
 	return (
-		<ScrollView showsVerticalScrollIndicator={false}>
+		<View style={styles.flex}>
 			<Header title="Store" search={false} />
 			<Categories active={activeCategory} setActive={setActiveCategory} />
 			<View style={styles.searchContainer}>
@@ -40,9 +40,12 @@ const Menu = ({ navigation }: Props) => {
 					<TextInput style={styles.searchInput} />
 				</View>
 			</View>
-			<ImageCategory category={activeCategory} />
-			<ProductsCard products={productsByCategory} goToDetails={goToDetails} />
-		</ScrollView>
+			<View style={styles.separator} />
+			<ScrollView showsVerticalScrollIndicator={false} style={styles.flex}>
+				<ImageCategory category={activeCategory} />
+				<ProductsCard products={productsByCategory} goToDetails={goToDetails} />
+			</ScrollView>
+		</View>
 	);
 };
 
