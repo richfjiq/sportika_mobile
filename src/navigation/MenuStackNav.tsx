@@ -1,10 +1,11 @@
 import { createStackNavigator } from '@react-navigation/stack';
 
-import { Menu, ProductDetails } from '../screens';
+import { Menu, ProductDetails, Search } from '../screens';
 
 export type MenuStackParams = {
 	Menu: undefined;
 	ProductDetails: { slug: string };
+	Search: undefined;
 };
 
 const Stack = createStackNavigator<MenuStackParams>();
@@ -29,6 +30,7 @@ export const MenuStackNav = () => {
 				options={{ headerShown: false }}
 				component={ProductDetails}
 			/>
+			<Stack.Screen name="Search" options={{ headerShown: false }} component={Search} />
 		</Stack.Navigator>
 	);
 };

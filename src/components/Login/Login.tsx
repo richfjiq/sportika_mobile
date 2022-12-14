@@ -1,3 +1,4 @@
+/* eslint-disable dot-notation */
 import { useEffect, useState } from 'react';
 import {
 	View,
@@ -32,12 +33,28 @@ type FormData = {
 	passwordRepeat: string;
 };
 
+interface Passwords extends Object {
+	password: boolean;
+	passwordRepeat: boolean;
+}
+
 const LoginForm = () => {
 	const [user, setUser] = useState<User>();
 	const [register, setRegister] = useState(false);
+	const [showPassword, setShowPassword] = useState<Passwords>({
+		password: false,
+		passwordRepeat: false,
+	});
 	const { loginUser, registerUser, removeError, errorMessage, loading: loadingAuth } = useAuth();
 
 	const schemaValidation = register ? registerValidation : loginValidation;
+
+	const passwordVisible = (key: string) => {
+		setShowPassword((prevState) => ({
+			...prevState,
+			[key]: !showPassword[key as keyof Passwords],
+		}));
+	};
 
 	const {
 		control,
@@ -157,12 +174,24 @@ const LoginForm = () => {
 						control={control}
 						name="password"
 						render={({ field: { value, onChange, onBlur } }) => (
-							<TextInput
-								style={styles.input}
-								value={value}
-								onChangeText={onChange}
-								onBlur={onBlur}
-							/>
+							<View>
+								<TextInput
+									style={styles.input}
+									value={value}
+									onChangeText={onChange}
+									onBlur={onBlur}
+									secureTextEntry={!showPassword['password']}
+								/>
+								<View style={styles.iconContainer}>
+									<TouchableOpacity onPress={() => passwordVisible('password')}>
+										{showPassword['password'] ? (
+											<Icon name={'eye-off-outline'} size={25} color={colors.black} />
+										) : (
+											<Icon name={'eye-outline'} size={25} color={colors.black} />
+										)}
+									</TouchableOpacity>
+								</View>
+							</View>
 						)}
 					/>
 					<Text style={styles.errorText}>{errors.password?.message}</Text>
@@ -174,12 +203,24 @@ const LoginForm = () => {
 							control={control}
 							name="passwordRepeat"
 							render={({ field: { value, onChange, onBlur } }) => (
-								<TextInput
-									style={styles.input}
-									value={value}
-									onChangeText={onChange}
-									onBlur={onBlur}
-								/>
+								<View>
+									<TextInput
+										style={styles.input}
+										value={value}
+										onChangeText={onChange}
+										onBlur={onBlur}
+										secureTextEntry={!showPassword['passwordRepeat']}
+									/>
+									<View style={styles.iconContainer}>
+										<TouchableOpacity onPress={() => passwordVisible('passwordRepeat')}>
+											{showPassword['passwordRepeat'] ? (
+												<Icon name={'eye-off-outline'} size={25} color={colors.black} />
+											) : (
+												<Icon name={'eye-outline'} size={25} color={colors.black} />
+											)}
+										</TouchableOpacity>
+									</View>
+								</View>
 							)}
 						/>
 						<Text style={styles.errorText}>{errors.passwordRepeat?.message}</Text>

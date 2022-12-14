@@ -23,8 +23,9 @@ const SummaryOrder = ({ checkout = false }: Props) => {
 	const navigator = useNavigation();
 
 	const goToCheckout = async () => {
+		if (checkout && !user) return setIsVisible(!isVisible);
 		if (checkout) {
-			if (!shippingAddress) return setIsVisible(!isVisible);
+			if (!shippingAddress) return setModalFormVisible(!modalFormVisible);
 			await createOrder();
 			setOrderConfirmed(true);
 			navigator.navigate('CartStack' as never, { screen: 'Order' } as never);

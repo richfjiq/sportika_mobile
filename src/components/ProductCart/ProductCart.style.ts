@@ -1,4 +1,5 @@
 import { StyleSheet } from 'react-native';
+import { widthPercentageToDP as wp } from 'react-native-responsive-screen';
 
 import { colors } from '../../theme/appTheme';
 
@@ -13,7 +14,7 @@ export const styles = StyleSheet.create({
 	},
 	image: {
 		width: '100%',
-		height: 100,
+		height: wp('30%'),
 		borderRadius: 5,
 		overflow: 'hidden',
 	},

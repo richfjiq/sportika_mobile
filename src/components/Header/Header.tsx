@@ -24,12 +24,16 @@ const Header = ({ title, search = true }: Props) => {
 		navigator.navigate('UserStack' as never, { screen: 'Login' } as never);
 	};
 
+	const goToSearchScreen = () => {
+		navigator.navigate('MenuStack' as never, { screen: 'Search' } as never);
+	};
+
 	return (
 		<View style={{ ...styles.container, marginTop: top }}>
 			<Text style={styles.headerText}>{title}</Text>
 			<View style={search ? styles.searchContainer : null}>
 				{search && (
-					<TouchableOpacity>
+					<TouchableOpacity onPress={goToSearchScreen}>
 						<Icon name={'search-outline'} size={24} color={colors.black} />
 					</TouchableOpacity>
 				)}

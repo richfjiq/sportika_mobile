@@ -8,7 +8,7 @@ export const styles = StyleSheet.create({
 		flex: 1,
 	},
 	containerCategory: {
-		paddingTop: 10,
+		paddingTop: 0,
 	},
 	image: {
 		width: '100%',

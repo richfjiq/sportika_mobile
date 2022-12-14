@@ -26,7 +26,7 @@ interface Props {
 }
 
 const AddressForm = ({ visible, setVisible }: Props) => {
-	const { shippingAddress, createUserAddress, updateUserAddress } = useUser();
+	const { shippingAddress, loading, createUserAddress, updateUserAddress } = useUser();
 	const { user } = useAuth();
 	const { top } = useSafeAreaInsets();
 
@@ -275,6 +275,7 @@ const AddressForm = ({ visible, setVisible }: Props) => {
 							style={styles.button}
 							activeOpacity={0.7}
 							onPress={handleSubmit(submit)}
+							disabled={loading}
 						>
 							<Text style={styles.buttonText}>
 								{shippingAddress ? 'Update Address' : 'Save Address'}
