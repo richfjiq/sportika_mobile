@@ -1,4 +1,4 @@
-import { View, Text, TouchableOpacity } from 'react-native';
+import { View, Text, TouchableOpacity, Image } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import Icon from 'react-native-vector-icons/Ionicons';
@@ -30,7 +30,16 @@ const Header = ({ title, search = true }: Props) => {
 
 	return (
 		<View style={{ ...styles.container, marginTop: top }}>
-			<Text style={styles.headerText}>{title}</Text>
+			{title === 'Sportika' ? (
+				<Image
+					style={styles.logo}
+					source={{
+						uri: 'https://res.cloudinary.com/dlz1bhh8j/image/upload/v1672172814/sportika/umqc76hrwnckyxwwiy2z.png',
+					}}
+				/>
+			) : (
+				<Text style={styles.headerText}>{title}</Text>
+			)}
 			<View style={search ? styles.searchContainer : null}>
 				{search && (
 					<TouchableOpacity onPress={goToSearchScreen}>

@@ -3,6 +3,8 @@ import { useCallback, useEffect, useState } from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import Icon from 'react-native-vector-icons/Ionicons';
+import Config from 'react-native-config';
+import { GoogleSignin } from '@react-native-google-signin/google-signin';
 
 import { Loading, MenuCategories, MyAccount, MyOrders } from '../../components';
 import { MyAddress } from '../../components/MyAddress';
@@ -10,6 +12,8 @@ import { useAuth, useCart, useOrders, useUser } from '../../store';
 import { colors } from '../../theme/appTheme';
 import { menuCategories } from '../../utils';
 import { styles } from './UserAccount.style';
+
+const googleClientId = Config.GOOGLE_CLIENT_ID;
 
 const UserAccount = () => {
 	const [activeCategory, setActiveCategory] = useState(menuCategories[1]);
@@ -26,6 +30,11 @@ const UserAccount = () => {
 		}
 	}, [orderConfirmed]);
 
+	const userLogout = async () => {
+		logout();
+		await GoogleSignin.signOut();
+	};
+
 	useEffect(() => {
 		if (isFocused && orderConfirmed) {
 			resetOrderId();
@@ -38,6 +47,12 @@ const UserAccount = () => {
 	useEffect(() => {
 		goToOrders();
 	}, [goToOrders]);
+
+	useEffect(() => {
+		GoogleSignin.configure({
+			iosClientId: googleClientId,
+		});
+	}, []);
 
 	const renderComponent = () => {
 		switch (activeCategory) {
@@ -54,7 +69,7 @@ const UserAccount = () => {
 		<View style={{ paddingTop: top, ...styles.container }}>
 			<View style={styles.headerRow}>
 				<Text style={styles.headerText}>{`Hi ${user?.name ?? ''}`}</Text>
-				<TouchableOpacity onPress={logout}>
+				<TouchableOpacity onPress={userLogout}>
 					<Icon name={'log-out-outline'} size={24} color={colors.black} />
 				</TouchableOpacity>
 			</View>

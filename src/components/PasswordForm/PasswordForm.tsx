@@ -5,10 +5,10 @@ import { Controller, useForm } from 'react-hook-form';
 import { View, Text, Modal, TouchableOpacity, TextInput, ActivityIndicator } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 
-import { IUserDataUpdate } from '../../interfaces';
+import { IUserPasswordUpdate } from '../../interfaces';
 import { useAuth } from '../../store';
-import { userDataValidation } from '../../utils';
-import { styles } from './AccountForm.style';
+import { userPasswordValidation } from '../../utils';
+import { styles } from './PasswordForm.style';
 import { colors } from '../../theme/appTheme';
 
 interface Props {
@@ -19,15 +19,15 @@ interface Props {
 interface Passwords extends Object {
 	currentPassword: boolean;
 	newPassword: boolean;
-	newPassword2: boolean;
+	repeatPassword: boolean;
 }
 
-const AccountForm = ({ visible, setVisible }: Props) => {
-	const { loading, user, updateUserData } = useAuth();
+const PasswordForm = ({ visible, setVisible }: Props) => {
+	const { loading, user, updateUserPassword } = useAuth();
 	const [showPassword, setShowPassword] = useState<Passwords>({
 		currentPassword: false,
 		newPassword: false,
-		newPassword2: false,
+		repeatPassword: false,
 	});
 
 	const passwordVisible = (key: string) => {
@@ -41,39 +41,33 @@ const AccountForm = ({ visible, setVisible }: Props) => {
 		control,
 		handleSubmit,
 		formState: { errors },
-		setValue,
-	} = useForm<IUserDataUpdate>({
+		resetField,
+	} = useForm<IUserPasswordUpdate>({
 		defaultValues: {
-			name: '',
-			email: '',
 			currentPassword: '',
+			newPassword: '',
+			repeatPassword: '',
 		},
-		resolver: yupResolver(userDataValidation),
+		resolver: yupResolver(userPasswordValidation),
 		shouldUseNativeValidation: true,
 	});
 
 	useEffect(() => {
-		if (user) {
-			setValue('name', user.name);
-			setValue('email', user.email);
-		}
+		resetField('currentPassword', { keepTouched: true });
+		resetField('newPassword', { keepTouched: true });
+		resetField('repeatPassword', { keepTouched: true });
 		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [user]);
+	}, [visible]);
 
-	const submit = async (data: IUserDataUpdate): Promise<void> => {
+	const submit = async (data: IUserPasswordUpdate): Promise<void> => {
 		if (!user) return;
-		const { name, email, currentPassword } = data;
+		const { currentPassword, newPassword, repeatPassword } = data;
 
-		if (name === user.name && email === user.email) {
-			setVisible(!visible);
-			return;
-		}
-
-		await updateUserData({
+		await updateUserPassword({
 			userId: user._id,
-			name,
-			email,
 			currentPassword,
+			newPassword,
+			repeatPassword,
 		});
 
 		setVisible(!visible);
@@ -98,41 +92,9 @@ const AccountForm = ({ visible, setVisible }: Props) => {
 					}}
 				>
 					<View style={styles.headerContainer}>
-						<Text style={styles.headerTitle}>Update User Data</Text>
+						<Text style={styles.headerTitle}>Update Password</Text>
 					</View>
 					<View style={styles.formContainer}>
-						<Text style={styles.label}>Name</Text>
-						<Controller
-							control={control}
-							name="name"
-							render={({ field: { value, onChange, onBlur } }) => (
-								<TextInput
-									style={styles.input}
-									value={value}
-									onChangeText={onChange}
-									onBlur={onBlur}
-								/>
-							)}
-							rules={{ required: true }}
-						/>
-						<Text style={styles.errorText}>{errors.name?.message}</Text>
-
-						<Text style={styles.label}>email</Text>
-						<Controller
-							control={control}
-							name="email"
-							render={({ field: { value, onChange, onBlur } }) => (
-								<TextInput
-									style={styles.input}
-									value={value}
-									onChangeText={onChange}
-									onBlur={onBlur}
-								/>
-							)}
-							rules={{ required: true }}
-						/>
-						<Text style={styles.errorText}>{errors.email?.message}</Text>
-
 						<Text style={styles.label}>Current Password</Text>
 						<Controller
 							control={control}
@@ -161,6 +123,62 @@ const AccountForm = ({ visible, setVisible }: Props) => {
 						/>
 						<Text style={styles.errorText}>{errors.currentPassword?.message}</Text>
 
+						<Text style={styles.label}>New Password</Text>
+						<Controller
+							control={control}
+							name="newPassword"
+							render={({ field: { value, onChange, onBlur } }) => (
+								<View>
+									<TextInput
+										style={styles.input}
+										value={value}
+										onChangeText={onChange}
+										onBlur={onBlur}
+										secureTextEntry={!showPassword['newPassword']}
+									/>
+									<View style={styles.iconContainer}>
+										<TouchableOpacity onPress={() => passwordVisible('newPassword')}>
+											{showPassword['newPassword'] ? (
+												<Icon name={'eye-off-outline'} size={25} color={colors.black} />
+											) : (
+												<Icon name={'eye-outline'} size={25} color={colors.black} />
+											)}
+										</TouchableOpacity>
+									</View>
+								</View>
+							)}
+							rules={{ required: true }}
+						/>
+						<Text style={styles.errorText}>{errors.newPassword?.message}</Text>
+
+						<Text style={styles.label}>Repeat Password</Text>
+						<Controller
+							control={control}
+							name="repeatPassword"
+							render={({ field: { value, onChange, onBlur } }) => (
+								<View>
+									<TextInput
+										style={styles.input}
+										value={value}
+										onChangeText={onChange}
+										onBlur={onBlur}
+										secureTextEntry={!showPassword['repeatPassword']}
+									/>
+									<View style={styles.iconContainer}>
+										<TouchableOpacity onPress={() => passwordVisible('repeatPassword')}>
+											{showPassword['repeatPassword'] ? (
+												<Icon name={'eye-off-outline'} size={25} color={colors.black} />
+											) : (
+												<Icon name={'eye-outline'} size={25} color={colors.black} />
+											)}
+										</TouchableOpacity>
+									</View>
+								</View>
+							)}
+							rules={{ required: true }}
+						/>
+						<Text style={styles.errorText}>{errors.repeatPassword?.message}</Text>
+
 						<TouchableOpacity
 							style={styles.cancelButton}
 							activeOpacity={0.7}
@@ -188,4 +206,4 @@ const AccountForm = ({ visible, setVisible }: Props) => {
 	);
 };
 
-export default AccountForm;
+export default PasswordForm;

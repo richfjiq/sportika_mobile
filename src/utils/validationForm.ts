@@ -31,9 +31,13 @@ export const userDataValidation = yup.object().shape({
 	name: yup.string().min(2).required(),
 	email: yup.string().email().required(),
 	currentPassword: yup.string().min(6, 'Must be at least 6 characters').required(),
+});
+
+export const userPasswordValidation = yup.object().shape({
+	currentPassword: yup.string().min(6, 'Must be at least 6 characters').required(),
 	newPassword: yup.string().min(6, 'Must be at least 6 characters').required(),
-	newPassword2: yup
+	repeatPassword: yup
 		.string()
 		.required('please retype your new password')
-		.oneOf([yup.ref('newPassword'), null], 'passwords must match'),
+		.oneOf([yup.ref('newPassword'), null], 'Passwords must match'),
 });

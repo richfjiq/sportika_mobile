@@ -9,6 +9,7 @@ const RESET_ADDRESS = 'user/RESET_ADDRESS';
 const LOADING_USER_INFO = 'user/LOADING_USER_INFO';
 
 export interface IAddressPost {
+	_id?: string;
 	user: string;
 	firstName: string;
 	lastName: string;

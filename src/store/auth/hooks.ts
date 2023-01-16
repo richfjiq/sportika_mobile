@@ -7,12 +7,14 @@ import {
 	removeError as removeErrorAction,
 	checkToken as checkTokenAction,
 	logout as logoutAction,
-	updateUser as updateUserAction,
+	updateUserData as updateUserDataAction,
+	updateUserPassword as updateUserPasswordAction,
+	googleAuthentication as googleAuthenticationAction,
 } from './actions';
 import { useAppDispatch, useAppSelector } from '../hooks';
 import { resetAddress } from '../user';
 import { RootState } from '../store';
-import { IUserUpdate } from '../../interfaces';
+import { IUserDataUpdate, IUserPasswordUpdate } from '../../interfaces';
 
 export const useAuth = () => {
 	const authState = useAppSelector((state: RootState) => state.auth, shallowEqual);
@@ -46,11 +48,25 @@ export const useAuth = () => {
 		dispatch(removeErrorAction());
 	}, [dispatch]);
 
-	const updateUser = useCallback(
-		async ({ userId, name, email, currentPassword, newPassword, newPassword2 }: IUserUpdate) => {
+	const updateUserData = useCallback(
+		async ({ userId, name, email, currentPassword }: IUserDataUpdate) => {
+			await dispatch(updateUserDataAction({ userId, name, email, currentPassword }));
+		},
+		[dispatch],
+	);
+
+	const updateUserPassword = useCallback(
+		async ({ userId, currentPassword, newPassword }: IUserPasswordUpdate) => {
 			await dispatch(
-				updateUserAction({ userId, name, email, currentPassword, newPassword, newPassword2 }),
+				updateUserPasswordAction({ userId, currentPassword, newPassword } as IUserPasswordUpdate),
 			);
+		},
+		[dispatch],
+	);
+
+	const googleAuthentication = useCallback(
+		async (token: string) => {
+			await dispatch(googleAuthenticationAction(token));
 		},
 		[dispatch],
 	);
@@ -62,6 +78,8 @@ export const useAuth = () => {
 		removeError,
 		checkToken,
 		logout,
-		updateUser,
+		updateUserData,
+		updateUserPassword,
+		googleAuthentication,
 	};
 };

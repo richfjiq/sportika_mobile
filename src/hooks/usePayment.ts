@@ -76,7 +76,11 @@ const usePayment = () => {
 				{
 					text: 'OK',
 					onPress: () => {
-						navigation.navigate('UserStack' as never, { screen: 'UserAccount' } as never);
+						navigation.navigate(
+							'UserStack' as never,
+							{ screen: 'UserAccount' } as never,
+							// { screen: 'UserAccount', params: { fromOrder: true } } as never,
+						);
 					},
 				},
 			]);

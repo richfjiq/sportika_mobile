@@ -9,10 +9,12 @@ import {
 	Modal,
 	TextInput,
 	KeyboardAvoidingView,
+	ActivityIndicator,
 } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import Icon from 'react-native-vector-icons/Ionicons';
 import { SelectList } from 'react-native-dropdown-select-list';
+import { isEqual } from 'lodash';
 
 import { ShippingAddress } from '../../interfaces';
 import { useAuth, useUser } from '../../store';
@@ -70,9 +72,15 @@ const AddressForm = ({ visible, setVisible }: Props) => {
 		if (!user) return;
 
 		const address = {
+			_id: shippingAddress?._id,
 			user: user?._id,
 			...data,
 		};
+
+		if (isEqual(shippingAddress, address)) {
+			setVisible(!visible);
+			return;
+		}
 
 		if (shippingAddress) {
 			await updateUserAddress(address);
@@ -277,9 +285,13 @@ const AddressForm = ({ visible, setVisible }: Props) => {
 							onPress={handleSubmit(submit)}
 							disabled={loading}
 						>
-							<Text style={styles.buttonText}>
-								{shippingAddress ? 'Update Address' : 'Save Address'}
-							</Text>
+							{loading ? (
+								<ActivityIndicator size="small" color={colors.white} />
+							) : (
+								<Text style={styles.buttonText}>
+									{shippingAddress ? 'Update Address' : 'Save Address'}
+								</Text>
+							)}
 						</TouchableOpacity>
 					</View>
 				</ScrollView>

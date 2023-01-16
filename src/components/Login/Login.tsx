@@ -11,16 +11,19 @@ import {
 	ScrollView,
 	Alert,
 } from 'react-native';
-import { GoogleSignin, statusCodes, User } from '@react-native-google-signin/google-signin';
+import { GoogleSignin, statusCodes } from '@react-native-google-signin/google-signin';
 import Icon from 'react-native-vector-icons/Ionicons';
 import { Controller, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
+import Config from 'react-native-config';
 
 import { colors } from '../../theme/appTheme';
 import { styles } from './Login.style';
 import { loginValidation, registerValidation } from '../../utils';
 import { useAuth } from '../../store';
 import { Loading } from '../Loading';
+
+const googleClientId = Config.GOOGLE_CLIENT_ID;
 
 interface GoogleError extends Error {
 	code: string;
@@ -39,13 +42,19 @@ interface Passwords extends Object {
 }
 
 const LoginForm = () => {
-	const [user, setUser] = useState<User>();
 	const [register, setRegister] = useState(false);
 	const [showPassword, setShowPassword] = useState<Passwords>({
 		password: false,
 		passwordRepeat: false,
 	});
-	const { loginUser, registerUser, removeError, errorMessage, loading: loadingAuth } = useAuth();
+	const {
+		loginUser,
+		registerUser,
+		removeError,
+		googleAuthentication,
+		errorMessage,
+		loading: loadingAuth,
+	} = useAuth();
 
 	const schemaValidation = register ? registerValidation : loginValidation;
 
@@ -72,12 +81,9 @@ const LoginForm = () => {
 
 	const toggleRegister = () => setRegister(!register);
 
-	// eslint-disable-next-line no-console
-	console.log({ user });
-
 	useEffect(() => {
 		GoogleSignin.configure({
-			iosClientId: '263541006661-ocgn0aiqes01haj7g3bauml5macjftsb.apps.googleusercontent.com',
+			iosClientId: googleClientId,
 		});
 	}, []);
 
@@ -99,9 +105,12 @@ const LoginForm = () => {
 		try {
 			await GoogleSignin.hasPlayServices();
 			const userInfo = await GoogleSignin.signIn();
-			setUser(userInfo);
+			await googleAuthentication(userInfo.idToken as string);
+			// const userInfo = await GoogleSignin.signOut();
 		} catch (error) {
 			const err = error as GoogleError;
+			// eslint-disable-next-line no-console
+			console.log({ err });
 			if (err.code === statusCodes.SIGN_IN_CANCELLED) {
 				// user cancelled the login flow
 			} else if (err.code === statusCodes.IN_PROGRESS) {
@@ -127,7 +136,7 @@ const LoginForm = () => {
 			<ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
 				<Image
 					source={{
-						uri: 'https://res.cloudinary.com/dlz1bhh8j/image/upload/v1668386696/sportika/pfpymxklxfewegnjixys.png',
+						uri: 'https://res.cloudinary.com/dlz1bhh8j/image/upload/v1672172814/sportika/umqc76hrwnckyxwwiy2z.png',
 					}}
 					style={styles.logo}
 				/>

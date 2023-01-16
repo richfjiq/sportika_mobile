@@ -1,5 +1,5 @@
 import { useNavigation } from '@react-navigation/native';
-import { View, Text, TouchableOpacity } from 'react-native';
+import { View, Text, TouchableOpacity, ActivityIndicator } from 'react-native';
 
 import { useAuth, useCart, useUser } from '../../store';
 import { currencyFormat, TAX_RATE } from '../../utils';
@@ -7,7 +7,7 @@ import { AddressModal } from '../AddressModal';
 import { styles } from './SummaryOrder.style';
 import { useState } from 'react';
 import { AddressForm } from '../AddressForm';
-import { Loading } from '../Loading';
+import { colors } from '../../theme/appTheme';
 
 interface Props {
 	checkout?: boolean;
@@ -112,12 +112,15 @@ const SummaryOrder = ({ checkout = false }: Props) => {
 			</View>
 
 			<TouchableOpacity style={styles.button} activeOpacity={0.7} onPress={goToCheckout}>
-				<Text style={styles.buttonText}>{checkout ? 'Confirm Order' : 'Checkout'}</Text>
+				{loading ? (
+					<ActivityIndicator size="small" color={colors.white} />
+				) : (
+					<Text style={styles.buttonText}>{checkout ? 'Confirm Order' : 'Checkout'}</Text>
+				)}
 			</TouchableOpacity>
 
 			<AddressModal visible={isVisible} setVisible={setIsVisible} />
 			<AddressForm visible={modalFormVisible} setVisible={setModalFormVisible} />
-			<Loading modalVisible={loading} />
 		</View>
 	);
 };

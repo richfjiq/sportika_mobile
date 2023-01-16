@@ -28,11 +28,11 @@ const MyAddress = () => {
 						<Text style={styles.addressText}>{`${shippingAddress?.address}`}</Text>
 						<Text
 							style={styles.addressText}
-						>{`${shippingAddress?.city}, ${shippingAddress?.zip}`}</Text>
+						>{`${shippingAddress?.city}, ${shippingAddress?.state}, ${shippingAddress?.zip}`}</Text>
 						<Text style={styles.addressText}>{`${shippingAddress?.country}`}</Text>
 						<Text
 							style={styles.addressText}
-						>{`${shippingAddress?.code}, ${shippingAddress?.phone}`}</Text>
+						>{`${shippingAddress?.code} ${shippingAddress?.phone}`}</Text>
 					</View>
 				</View>
 			) : (

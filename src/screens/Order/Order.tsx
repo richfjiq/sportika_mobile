@@ -1,5 +1,6 @@
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { StackScreenProps } from '@react-navigation/stack';
-import { useEffect } from 'react';
+import { useCallback, useEffect } from 'react';
 import { View, Text, ScrollView, TouchableOpacity, ActivityIndicator } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import Icon from 'react-native-vector-icons/Ionicons';
@@ -22,8 +23,18 @@ const Order = ({ navigation }: Props) => {
 	const payLater = async () => {
 		setOrderConfirmed(true);
 		await getOrdersByUser(order?.user as string);
-		navigation.navigate('UserStack' as never, { screen: 'UserAccount' } as never);
+		navigation.navigate(
+			'UserStack' as never,
+			{ screen: 'UserAccount' } as never,
+			// { screen: 'UserAccount', params: { fromOrder: true } } as never,
+		);
 	};
+
+	const removeCartFromStorage = useCallback(async () => {
+		if (order) {
+			await AsyncStorage.removeItem('cart');
+		}
+	}, [order]);
 
 	useEffect(() => {
 		if (orderId) {
@@ -33,11 +44,16 @@ const Order = ({ navigation }: Props) => {
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [orderId]);
 
+	useEffect(() => {
+		// eslint-disable-next-line @typescript-eslint/no-floating-promises
+		removeCartFromStorage();
+	}, [removeCartFromStorage, order]);
+
 	return (
 		<View style={{ paddingTop: top, ...styles.container }}>
 			<View style={styles.headerContainer}>
 				<Text style={styles.title}>Order: </Text>
-				<Text style={styles.titleBold}> {orderId}</Text>
+				<Text style={styles.titleBold}> {orderId || order?._id}</Text>
 			</View>
 			<View style={styles.separator} />
 			<ScrollView showsVerticalScrollIndicator={false} style={styles.bodyContainer}>

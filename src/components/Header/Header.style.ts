@@ -18,4 +18,8 @@ export const styles = StyleSheet.create({
 		width: 70,
 		justifyContent: 'space-between',
 	},
+	logo: {
+		width: 100,
+		height: 45,
+	},
 });

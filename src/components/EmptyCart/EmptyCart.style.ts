@@ -1,5 +1,4 @@
 import { StyleSheet } from 'react-native';
-import { widthPercentageToDP as wp } from 'react-native-responsive-screen';
 
 import { colors } from '../../theme/appTheme';
 
@@ -10,12 +9,13 @@ export const styles = StyleSheet.create({
 		borderTopWidth: 0.5,
 		alignItems: 'center',
 		borderTopColor: colors.greyText,
+		paddingHorizontal: 16,
 	},
 	button: {
 		backgroundColor: colors.black,
-		width: wp('70%'),
-		paddingHorizontal: 10,
-		paddingVertical: 5,
+		width: '100%',
+		paddingHorizontal: 15,
+		paddingVertical: 10,
 		flexDirection: 'row',
 		justifyContent: 'space-between',
 		alignItems: 'center',

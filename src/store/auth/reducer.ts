@@ -1,11 +1,21 @@
 import { createSlice, isAnyOf } from '@reduxjs/toolkit';
-import { registerUser, removeError, checkToken, logout, loginUser, updateUser } from './actions';
+import {
+	registerUser,
+	removeError,
+	checkToken,
+	logout,
+	loginUser,
+	updateUserData,
+	googleAuthentication,
+	updateUserPassword,
+} from './actions';
 
 type User = {
 	_id: string;
 	email: string;
 	name: string;
 	role: string;
+	type?: string;
 };
 
 interface State {
@@ -33,6 +43,14 @@ const authStore = createSlice({
 			state.loading = true;
 		});
 		builder.addCase(loginUser.fulfilled, (state, { payload }) => {
+			state.loading = false;
+			state.token = payload.token;
+			state.user = payload.user;
+		});
+		builder.addCase(googleAuthentication.pending, (state) => {
+			state.loading = true;
+		});
+		builder.addCase(googleAuthentication.fulfilled, (state, { payload }) => {
 			state.loading = false;
 			state.token = payload.token;
 			state.user = payload.user;
@@ -67,16 +85,35 @@ const authStore = createSlice({
 			state.error = false;
 			state.errorMessage = null;
 		});
-		builder.addCase(updateUser.pending, (state) => {
+		builder.addCase(updateUserData.pending, (state) => {
 			state.loading = true;
 		});
-		builder.addCase(updateUser.fulfilled, (state, { payload }) => {
+		builder.addCase(updateUserData.fulfilled, (state, { payload }) => {
 			state.loading = false;
-			state.token = payload?.token ?? null;
+			state.user = payload?.user ?? null;
+		});
+		builder.addCase(updateUserPassword.pending, (state) => {
+			state.loading = true;
+		});
+		builder.addCase(updateUserPassword.fulfilled, (state, { payload }) => {
+			state.loading = false;
 			state.user = payload?.user ?? null;
 		});
 		builder.addMatcher(
-			isAnyOf(loginUser.rejected, registerUser.rejected, checkToken.rejected, updateUser.rejected),
+			isAnyOf(updateUserData.rejected, updateUserPassword.rejected),
+			(state, action) => {
+				state.loading = false;
+				state.error = true;
+				state.errorMessage = action.payload as string;
+			},
+		);
+		builder.addMatcher(
+			isAnyOf(
+				loginUser.rejected,
+				registerUser.rejected,
+				checkToken.rejected,
+				googleAuthentication.rejected,
+			),
 			(state, action) => {
 				state.loading = false;
 				state.error = true;

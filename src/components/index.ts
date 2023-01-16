@@ -24,3 +24,4 @@ export * from './SummaryBill';
 export * from './OrdersTable';
 export * from './AccountForm';
 export * from './SearchInput';
+export * from './PasswordForm';

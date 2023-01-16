@@ -32,7 +32,7 @@ export const styles = StyleSheet.create({
 	},
 	button: {
 		backgroundColor: colors.black,
-		width: wp('70%'),
+		width: '100%',
 		paddingHorizontal: 10,
 		paddingVertical: 10,
 		flexDirection: 'row',
