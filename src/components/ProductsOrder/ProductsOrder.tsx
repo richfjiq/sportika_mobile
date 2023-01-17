@@ -12,7 +12,7 @@ const ProductsOrder = () => {
 	return (
 		<View style={styles.itemsContainer}>
 			{orderItems.map((item) => (
-				<View key={item.slug} style={styles.itemRowContainer}>
+				<View key={`${item.slug}-${item.size}`} style={styles.itemRowContainer}>
 					<TouchableOpacity style={styles.imageContainer} activeOpacity={0.7}>
 						<Image source={{ uri: `${item.image}` }} style={styles.image} />
 					</TouchableOpacity>
