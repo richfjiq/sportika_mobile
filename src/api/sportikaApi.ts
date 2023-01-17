@@ -4,8 +4,6 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const baseURL = Config.API_URL;
 
-console.log({ baseURL });
-
 const sportikaApi = axios.create({ baseURL });
 
 sportikaApi.interceptors.request.use(async (config) => {

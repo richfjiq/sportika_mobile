@@ -21,10 +21,22 @@ export const styles = StyleSheet.create({
 		right: 5,
 		zIndex: 10,
 	},
+	searchInputAndroid: {
+		height: 40,
+		paddingHorizontal: 35,
+		fontSize: 16,
+	},
 	searchInput: {
 		height: 30,
 		paddingHorizontal: 35,
 		fontSize: 16,
+	},
+	inputContainerAndroid: {
+		borderWidth: 1,
+		borderColor: colors.inactiveGrey,
+		height: 40,
+		justifyContent: 'center',
+		borderRadius: 10,
 	},
 	inputContainer: {
 		borderWidth: 0.5,
@@ -39,7 +51,6 @@ export const styles = StyleSheet.create({
 		},
 		shadowOpacity: 0.25,
 		shadowRadius: 3.84,
-
 		elevation: 5,
 	},
 });

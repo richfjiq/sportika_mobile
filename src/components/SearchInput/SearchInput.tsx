@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { TextInput, TouchableOpacity, View } from 'react-native';
+import { Platform, TextInput, TouchableOpacity, View } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import { useDebouncedValue } from '../../hooks';
 import { IProduct } from '../../interfaces';
@@ -14,6 +14,7 @@ interface Props {
 
 const SearchInput = ({ onDebounce }: Props) => {
 	const [searchString, setSearchString] = useState('');
+	const platform = Platform.OS;
 
 	const inputRef = useRef<TextInput>(null);
 
@@ -32,13 +33,13 @@ const SearchInput = ({ onDebounce }: Props) => {
 
 	return (
 		<View style={styles.searchContainer}>
-			<View style={styles.inputContainer}>
+			<View style={platform === 'android' ? styles.inputContainerAndroid : styles.inputContainer}>
 				<View style={styles.searchIcon}>
 					<Icon name={'search-outline'} size={24} color={colors.greyText} />
 				</View>
 				<TextInput
 					ref={inputRef}
-					style={styles.searchInput}
+					style={platform === 'android' ? styles.searchInputAndroid : styles.searchInput}
 					value={searchString}
 					onChangeText={setSearchString}
 				/>

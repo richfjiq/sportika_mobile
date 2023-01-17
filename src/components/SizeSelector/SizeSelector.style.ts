@@ -1,4 +1,4 @@
-import { StyleSheet } from 'react-native';
+import { Platform, StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
 	subHeader: {
@@ -12,7 +12,7 @@ export const styles = StyleSheet.create({
 	},
 	selectInput: {
 		marginTop: 5,
-		height: 40,
+		height: Platform.OS === 'android' ? 45 : 40,
 		borderRadius: 5,
 	},
 });

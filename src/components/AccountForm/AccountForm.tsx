@@ -42,6 +42,7 @@ const AccountForm = ({ visible, setVisible }: Props) => {
 		handleSubmit,
 		formState: { errors },
 		setValue,
+		resetField,
 	} = useForm<IUserDataUpdate>({
 		defaultValues: {
 			name: '',
@@ -59,6 +60,11 @@ const AccountForm = ({ visible, setVisible }: Props) => {
 		}
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [user]);
+
+	useEffect(() => {
+		resetField('currentPassword', { keepTouched: true });
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [visible]);
 
 	const submit = async (data: IUserDataUpdate): Promise<void> => {
 		if (!user) return;
