@@ -3,11 +3,12 @@ import { NavigationContainer } from '@react-navigation/native';
 import { useEffect, useState } from 'react';
 import { Provider } from 'react-redux';
 import { StripeProvider } from '@stripe/stripe-react-native';
+import { Alert } from 'react-native';
 
 import { BottomTabsNav } from './src/navigation/BottomTabsNav';
 import { store } from './src/store';
 import { getPublishableKey } from './src/utils';
-import { Alert } from 'react-native';
+import SplashScreen from 'react-native-splash-screen';
 
 const App = () => {
 	const [publishableKey, setPublishableKey] = useState('');
@@ -26,6 +27,10 @@ const App = () => {
 	useEffect(() => {
 		// eslint-disable-next-line @typescript-eslint/no-floating-promises
 		fetchPublishableKey();
+	}, []);
+
+	useEffect(() => {
+		SplashScreen.hide();
 	}, []);
 
 	return (
