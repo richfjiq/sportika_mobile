@@ -10,6 +10,7 @@ import {
 	TextInput,
 	KeyboardAvoidingView,
 	ActivityIndicator,
+	Platform,
 } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import Icon from 'react-native-vector-icons/Ionicons';
@@ -97,7 +98,7 @@ const AddressForm = ({ visible, setVisible }: Props) => {
 		<Modal animationType="fade" transparent={false} visible={visible}>
 			<KeyboardAvoidingView style={{ flex: 1 }} behavior="padding">
 				<ScrollView
-					style={{ paddingTop: top, ...styles.container }}
+					style={{ paddingTop: Platform.OS === 'ios' ? top : 10, ...styles.container }}
 					showsVerticalScrollIndicator={false}
 				>
 					<View style={styles.headerContainer}>

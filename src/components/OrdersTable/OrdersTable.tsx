@@ -15,10 +15,24 @@ const OrdersTable = () => {
 		navigator.navigate('UserStack' as never, { screen: 'PayOrder' } as never);
 	};
 
+	const orderStatus = (time: number, status: boolean) => {
+		if (time >= 2 && status === false) return 'Canceled';
+		if (!status) return 'Pending';
+		return 'Paid';
+	};
+
+	const styleStatus = (time: number, status: boolean) => {
+		if (time >= 2 && status === false) return styles.textCanceled;
+		if (!status) return styles.textPending;
+		return styles.textPaid;
+	};
+
 	return (
 		<View style={{ marginBottom: 50 }}>
 			{(allOrders ?? []).map((order, i) => {
+				const today = new Date();
 				const date = new Date(order.updatedAt as string);
+				const days = moment(today).diff(moment(date), 'days');
 
 				return (
 					<View key={order._id} style={styles.rowContainer}>
@@ -26,8 +40,8 @@ const OrdersTable = () => {
 							<Text style={styles.text}>{i + 1}</Text>
 						</View>
 						<View style={styles.statusContainer}>
-							<Text style={order?.isPaid ? styles.textPaid : styles.textPending}>
-								{order?.isPaid ? 'Paid' : 'Pending'}
+							<Text style={styleStatus(days, order?.isPaid)}>
+								{orderStatus(days, order?.isPaid)}
 							</Text>
 						</View>
 						<View style={styles.dateContainer}>

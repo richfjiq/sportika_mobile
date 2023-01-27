@@ -46,6 +46,11 @@ export const styles = StyleSheet.create({
 		fontWeight: '400',
 		color: colors.red,
 	},
+	textCanceled: {
+		textTransform: 'uppercase',
+		fontWeight: '400',
+		color: colors.greyText,
+	},
 	buttonText: {
 		textTransform: 'uppercase',
 		fontWeight: '500',

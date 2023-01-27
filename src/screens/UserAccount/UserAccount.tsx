@@ -1,6 +1,6 @@
 import { useIsFocused } from '@react-navigation/native';
 import { useCallback, useEffect, useState } from 'react';
-import { View, Text, TouchableOpacity } from 'react-native';
+import { View, Text, TouchableOpacity, Platform } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import Icon from 'react-native-vector-icons/Ionicons';
 import Config from 'react-native-config';
@@ -66,7 +66,7 @@ const UserAccount = () => {
 	};
 
 	return (
-		<View style={{ paddingTop: top, ...styles.container }}>
+		<View style={{ paddingTop: Platform.OS === 'ios' ? top : 10, ...styles.container }}>
 			<View style={styles.headerRow}>
 				<Text style={styles.headerText}>{`Hi ${user?.name ?? ''}`}</Text>
 				<TouchableOpacity onPress={userLogout}>

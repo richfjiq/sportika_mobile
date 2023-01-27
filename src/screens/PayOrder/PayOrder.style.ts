@@ -4,7 +4,6 @@ import { colors } from '../../theme/appTheme';
 export const styles = StyleSheet.create({
 	container: {
 		flex: 1,
-		marginBottom: 40,
 	},
 	headerContainer: {
 		flexDirection: 'row',
@@ -43,8 +42,7 @@ export const styles = StyleSheet.create({
 		justifyContent: 'space-between',
 		alignItems: 'center',
 		alignSelf: 'center',
-		marginTop: 40,
-		marginBottom: 20,
+		marginTop: 20,
 	},
 	buttonCenter: {
 		backgroundColor: colors.black,
@@ -55,8 +53,7 @@ export const styles = StyleSheet.create({
 		justifyContent: 'center',
 		alignItems: 'center',
 		alignSelf: 'center',
-		marginTop: 40,
-		marginBottom: 20,
+		marginTop: 20,
 	},
 	buttonText: {
 		textTransform: 'uppercase',

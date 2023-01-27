@@ -1,4 +1,4 @@
-import { View, Text, TouchableOpacity, Image } from 'react-native';
+import { View, Text, TouchableOpacity, Image, Platform } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import Icon from 'react-native-vector-icons/Ionicons';
@@ -29,7 +29,7 @@ const Header = ({ title, search = true }: Props) => {
 	};
 
 	return (
-		<View style={{ ...styles.container, marginTop: top }}>
+		<View style={{ ...styles.container, marginTop: Platform.OS === 'ios' ? top : 10 }}>
 			{title === 'Sportika' ? (
 				<Image
 					style={styles.logo}

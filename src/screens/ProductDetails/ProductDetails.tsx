@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { View, Text, TouchableOpacity, ScrollView } from 'react-native';
+import { View, Text, TouchableOpacity, ScrollView, Platform } from 'react-native';
 import { StackScreenProps } from '@react-navigation/stack';
 import Icon from 'react-native-vector-icons/Ionicons';
 
@@ -69,7 +69,7 @@ const ProductDetails = ({ route, navigation }: Props) => {
 	if (loading) return <Loading modalVisible={loading} />;
 
 	return (
-		<View style={{ paddingTop: top, ...styles.container }}>
+		<View style={{ paddingTop: Platform.OS === 'ios' ? top : 10, ...styles.container }}>
 			<View style={styles.headerContainer}>
 				<Text style={styles.headerTitle}>{product?.title}</Text>
 				<TouchableOpacity onPress={() => navigation.goBack()}>

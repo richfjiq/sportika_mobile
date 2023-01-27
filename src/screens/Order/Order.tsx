@@ -1,7 +1,14 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { StackScreenProps } from '@react-navigation/stack';
 import { useCallback, useEffect } from 'react';
-import { View, Text, ScrollView, TouchableOpacity, ActivityIndicator } from 'react-native';
+import {
+	View,
+	Text,
+	ScrollView,
+	TouchableOpacity,
+	ActivityIndicator,
+	Platform,
+} from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import Icon from 'react-native-vector-icons/Ionicons';
 
@@ -50,7 +57,7 @@ const Order = ({ navigation }: Props) => {
 	}, [removeCartFromStorage, order]);
 
 	return (
-		<View style={{ paddingTop: top, ...styles.container }}>
+		<View style={{ paddingTop: Platform.OS === 'ios' ? top : 10, ...styles.container }}>
 			<View style={styles.headerContainer}>
 				<Text style={styles.title}>Order: </Text>
 				<Text style={styles.titleBold}> {orderId || order?._id}</Text>
