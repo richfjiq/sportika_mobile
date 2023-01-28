@@ -2,9 +2,12 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:sportika.xcodeproj">
+      location = "group:Sportika.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:Pods/Pods.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:sportika.xcodeproj">
    </FileRef>
 </Workspace>

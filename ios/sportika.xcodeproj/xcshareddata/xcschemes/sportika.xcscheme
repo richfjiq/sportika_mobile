@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-               BuildableName = "sportika.app"
-               BlueprintName = "sportika"
-               ReferencedContainer = "container:sportika.xcodeproj">
+               BuildableName = "Sportika.app"
+               BlueprintName = "Sportika"
+               ReferencedContainer = "container:Sportika.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "00E356ED1AD99517003FC87E"
-               BuildableName = "sportikaTests.xctest"
-               BlueprintName = "sportikaTests"
-               ReferencedContainer = "container:sportika.xcodeproj">
+               BuildableName = "SportikaTests.xctest"
+               BlueprintName = "SportikaTests"
+               ReferencedContainer = "container:Sportika.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -55,9 +55,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "sportika.app"
-            BlueprintName = "sportika"
-            ReferencedContainer = "container:sportika.xcodeproj">
+            BuildableName = "Sportika.app"
+            BlueprintName = "Sportika"
+            ReferencedContainer = "container:Sportika.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -72,9 +72,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "sportika.app"
-            BlueprintName = "sportika"
-            ReferencedContainer = "container:sportika.xcodeproj">
+            BuildableName = "Sportika.app"
+            BlueprintName = "Sportika"
+            ReferencedContainer = "container:Sportika.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

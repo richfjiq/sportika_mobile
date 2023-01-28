@@ -1,4 +1,4 @@
-import { StyleSheet } from 'react-native';
+import { Platform, StyleSheet } from 'react-native';
 import {
 	widthPercentageToDP as wp,
 	heightPercentageToDP as hp,
@@ -23,10 +23,10 @@ export const styles = StyleSheet.create({
 	buttonText: {
 		textTransform: 'uppercase',
 		fontSize: 14,
-		fontWeight: '500',
+		fontWeight: '700',
 	},
 	imageBg: {
-		height: hp('80%'),
+		height: Platform.OS === 'ios' ? hp('80%') : hp('86%'),
 		justifyContent: 'flex-end',
 		alignItems: 'center',
 	},
@@ -38,7 +38,7 @@ export const styles = StyleSheet.create({
 		padding: 5,
 		backgroundColor: 'white',
 		textTransform: 'uppercase',
-		fontWeight: '500',
+		fontWeight: '700',
 	},
 	subContainer: {
 		paddingVertical: 40,

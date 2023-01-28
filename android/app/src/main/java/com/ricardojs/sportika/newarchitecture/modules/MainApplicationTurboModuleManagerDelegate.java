@@ -1,4 +1,4 @@
-package com.sportika.newarchitecture.modules;
+package com.ricardojs.sportika.newarchitecture.modules;
 
 import com.facebook.jni.HybridData;
 import com.facebook.react.ReactPackage;
