@@ -1,4 +1,4 @@
-import { StyleSheet } from 'react-native';
+import { Platform, StyleSheet } from 'react-native';
 import { colors } from '../../theme/appTheme';
 
 export const styles = StyleSheet.create({
@@ -32,14 +32,14 @@ export const styles = StyleSheet.create({
 	},
 	selectInput: {
 		marginTop: 5,
-		height: 40,
+		height: Platform.OS === 'ios' ? 40 : 45,
 		borderRadius: 5,
 	},
 	input: {
 		borderWidth: 0.5,
 		borderColor: colors.greyText,
 		marginTop: 5,
-		height: 40,
+		height: Platform.OS === 'ios' ? 40 : 45,
 		borderRadius: 5,
 		fontSize: 16,
 		paddingRight: 10,
@@ -62,8 +62,8 @@ export const styles = StyleSheet.create({
 		paddingVertical: 10,
 		flexDirection: 'row',
 		justifyContent: 'center',
-		marginTop: 25,
-		marginBottom: 120,
+		marginTop: 10,
+		marginBottom: 50,
 	},
 	buttonText: {
 		textTransform: 'uppercase',
