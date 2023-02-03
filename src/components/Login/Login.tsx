@@ -24,6 +24,7 @@ import { useAuth } from '../../store';
 import { Loading } from '../Loading';
 
 const googleClientId = Config.GOOGLE_CLIENT_ID;
+const androidClientId = Config.ANDROID_CLIENT_ID;
 
 interface GoogleError extends Error {
 	code: string;
@@ -83,6 +84,8 @@ const LoginForm = () => {
 
 	useEffect(() => {
 		GoogleSignin.configure({
+			webClientId: androidClientId,
+			offlineAccess: false,
 			iosClientId: googleClientId,
 		});
 	}, []);
