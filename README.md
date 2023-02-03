@@ -4,7 +4,9 @@ Sportika Mobile (mobile application)
 
 ## Demo link:
 
-Clone the repo and run it locally
+android -- [Download the app](https://play.google.com/store/apps/details?id=com.ricardojs.sportika) and test it
+
+ios -- Clone the repo and run it locally
 
 ## About The App
 
