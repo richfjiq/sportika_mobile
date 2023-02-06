@@ -1,4 +1,5 @@
-import { View, Text, Image } from 'react-native';
+import { View, Text, Image, useWindowDimensions } from 'react-native';
+import { categoryImage, catImgHeight } from '../../utils';
 
 import { styles } from './ImageCategory.style';
 
@@ -7,23 +8,8 @@ interface Props {
 }
 
 const ImageCategory = ({ category }: Props) => {
-	let uri =
-		'https://res.cloudinary.com/dlz1bhh8j/image/upload/v1667941749/sportika/aifz1e34oa15abjvibjo.jpg';
-
-	switch (category) {
-		case 'men':
-			uri =
-				'https://res.cloudinary.com/dlz1bhh8j/image/upload/v1667941749/sportika/jebito3kfluzbmxvaee9.jpg';
-			break;
-		case 'girls':
-			uri =
-				'https://res.cloudinary.com/dlz1bhh8j/image/upload/v1667941749/sportika/tiqecaixusjejkwizmyi.jpg';
-			break;
-		case 'boys':
-			uri =
-				'https://res.cloudinary.com/dlz1bhh8j/image/upload/v1667963127/sportika/wk1hb8kuvrxyfnnghslw.jpg';
-			break;
-	}
+	const { width } = useWindowDimensions();
+	const uri = categoryImage(category);
 
 	return (
 		<View style={styles.container}>
@@ -33,9 +19,9 @@ const ImageCategory = ({ category }: Props) => {
 						source={{
 							uri,
 						}}
-						style={styles.image}
+						style={{ ...styles.image, ...catImgHeight(width) }}
 					/>
-					<View style={styles.textContainer}>
+					<View style={{ ...styles.textContainer, ...catImgHeight(width) }}>
 						<View style={styles.textSubContainer}>
 							<Text style={styles.textCategory}>{category}</Text>
 						</View>

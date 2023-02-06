@@ -1,7 +1,7 @@
-import { Image, View } from 'react-native';
-import { widthPercentageToDP as wp } from 'react-native-responsive-screen';
+import { Image, useWindowDimensions, View } from 'react-native';
 import Carousel from 'react-native-reanimated-carousel';
 
+import { imgCarouselProduct } from '../../utils';
 import { styles } from './ImageCarousel.style';
 
 interface Props {
@@ -9,11 +9,12 @@ interface Props {
 }
 
 const ImageCarousel = ({ data }: Props) => {
+	const { width } = useWindowDimensions();
 	return (
 		<View style={styles.carouselContainer}>
 			<Carousel
-				width={wp('100%')}
-				height={wp('100%')}
+				width={imgCarouselProduct(width)}
+				height={imgCarouselProduct(width)}
 				data={data}
 				scrollAnimationDuration={500}
 				renderItem={({ item }) => {

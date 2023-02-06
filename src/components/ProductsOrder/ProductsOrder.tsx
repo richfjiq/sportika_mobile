@@ -1,9 +1,12 @@
-import { View, Text, TouchableOpacity, Image } from 'react-native';
+import { View, Text, TouchableOpacity, Image, useWindowDimensions } from 'react-native';
+
 import { useOrders } from '../../store';
+import { imgHeightProductsOrder } from '../../utils';
 import { styles } from './ProductsOrder.style';
 
 const ProductsOrder = () => {
 	const { order } = useOrders();
+	const { width } = useWindowDimensions();
 
 	if (!order) return null;
 
@@ -14,7 +17,10 @@ const ProductsOrder = () => {
 			{orderItems.map((item) => (
 				<View key={`${item.slug}-${item.size}`} style={styles.itemRowContainer}>
 					<TouchableOpacity style={styles.imageContainer} activeOpacity={0.7}>
-						<Image source={{ uri: `${item.image}` }} style={styles.image} />
+						<Image
+							source={{ uri: `${item.image}` }}
+							style={{ ...styles.image, ...imgHeightProductsOrder(width) }}
+						/>
 					</TouchableOpacity>
 					<View style={styles.detailsContainer}>
 						<View style={styles.rowPrice}>

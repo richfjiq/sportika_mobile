@@ -26,7 +26,7 @@ export const styles = StyleSheet.create({
 		fontWeight: '700',
 	},
 	imageBg: {
-		height: Platform.OS === 'ios' ? hp('80%') : hp('86%'),
+		height: Platform.OS === 'ios' ? hp('80%') : hp('80%'),
 		justifyContent: 'flex-end',
 		alignItems: 'center',
 	},
