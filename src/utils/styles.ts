@@ -4,9 +4,10 @@ import {
 } from 'react-native-responsive-screen';
 
 export const bgImageHeight = (width: number) => {
-	if (width >= 900) return { height: hp('90.5%') };
-	if (width >= 800) return { height: hp('89%') };
-	if (width >= 480) return { height: hp('86%') };
+	if (width >= 900) return { height: hp('84.5%') };
+	if (width >= 800) return { height: hp('83%') };
+	if (width >= 700) return { height: hp('80%') };
+	if (width >= 480) return { height: hp('81%') };
 	return {};
 };
 

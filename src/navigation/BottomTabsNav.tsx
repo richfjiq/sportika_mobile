@@ -15,12 +15,7 @@ import { styles } from './BottomTabsNav.style';
 import axios from 'axios';
 import Config from 'react-native-config';
 import { ICartProduct, IProduct } from '../interfaces';
-import {
-	responsiveFontSize,
-	responsiveIcon,
-	responsiveIconContainer,
-	tabBarHeight,
-} from '../utils';
+import { responsiveFontSize, responsiveIcon, tabBarHeight } from '../utils';
 
 const baseURL = Config.API_URL || '';
 
@@ -40,8 +35,6 @@ export const BottomTabsNav = () => {
 	const { getUserAddress, setLoadingUserInfo } = useUser();
 	const { setAllProducts } = useProducts();
 	const { numberOfItems, addCartFromCookies } = useCart();
-
-	console.log({ width });
 
 	const getProducts = async () => {
 		try {

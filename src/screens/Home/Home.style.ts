@@ -35,6 +35,7 @@ export const styles = StyleSheet.create({
 		marginBottom: 20,
 	},
 	phraseText: {
+		fontSize: 14,
 		padding: 5,
 		backgroundColor: 'white',
 		textTransform: 'uppercase',

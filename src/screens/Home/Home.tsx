@@ -10,7 +10,7 @@ import { BottomTabScreenProps } from '@react-navigation/bottom-tabs';
 import Icon from 'react-native-vector-icons/Ionicons';
 import { Header } from '../../components';
 
-import { bgImageHeight } from '../../utils';
+import { bgImageHeight, responsiveFontSize, responsiveIcon } from '../../utils';
 import { colors } from '../../theme/appTheme';
 import { RootTabsParams } from '../../navigation/BottomTabsNav';
 import { styles } from './Home.style';
@@ -37,11 +37,19 @@ const Home = ({ navigation }: Props) => {
 				>
 					<View style={styles.subContainer}>
 						<View style={styles.phraseContainer}>
-							<Text style={styles.phraseText}>Reinvent your Impulse</Text>
+							<Text style={{ ...styles.phraseText, ...responsiveFontSize(14, width) }}>
+								Reinvent your Impulse
+							</Text>
 						</View>
 						<TouchableOpacity style={styles.button} activeOpacity={0.7} onPress={goToBuy}>
-							<Text style={styles.buttonText}>Buy now</Text>
-							<Icon name={'arrow-forward-outline'} size={20} color={colors.black} />
+							<Text style={{ ...styles.buttonText, ...responsiveFontSize(14, width) }}>
+								Buy now
+							</Text>
+							<Icon
+								name={'arrow-forward-outline'}
+								size={responsiveIcon(20, width)}
+								color={colors.black}
+							/>
 						</TouchableOpacity>
 					</View>
 				</ImageBackground>
@@ -53,11 +61,19 @@ const Home = ({ navigation }: Props) => {
 				>
 					<View style={styles.subContainer}>
 						<View style={styles.phraseContainer}>
-							<Text style={styles.phraseText}>Ready for a hit session?</Text>
+							<Text style={{ ...styles.phraseText, ...responsiveFontSize(14, width) }}>
+								Ready for a hit session?
+							</Text>
 						</View>
 						<TouchableOpacity style={styles.button} activeOpacity={0.7} onPress={goToBuy}>
-							<Text style={styles.buttonText}>Buy now</Text>
-							<Icon name={'arrow-forward-outline'} size={20} color={colors.black} />
+							<Text style={{ ...styles.buttonText, ...responsiveFontSize(14, width) }}>
+								Buy now
+							</Text>
+							<Icon
+								name={'arrow-forward-outline'}
+								size={responsiveIcon(20, width)}
+								color={colors.black}
+							/>
 						</TouchableOpacity>
 					</View>
 				</ImageBackground>
@@ -69,11 +85,19 @@ const Home = ({ navigation }: Props) => {
 				>
 					<View style={styles.subContainer}>
 						<View style={styles.phraseContainer}>
-							<Text style={styles.phraseText}>Maximum Comfort, infinite poss...</Text>
+							<Text style={{ ...styles.phraseText, ...responsiveFontSize(14, width) }}>
+								Maximum Comfort, infinite poss...
+							</Text>
 						</View>
 						<TouchableOpacity style={styles.button} activeOpacity={0.7} onPress={goToBuy}>
-							<Text style={styles.buttonText}>Buy now</Text>
-							<Icon name={'arrow-forward-outline'} size={20} color={colors.black} />
+							<Text style={{ ...styles.buttonText, ...responsiveFontSize(14, width) }}>
+								Buy now
+							</Text>
+							<Icon
+								name={'arrow-forward-outline'}
+								size={responsiveIcon(20, width)}
+								color={colors.black}
+							/>
 						</TouchableOpacity>
 					</View>
 				</ImageBackground>
@@ -85,11 +109,19 @@ const Home = ({ navigation }: Props) => {
 				>
 					<View style={styles.subContainer}>
 						<View style={styles.phraseContainer}>
-							<Text style={styles.phraseText}>Imagine your world</Text>
+							<Text style={{ ...styles.phraseText, ...responsiveFontSize(14, width) }}>
+								Imagine your world
+							</Text>
 						</View>
 						<TouchableOpacity style={styles.button} activeOpacity={0.7} onPress={goToBuy}>
-							<Text style={styles.buttonText}>Buy now</Text>
-							<Icon name={'arrow-forward-outline'} size={20} color={colors.black} />
+							<Text style={{ ...styles.buttonText, ...responsiveFontSize(14, width) }}>
+								Buy now
+							</Text>
+							<Icon
+								name={'arrow-forward-outline'}
+								size={responsiveIcon(20, width)}
+								color={colors.black}
+							/>
 						</TouchableOpacity>
 					</View>
 				</ImageBackground>
