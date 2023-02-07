@@ -1,8 +1,8 @@
 import { useNavigation } from '@react-navigation/native';
-import { View, Text, TouchableOpacity, ActivityIndicator } from 'react-native';
+import { View, Text, TouchableOpacity, ActivityIndicator, useWindowDimensions } from 'react-native';
 
 import { useAuth, useCart, useUser } from '../../store';
-import { currencyFormat, TAX_RATE } from '../../utils';
+import { currencyFormat, responsiveFontSize, TAX_RATE } from '../../utils';
 import { AddressModal } from '../AddressModal';
 import { styles } from './SummaryOrder.style';
 import { useState } from 'react';
@@ -14,6 +14,7 @@ interface Props {
 }
 
 const SummaryOrder = ({ checkout = false }: Props) => {
+	const { width } = useWindowDimensions();
 	const [isVisible, setIsVisible] = useState(false);
 	const [modalFormVisible, setModalFormVisible] = useState(false);
 	const { numberOfItems, subTotal, tax, total, loading, createOrder, setOrderConfirmed } =
@@ -58,22 +59,36 @@ const SummaryOrder = ({ checkout = false }: Props) => {
 			return (
 				<>
 					<View style={styles.rowHeader}>
-						<Text style={styles.orderTitleAddress}>Delivery Address</Text>
+						<Text style={{ ...styles.orderTitleAddress, ...responsiveFontSize(16, width) }}>
+							Delivery Address
+						</Text>
 						<TouchableOpacity onPress={() => setModalFormVisible(!modalFormVisible)}>
-							<Text style={styles.removeText}>Edit</Text>
+							<Text style={{ ...styles.removeText, ...responsiveFontSize(12, width) }}>Edit</Text>
 						</TouchableOpacity>
 					</View>
-					<Text style={styles.orderTextAddress}>{clientName}</Text>
-					<Text style={styles.orderTextAddress}>{address}</Text>
-					<Text style={styles.orderTextAddress}>{city}</Text>
-					<Text style={styles.orderTextAddress}>{country}</Text>
-					<Text style={styles.orderTextAddress}>{phone}</Text>
+					<Text style={{ ...styles.orderTextAddress, ...responsiveFontSize(15, width) }}>
+						{clientName}
+					</Text>
+					<Text style={{ ...styles.orderTextAddress, ...responsiveFontSize(15, width) }}>
+						{address}
+					</Text>
+					<Text style={{ ...styles.orderTextAddress, ...responsiveFontSize(15, width) }}>
+						{city}
+					</Text>
+					<Text style={{ ...styles.orderTextAddress, ...responsiveFontSize(15, width) }}>
+						{country}
+					</Text>
+					<Text style={{ ...styles.orderTextAddress, ...responsiveFontSize(15, width) }}>
+						{phone}
+					</Text>
 				</>
 			);
 		} else {
 			return (
 				<TouchableOpacity style={styles.button} activeOpacity={0.7} onPress={onAddAddress}>
-					<Text style={styles.buttonText}>Add Address</Text>
+					<Text style={{ ...styles.buttonText, ...responsiveFontSize(14, width) }}>
+						Add Address
+					</Text>
 				</TouchableOpacity>
 			);
 		}
@@ -88,34 +103,46 @@ const SummaryOrder = ({ checkout = false }: Props) => {
 			<View style={styles.separator} />
 			{checkout && (
 				<View style={styles.rowHeader}>
-					<Text style={styles.billText}>Bill</Text>
+					<Text style={{ ...styles.billText, ...responsiveFontSize(16, width) }}>Bill</Text>
 					<TouchableOpacity onPress={goToCart}>
-						<Text style={styles.removeText}>Edit</Text>
+						<Text style={{ ...styles.removeText, ...responsiveFontSize(12, width) }}>Edit</Text>
 					</TouchableOpacity>
 				</View>
 			)}
 			<View style={styles.rowContainer}>
-				<Text style={styles.orderText}>Items</Text>
-				<Text style={styles.orderText}>{numberOfItems}</Text>
+				<Text style={{ ...styles.orderText, ...responsiveFontSize(15, width) }}>Items</Text>
+				<Text style={{ ...styles.orderText, ...responsiveFontSize(15, width) }}>
+					{numberOfItems}
+				</Text>
 			</View>
 			<View style={styles.rowContainer}>
-				<Text style={styles.orderText}>Subtotal</Text>
-				<Text style={styles.orderText}>{currencyFormat(subTotal)}</Text>
+				<Text style={{ ...styles.orderText, ...responsiveFontSize(15, width) }}>Subtotal</Text>
+				<Text style={{ ...styles.orderText, ...responsiveFontSize(15, width) }}>
+					{currencyFormat(subTotal)}
+				</Text>
 			</View>
 			<View style={styles.rowContainer}>
-				<Text style={styles.orderText}>Tax ({Number(TAX_RATE) * 100} %)</Text>
-				<Text style={styles.orderText}>{currencyFormat(tax)}</Text>
+				<Text style={{ ...styles.orderText, ...responsiveFontSize(15, width) }}>
+					Tax ({Number(TAX_RATE) * 100} %)
+				</Text>
+				<Text style={{ ...styles.orderText, ...responsiveFontSize(15, width) }}>
+					{currencyFormat(tax)}
+				</Text>
 			</View>
 			<View style={styles.rowContainer}>
-				<Text style={styles.totalText}>Total</Text>
-				<Text style={styles.totalText}>{currencyFormat(total)}</Text>
+				<Text style={{ ...styles.totalText, ...responsiveFontSize(15, width) }}>Total</Text>
+				<Text style={{ ...styles.totalText, ...responsiveFontSize(15, width) }}>
+					{currencyFormat(total)}
+				</Text>
 			</View>
 
 			<TouchableOpacity style={styles.button} activeOpacity={0.7} onPress={goToCheckout}>
 				{loading ? (
 					<ActivityIndicator size="small" color={colors.white} />
 				) : (
-					<Text style={styles.buttonText}>{checkout ? 'Confirm Order' : 'Checkout'}</Text>
+					<Text style={{ ...styles.buttonText, ...responsiveFontSize(14, width) }}>
+						{checkout ? 'Confirm Order' : 'Checkout'}
+					</Text>
 				)}
 			</TouchableOpacity>
 
