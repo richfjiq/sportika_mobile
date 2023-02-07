@@ -1,5 +1,5 @@
 import { View, Text, Image, useWindowDimensions } from 'react-native';
-import { categoryImage, catImgHeight } from '../../utils';
+import { categoryImage, catImgHeight, responsiveFontSize } from '../../utils';
 
 import { styles } from './ImageCategory.style';
 
@@ -23,10 +23,14 @@ const ImageCategory = ({ category }: Props) => {
 					/>
 					<View style={{ ...styles.textContainer, ...catImgHeight(width) }}>
 						<View style={styles.textSubContainer}>
-							<Text style={styles.textCategory}>{category}</Text>
+							<Text style={{ ...styles.textCategory, ...responsiveFontSize(12, width) }}>
+								{category}
+							</Text>
 						</View>
 						<View style={styles.textSubContainer}>
-							<Text style={styles.textCategory}>FREE SHIPPING STARTS TODAY! No minimum spend.</Text>
+							<Text style={{ ...styles.textCategory, ...responsiveFontSize(12, width) }}>
+								FREE SHIPPING STARTS TODAY! No minimum spend.
+							</Text>
 						</View>
 					</View>
 				</View>
