@@ -67,3 +67,8 @@ export const logoHeader = (w: number, h: number, width: number) => {
 	if (width >= 480) return { width: w * (width / 390), height: h * (width / 390) };
 	return {};
 };
+
+export const googleBtnCont = (h: number, width: number) => {
+	if (width >= 480) return { height: h * (width / 390) };
+	return {};
+};

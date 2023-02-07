@@ -10,6 +10,7 @@ import {
 	Platform,
 	ScrollView,
 	Alert,
+	useWindowDimensions,
 } from 'react-native';
 import { GoogleSignin, statusCodes } from '@react-native-google-signin/google-signin';
 import Icon from 'react-native-vector-icons/Ionicons';
@@ -19,7 +20,16 @@ import Config from 'react-native-config';
 
 import { colors } from '../../theme/appTheme';
 import { styles } from './Login.style';
-import { loginValidation, registerValidation } from '../../utils';
+import {
+	loginValidation,
+	logoHeader,
+	registerValidation,
+	responsiveFontSize,
+	responsiveIcon,
+	responsiveInputHeight,
+	googleBtnCont,
+	responsiveIconContainer,
+} from '../../utils';
 import { useAuth } from '../../store';
 import { Loading } from '../Loading';
 
@@ -43,6 +53,7 @@ interface Passwords extends Object {
 }
 
 const LoginForm = () => {
+	const { width } = useWindowDimensions();
 	const [register, setRegister] = useState(false);
 	const [showPassword, setShowPassword] = useState<Passwords>({
 		password: false,
@@ -141,18 +152,24 @@ const LoginForm = () => {
 					source={{
 						uri: 'https://res.cloudinary.com/dlz1bhh8j/image/upload/v1672172814/sportika/umqc76hrwnckyxwwiy2z.png',
 					}}
-					style={styles.logo}
+					style={{ ...styles.logo, ...logoHeader(200, 110, width) }}
 				/>
-				<Text style={styles.title}>{register ? 'Register' : 'Login'}</Text>
+				<Text style={{ ...styles.title, ...responsiveFontSize(20, width) }}>
+					{register ? 'Register' : 'Login'}
+				</Text>
 
 				<View style={styles.inputContainer}>
-					<Text style={styles.label}>Email</Text>
+					<Text style={{ ...styles.label, ...responsiveFontSize(16, width) }}>Email</Text>
 					<Controller
 						control={control}
 						name="email"
 						render={({ field: { value, onChange, onBlur } }) => (
 							<TextInput
-								style={styles.input}
+								style={{
+									...styles.input,
+									...responsiveInputHeight(40, width),
+									...responsiveFontSize(16, width),
+								}}
 								value={value}
 								onChangeText={onChange}
 								onBlur={onBlur}
@@ -160,105 +177,166 @@ const LoginForm = () => {
 						)}
 						rules={{ required: true }}
 					/>
-					<Text style={styles.errorText}>{errors.email?.message}</Text>
+					<Text style={{ ...styles.errorText, ...responsiveFontSize(12, width) }}>
+						{errors.email?.message}
+					</Text>
 				</View>
 				{register && (
 					<View style={styles.inputContainer}>
-						<Text style={styles.label}>Name</Text>
+						<Text style={{ ...styles.label, ...responsiveFontSize(16, width) }}>Name</Text>
 						<Controller
 							control={control}
 							name="name"
 							render={({ field: { value, onChange, onBlur } }) => (
 								<TextInput
-									style={styles.input}
+									style={{
+										...styles.input,
+										...responsiveInputHeight(40, width),
+										...responsiveFontSize(16, width),
+									}}
 									value={value}
 									onChangeText={onChange}
 									onBlur={onBlur}
 								/>
 							)}
 						/>
-						<Text style={styles.errorText}>{errors.name?.message}</Text>
+						<Text style={{ ...styles.errorText, ...responsiveFontSize(12, width) }}>
+							{errors.name?.message}
+						</Text>
 					</View>
 				)}
 				<View style={styles.inputContainer}>
-					<Text style={styles.label}>Password</Text>
+					<Text style={{ ...styles.label, ...responsiveFontSize(16, width) }}>Password</Text>
 					<Controller
 						control={control}
 						name="password"
 						render={({ field: { value, onChange, onBlur } }) => (
 							<View>
 								<TextInput
-									style={styles.input}
+									style={{
+										...styles.input,
+										...responsiveInputHeight(40, width),
+										...responsiveFontSize(16, width),
+									}}
 									value={value}
 									onChangeText={onChange}
 									onBlur={onBlur}
 									secureTextEntry={!showPassword['password']}
 								/>
-								<View style={styles.iconContainer}>
+								<View
+									style={{ ...styles.iconContainer, ...responsiveIconContainer(40, 50, width) }}
+								>
 									<TouchableOpacity onPress={() => passwordVisible('password')}>
 										{showPassword['password'] ? (
-											<Icon name={'eye-off-outline'} size={25} color={colors.black} />
+											<Icon
+												name={'eye-off-outline'}
+												size={responsiveIcon(25, width)}
+												color={colors.black}
+											/>
 										) : (
-											<Icon name={'eye-outline'} size={25} color={colors.black} />
+											<Icon
+												name={'eye-outline'}
+												size={responsiveIcon(25, width)}
+												color={colors.black}
+											/>
 										)}
 									</TouchableOpacity>
 								</View>
 							</View>
 						)}
 					/>
-					<Text style={styles.errorText}>{errors.password?.message}</Text>
+					<Text style={{ ...styles.errorText, ...responsiveFontSize(12, width) }}>
+						{errors.password?.message}
+					</Text>
 				</View>
 				{register && (
 					<View style={styles.inputContainer}>
-						<Text style={styles.label}>Repeat Password</Text>
+						<Text
+							style={{
+								...styles.label,
+								...responsiveFontSize(16, width),
+								...responsiveFontSize(16, width),
+							}}
+						>
+							Repeat Password
+						</Text>
 						<Controller
 							control={control}
 							name="passwordRepeat"
 							render={({ field: { value, onChange, onBlur } }) => (
 								<View>
 									<TextInput
-										style={styles.input}
+										style={{
+											...styles.input,
+											...responsiveInputHeight(40, width),
+											...responsiveFontSize(16, width),
+										}}
 										value={value}
 										onChangeText={onChange}
 										onBlur={onBlur}
 										secureTextEntry={!showPassword['passwordRepeat']}
 									/>
-									<View style={styles.iconContainer}>
+									<View
+										style={{ ...styles.iconContainer, ...responsiveIconContainer(40, 50, width) }}
+									>
 										<TouchableOpacity onPress={() => passwordVisible('passwordRepeat')}>
 											{showPassword['passwordRepeat'] ? (
-												<Icon name={'eye-off-outline'} size={25} color={colors.black} />
+												<Icon
+													name={'eye-off-outline'}
+													size={responsiveIcon(25, width)}
+													color={colors.black}
+												/>
 											) : (
-												<Icon name={'eye-outline'} size={25} color={colors.black} />
+												<Icon
+													name={'eye-outline'}
+													size={responsiveIcon(25, width)}
+													color={colors.black}
+												/>
 											)}
 										</TouchableOpacity>
 									</View>
 								</View>
 							)}
 						/>
-						<Text style={styles.errorText}>{errors.passwordRepeat?.message}</Text>
+						<Text style={{ ...styles.errorText, ...responsiveFontSize(12, width) }}>
+							{errors.passwordRepeat?.message}
+						</Text>
 					</View>
 				)}
 				<View style={styles.textContainer}>
-					<Text style={styles.accountText}>
+					<Text style={{ ...styles.accountText, ...responsiveFontSize(12, width) }}>
 						{register ? 'Have an account?' : `Don't have an account?`}{' '}
 					</Text>
 					<TouchableOpacity activeOpacity={0.7} onPress={toggleRegister}>
-						<Text style={styles.link}>{register ? 'Log in here' : 'Sign Up'}</Text>
+						<Text style={{ ...styles.link, ...responsiveFontSize(12, width) }}>
+							{register ? 'Log in here' : 'Sign Up'}
+						</Text>
 					</TouchableOpacity>
 				</View>
 				<TouchableOpacity style={styles.button} activeOpacity={0.7} onPress={handleSubmit(submit)}>
-					<Text style={styles.buttonText}>{register ? 'Register' : 'Login'}</Text>
-					<Icon name={'arrow-forward-outline'} size={20} color={colors.white} />
+					<Text style={{ ...styles.buttonText, ...responsiveFontSize(14, width) }}>
+						{register ? 'Register' : 'Login'}
+					</Text>
+					<Icon
+						name={'arrow-forward-outline'}
+						size={responsiveIcon(20, width)}
+						color={colors.white}
+					/>
 				</TouchableOpacity>
 				<View style={styles.socialAuthContainer}>
-					<TouchableOpacity style={styles.googleButtonContainer} onPress={signIn}>
+					<TouchableOpacity
+						style={{ ...styles.googleButtonContainer, ...googleBtnCont(45, width) }}
+						onPress={signIn}
+					>
 						<Image
 							source={{
 								uri: 'https://res.cloudinary.com/dlz1bhh8j/image/upload/v1668115137/sportika/wez1kupfuekqo38xew84.png',
 							}}
-							style={styles.googleIcon}
+							style={{ ...styles.googleIcon, ...logoHeader(30, 30, width) }}
 						/>
-						<Text style={styles.googleLabel}>Sign in with Google</Text>
+						<Text style={{ ...styles.googleLabel, ...responsiveFontSize(16, width) }}>
+							Sign in with Google
+						</Text>
 					</TouchableOpacity>
 				</View>
 				<Loading modalVisible={loadingAuth} />
