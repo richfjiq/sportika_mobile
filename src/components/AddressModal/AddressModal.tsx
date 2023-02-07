@@ -1,7 +1,15 @@
-import { View, Text, Modal, TouchableOpacity, TouchableWithoutFeedback } from 'react-native';
+import {
+	View,
+	Text,
+	Modal,
+	TouchableOpacity,
+	TouchableWithoutFeedback,
+	useWindowDimensions,
+} from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
 import { styles } from './AddressModal.style';
+import { responsiveFontSize } from '../../utils';
 
 interface Props {
 	visible: boolean;
@@ -9,6 +17,7 @@ interface Props {
 }
 
 const AddressModal = ({ visible, setVisible }: Props) => {
+	const { width } = useWindowDimensions();
 	const navigator = useNavigation();
 
 	const goToLogIn = () => {
@@ -26,9 +35,9 @@ const AddressModal = ({ visible, setVisible }: Props) => {
 			<TouchableOpacity style={styles.container} onPress={() => setVisible(false)}>
 				<TouchableWithoutFeedback>
 					<View style={styles.messageContainer}>
-						<Text style={styles.text}>Please Log In, and Add / Update Address</Text>
+						<Text style={{ ...styles.text, ...responsiveFontSize(18, width) }}>Please Log In</Text>
 						<TouchableOpacity style={styles.button} activeOpacity={0.7} onPress={goToLogIn}>
-							<Text style={styles.buttonText}>Log In</Text>
+							<Text style={{ ...styles.buttonText, ...responsiveFontSize(14, width) }}>Log In</Text>
 						</TouchableOpacity>
 					</View>
 				</TouchableWithoutFeedback>
