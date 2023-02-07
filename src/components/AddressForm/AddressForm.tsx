@@ -11,6 +11,7 @@ import {
 	KeyboardAvoidingView,
 	ActivityIndicator,
 	Platform,
+	useWindowDimensions,
 } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import Icon from 'react-native-vector-icons/Ionicons';
@@ -20,7 +21,12 @@ import { isEqual } from 'lodash';
 import { ShippingAddress } from '../../interfaces';
 import { useAuth, useUser } from '../../store';
 import { colors } from '../../theme/appTheme';
-import { addressValidation } from '../../utils';
+import {
+	addressValidation,
+	responsiveFontSize,
+	responsiveIcon,
+	responsiveInputHeight,
+} from '../../utils';
 import { styles } from './AddressForm.style';
 
 interface Props {
@@ -29,6 +35,7 @@ interface Props {
 }
 
 const AddressForm = ({ visible, setVisible }: Props) => {
+	const { width } = useWindowDimensions();
 	const { shippingAddress, loading, createUserAddress, updateUserAddress } = useUser();
 	const { user } = useAuth();
 	const { top } = useSafeAreaInsets();
@@ -102,22 +109,26 @@ const AddressForm = ({ visible, setVisible }: Props) => {
 					showsVerticalScrollIndicator={false}
 				>
 					<View style={styles.headerContainer}>
-						<Text style={styles.headerTitle}>
+						<Text style={{ ...styles.headerTitle, ...responsiveFontSize(18, width) }}>
 							{shippingAddress ? 'Update Address' : 'Add Address'}
 						</Text>
 						<TouchableOpacity onPress={() => setVisible(!visible)}>
-							<Icon name={'close-outline'} size={28} color={colors.black} />
+							<Icon name={'close-outline'} size={responsiveIcon(28, width)} color={colors.black} />
 						</TouchableOpacity>
 					</View>
 
 					<View style={styles.formContainer}>
-						<Text style={styles.label}>Name</Text>
+						<Text style={{ ...styles.label, ...responsiveFontSize(16, width) }}>Name</Text>
 						<Controller
 							control={control}
 							name="firstName"
 							render={({ field: { value, onChange, onBlur } }) => (
 								<TextInput
-									style={styles.input}
+									style={{
+										...styles.input,
+										...responsiveFontSize(16, width),
+										...responsiveInputHeight(40, width),
+									}}
 									value={value}
 									onChangeText={onChange}
 									onBlur={onBlur}
@@ -127,13 +138,17 @@ const AddressForm = ({ visible, setVisible }: Props) => {
 						/>
 						<Text style={styles.errorText}>{errors.firstName?.message}</Text>
 
-						<Text style={styles.label}>Last Name</Text>
+						<Text style={{ ...styles.label, ...responsiveFontSize(16, width) }}>Last Name</Text>
 						<Controller
 							control={control}
 							name="lastName"
 							render={({ field: { value, onChange, onBlur } }) => (
 								<TextInput
-									style={styles.input}
+									style={{
+										...styles.input,
+										...responsiveFontSize(16, width),
+										...responsiveInputHeight(40, width),
+									}}
 									value={value}
 									onChangeText={onChange}
 									onBlur={onBlur}
@@ -143,13 +158,17 @@ const AddressForm = ({ visible, setVisible }: Props) => {
 						/>
 						<Text style={styles.errorText}>{errors.lastName?.message}</Text>
 
-						<Text style={styles.label}>Address</Text>
+						<Text style={{ ...styles.label, ...responsiveFontSize(16, width) }}>Address</Text>
 						<Controller
 							control={control}
 							name="address"
 							render={({ field: { value, onChange, onBlur } }) => (
 								<TextInput
-									style={styles.input}
+									style={{
+										...styles.input,
+										...responsiveFontSize(16, width),
+										...responsiveInputHeight(40, width),
+									}}
 									value={value}
 									onChangeText={onChange}
 									onBlur={onBlur}
@@ -161,13 +180,17 @@ const AddressForm = ({ visible, setVisible }: Props) => {
 
 						<View style={styles.inputsRow}>
 							<View style={styles.inputContainer}>
-								<Text style={styles.label}>Zip Code</Text>
+								<Text style={{ ...styles.label, ...responsiveFontSize(16, width) }}>Zip Code</Text>
 								<Controller
 									control={control}
 									name="zip"
 									render={({ field: { value, onChange, onBlur } }) => (
 										<TextInput
-											style={styles.input}
+											style={{
+												...styles.input,
+												...responsiveFontSize(16, width),
+												...responsiveInputHeight(40, width),
+											}}
 											value={value}
 											onChangeText={onChange}
 											onBlur={onBlur}
@@ -179,13 +202,17 @@ const AddressForm = ({ visible, setVisible }: Props) => {
 							</View>
 
 							<View style={styles.inputContainer}>
-								<Text style={styles.label}>City</Text>
+								<Text style={{ ...styles.label, ...responsiveFontSize(16, width) }}>City</Text>
 								<Controller
 									control={control}
 									name="city"
 									render={({ field: { value, onChange, onBlur } }) => (
 										<TextInput
-											style={styles.input}
+											style={{
+												...styles.input,
+												...responsiveFontSize(16, width),
+												...responsiveInputHeight(40, width),
+											}}
 											value={value}
 											onChangeText={onChange}
 											onBlur={onBlur}
@@ -199,13 +226,17 @@ const AddressForm = ({ visible, setVisible }: Props) => {
 
 						<View style={styles.inputsRow}>
 							<View style={styles.inputContainer}>
-								<Text style={styles.label}>State</Text>
+								<Text style={{ ...styles.label, ...responsiveFontSize(16, width) }}>State</Text>
 								<Controller
 									control={control}
 									name="state"
 									render={({ field: { value, onChange, onBlur } }) => (
 										<TextInput
-											style={styles.input}
+											style={{
+												...styles.input,
+												...responsiveFontSize(16, width),
+												...responsiveInputHeight(40, width),
+											}}
 											value={value}
 											onChangeText={onChange}
 											onBlur={onBlur}
@@ -217,12 +248,13 @@ const AddressForm = ({ visible, setVisible }: Props) => {
 							</View>
 
 							<View style={styles.inputContainer}>
-								<Text style={styles.label}>Country</Text>
+								<Text style={{ ...styles.label, ...responsiveFontSize(16, width) }}>Country</Text>
 								<Controller
 									control={control}
 									name="country"
 									render={({ field: { value, onChange } }) => (
 										<SelectList
+											searchPlaceholder="Select"
 											defaultOption={{ key: value, value }}
 											setSelected={(val: string) => onChange(val)}
 											data={[
@@ -230,7 +262,13 @@ const AddressForm = ({ visible, setVisible }: Props) => {
 												{ key: 'MEXICO', value: 'MEXICO' },
 												{ key: 'US', value: 'US' },
 											]}
-											boxStyles={styles.selectInput}
+											boxStyles={{
+												...styles.selectInput,
+												...responsiveInputHeight(40, width),
+											}}
+											inputStyles={responsiveFontSize(16, width)}
+											dropdownTextStyles={responsiveFontSize(16, width)}
+											search={false}
 										/>
 									)}
 									rules={{ required: true }}
@@ -241,19 +279,26 @@ const AddressForm = ({ visible, setVisible }: Props) => {
 
 						<View style={styles.inputsRow}>
 							<View style={styles.inputContainer}>
-								<Text style={styles.label}>Code</Text>
+								<Text style={{ ...styles.label, ...responsiveFontSize(16, width) }}>Code</Text>
 								<Controller
 									control={control}
 									name="code"
 									render={({ field: { value, onChange } }) => (
 										<SelectList
+											searchPlaceholder="Select"
 											defaultOption={{ key: value, value }}
 											setSelected={(val: string) => onChange(val)}
 											data={[
 												{ key: '+1', value: '+1' },
 												{ key: '+52', value: '+52' },
 											]}
-											boxStyles={styles.selectInput}
+											boxStyles={{
+												...styles.selectInput,
+												...responsiveInputHeight(40, width),
+											}}
+											search={false}
+											inputStyles={responsiveFontSize(16, width)}
+											dropdownTextStyles={responsiveFontSize(16, width)}
 										/>
 									)}
 									rules={{ required: true }}
@@ -262,13 +307,17 @@ const AddressForm = ({ visible, setVisible }: Props) => {
 							</View>
 
 							<View style={styles.inputContainer}>
-								<Text style={styles.label}>Phone</Text>
+								<Text style={{ ...styles.label, ...responsiveFontSize(16, width) }}>Phone</Text>
 								<Controller
 									control={control}
 									name="phone"
 									render={({ field: { value, onChange, onBlur } }) => (
 										<TextInput
-											style={styles.input}
+											style={{
+												...styles.input,
+												...responsiveFontSize(16, width),
+												...responsiveInputHeight(40, width),
+											}}
 											value={value}
 											onChangeText={onChange}
 											onBlur={onBlur}
@@ -289,7 +338,7 @@ const AddressForm = ({ visible, setVisible }: Props) => {
 							{loading ? (
 								<ActivityIndicator size="small" color={colors.white} />
 							) : (
-								<Text style={styles.buttonText}>
+								<Text style={{ ...styles.buttonText, ...responsiveFontSize(14, width) }}>
 									{shippingAddress ? 'Update Address' : 'Save Address'}
 								</Text>
 							)}

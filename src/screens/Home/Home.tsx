@@ -19,7 +19,6 @@ interface Props extends BottomTabScreenProps<RootTabsParams, 'Home'> {}
 
 const Home = ({ navigation }: Props) => {
 	const { width } = useWindowDimensions();
-	console.log({ width });
 
 	const goToBuy = () => {
 		navigation.navigate('MenuStack' as never, { screen: 'Menu' } as never);
