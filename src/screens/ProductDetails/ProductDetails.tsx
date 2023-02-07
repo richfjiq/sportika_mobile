@@ -1,6 +1,13 @@
 import { useEffect, useState } from 'react';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { View, Text, TouchableOpacity, ScrollView, Platform } from 'react-native';
+import {
+	View,
+	Text,
+	TouchableOpacity,
+	ScrollView,
+	Platform,
+	useWindowDimensions,
+} from 'react-native';
 import { StackScreenProps } from '@react-navigation/stack';
 import Icon from 'react-native-vector-icons/Ionicons';
 
@@ -10,10 +17,12 @@ import { ImageCarousel, ItemQuantity, Loading, SizeSelector } from '../../compon
 import { colors } from '../../theme/appTheme';
 import { styles } from './ProductDetails.style';
 import { Gender, ICartProduct, ISize } from '../../interfaces';
+import { responsiveFontSize, responsiveIcon } from '../../utils';
 
 interface Props extends StackScreenProps<MenuStackParams, 'ProductDetails'> {}
 
 const ProductDetails = ({ route, navigation }: Props) => {
+	const { width } = useWindowDimensions();
 	const { loading, product, getProductBySlug } = useProducts();
 	const { addProductToCart } = useCart();
 	const [tempCartProducts, setTempCartProducts] = useState<ICartProduct>({
@@ -71,17 +80,23 @@ const ProductDetails = ({ route, navigation }: Props) => {
 	return (
 		<View style={{ paddingTop: Platform.OS === 'ios' ? top : 10, ...styles.container }}>
 			<View style={styles.headerContainer}>
-				<Text style={styles.headerTitle}>{product?.title}</Text>
+				<Text style={{ ...styles.headerTitle, ...responsiveFontSize(16, width) }}>
+					{product?.title}
+				</Text>
 				<TouchableOpacity onPress={() => navigation.goBack()}>
-					<Icon name={'close-outline'} size={28} color={colors.black} />
+					<Icon name={'close-outline'} size={responsiveIcon(28, width)} color={colors.black} />
 				</TouchableOpacity>
 			</View>
 			<ScrollView showsVerticalScrollIndicator={false}>
 				<ImageCarousel data={product?.images as string[]} />
 
 				<View style={styles.infoContainer}>
-					<Text style={styles.infoTitle}>{product?.title}</Text>
-					<Text style={styles.infoPrice}>$ {product?.price}</Text>
+					<Text style={{ ...styles.infoTitle, ...responsiveFontSize(16, width) }}>
+						{product?.title}
+					</Text>
+					<Text style={{ ...styles.infoPrice, ...responsiveFontSize(16, width) }}>
+						$ {product?.price}
+					</Text>
 
 					<ItemQuantity quantity={tempCartProducts.quantity} updateQuantity={updateQuantity} />
 
@@ -92,13 +107,15 @@ const ProductDetails = ({ route, navigation }: Props) => {
 					/>
 
 					<TouchableOpacity style={styles.button} activeOpacity={0.7} onPress={onAddProduct}>
-						<Text style={styles.buttonText}>
+						<Text style={{ ...styles.buttonText, ...responsiveFontSize(14, width) }}>
 							{tempCartProducts.size ? 'Add to cart' : 'Choose a size'}
 						</Text>
-						<Icon name={'add-outline'} size={20} color={colors.white} />
+						<Icon name={'add-outline'} size={responsiveIcon(20, width)} color={colors.white} />
 					</TouchableOpacity>
-					<Text style={styles.subHeader}>Description</Text>
-					<Text style={styles.description}>{product?.description}</Text>
+					<Text style={{ ...styles.subHeader, ...responsiveFontSize(16, width) }}>Description</Text>
+					<Text style={{ ...styles.description, ...responsiveFontSize(16, width) }}>
+						{product?.description}
+					</Text>
 				</View>
 			</ScrollView>
 		</View>
