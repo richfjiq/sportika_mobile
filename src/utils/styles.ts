@@ -57,3 +57,13 @@ export const responsiveIcon = (size: number, width: number) => {
 	if (width >= 480) return size * (width / 390);
 	return size;
 };
+
+export const headerIconsContainer = (w: number, width: number) => {
+	if (width >= 480) return { width: w * (width / 390) };
+	return {};
+};
+
+export const logoHeader = (w: number, h: number, width: number) => {
+	if (width >= 480) return { width: w * (width / 390), height: h * (width / 390) };
+	return {};
+};
