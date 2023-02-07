@@ -72,3 +72,12 @@ export const googleBtnCont = (h: number, width: number) => {
 	if (width >= 480) return { height: h * (width / 390) };
 	return {};
 };
+
+export const tabBarHeight = (width: number) => {
+	if (width >= 900) return 85;
+	if (width >= 800) return 75;
+	if (width >= 700) return 70;
+	if (width >= 600) return 65;
+	if (width >= 480) return 60;
+	return 50;
+};
