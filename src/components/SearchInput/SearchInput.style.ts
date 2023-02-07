@@ -23,7 +23,7 @@ export const styles = StyleSheet.create({
 	},
 	searchInputAndroid: {
 		height: 40,
-		paddingHorizontal: 35,
+		paddingHorizontal: 40,
 		fontSize: 16,
 	},
 	searchInput: {
