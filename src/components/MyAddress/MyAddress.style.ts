@@ -1,6 +1,5 @@
 import { StyleSheet } from 'react-native';
 import { colors } from '../../theme/appTheme';
-import { widthPercentageToDP as wp } from 'react-native-responsive-screen';
 
 export const styles = StyleSheet.create({
 	addressContainer: {
