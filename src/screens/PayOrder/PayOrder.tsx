@@ -8,6 +8,7 @@ import {
 	ScrollView,
 	ActivityIndicator,
 	Platform,
+	useWindowDimensions,
 } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import Icon from 'react-native-vector-icons/Ionicons';
@@ -17,11 +18,13 @@ import { usePayment } from '../../hooks';
 import { UserStackParams } from '../../navigation/UserStackNav';
 import { useCart, useOrders } from '../../store';
 import { colors } from '../../theme/appTheme';
+import { responsiveFontSize, responsiveIcon } from '../../utils';
 import { styles } from './PayOrder.style';
 
 interface Props extends StackScreenProps<UserStackParams, 'PayOrder'> {}
 
 const PayOrder = ({ navigation }: Props) => {
+	const { width } = useWindowDimensions();
 	const { top } = useSafeAreaInsets();
 	const { orderId, resetOrderId } = useCart();
 	const { order, loading, getOrderById, resetOrder } = useOrders();
@@ -60,8 +63,8 @@ const PayOrder = ({ navigation }: Props) => {
 					<ActivityIndicator size="small" color={colors.white} />
 				) : (
 					<>
-						<Text style={styles.buttonText}>Pay now</Text>
-						<Icon name={'cash-outline'} size={20} color={colors.white} />
+						<Text style={{ ...styles.buttonText, ...responsiveFontSize(14, width) }}>Pay now</Text>
+						<Icon name={'cash-outline'} size={responsiveIcon(20, width)} color={colors.white} />
 					</>
 				)}
 			</TouchableOpacity>
@@ -72,11 +75,11 @@ const PayOrder = ({ navigation }: Props) => {
 		<View style={{ paddingTop: Platform.OS === 'ios' ? top : 0, ...styles.container }}>
 			<View style={styles.headerContainer}>
 				<View style={styles.headerRow}>
-					<Text style={styles.headerText}>Order: </Text>
-					<Text style={styles.headerTitle}>{orderId}</Text>
+					<Text style={{ ...styles.headerText, ...responsiveFontSize(16, width) }}>Order: </Text>
+					<Text style={{ ...styles.headerTitle, ...responsiveFontSize(16, width) }}>{orderId}</Text>
 				</View>
 				<TouchableOpacity onPress={closeScreen}>
-					<Icon name={'close-outline'} size={28} color={colors.black} />
+					<Icon name={'close-outline'} size={responsiveIcon(28, width)} color={colors.black} />
 				</TouchableOpacity>
 			</View>
 			<View style={styles.divider} />
