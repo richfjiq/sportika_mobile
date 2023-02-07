@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import { View, Text, TouchableOpacity, ScrollView } from 'react-native';
+import { View, Text, TouchableOpacity, ScrollView, useWindowDimensions } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import Icon from 'react-native-vector-icons/Ionicons';
 
@@ -10,10 +10,12 @@ import { colors } from '../../theme/appTheme';
 import { IProduct } from '../../interfaces';
 import { StackScreenProps } from '@react-navigation/stack';
 import { MenuStackParams } from '../../navigation/MenuStackNav';
+import { responsiveFontSize, responsiveIcon } from '../../utils';
 
 interface Props extends StackScreenProps<MenuStackParams, 'Search'> {}
 
 const Search = ({ navigation }: Props) => {
+	const { width } = useWindowDimensions();
 	const { top } = useSafeAreaInsets();
 	const [term, setTerm] = useState('');
 	const { allProducts } = useProducts();
@@ -44,9 +46,15 @@ const Search = ({ navigation }: Props) => {
 	return (
 		<View style={{ ...styles.container, marginTop: top }}>
 			<View style={styles.header}>
-				<Text style={styles.headerText}>Search Products</Text>
+				<Text style={{ ...styles.headerText, ...responsiveFontSize(20, width) }}>
+					Search Products
+				</Text>
 				<TouchableOpacity onPress={() => navigation.goBack()}>
-					<Icon name={'close-circle-outline'} size={25} color={colors.black} />
+					<Icon
+						name={'close-circle-outline'}
+						size={responsiveIcon(25, width)}
+						color={colors.black}
+					/>
 				</TouchableOpacity>
 			</View>
 			<SearchInput products={allProducts} onDebounce={(value: string) => setTerm(value)} />

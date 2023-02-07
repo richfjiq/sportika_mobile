@@ -33,6 +33,7 @@ export const styles = StyleSheet.create({
 		fontWeight: '400',
 	},
 	text: {
+		fontSize: 14,
 		textTransform: 'uppercase',
 		fontWeight: '300',
 	},
@@ -42,16 +43,19 @@ export const styles = StyleSheet.create({
 		color: colors.green,
 	},
 	textPending: {
+		fontSize: 14,
 		textTransform: 'uppercase',
 		fontWeight: '400',
 		color: colors.red,
 	},
 	textCanceled: {
+		fontSize: 14,
 		textTransform: 'uppercase',
 		fontWeight: '400',
 		color: colors.greyText,
 	},
 	buttonText: {
+		fontSize: 14,
 		textTransform: 'uppercase',
 		fontWeight: '500',
 		color: colors.white,

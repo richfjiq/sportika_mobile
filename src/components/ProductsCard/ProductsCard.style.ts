@@ -36,6 +36,7 @@ export const styles = StyleSheet.create({
 		paddingVertical: 2,
 		borderRadius: 5,
 		overflow: 'hidden',
+		fontSize: 14,
 	},
 	textPrice: {
 		backgroundColor: colors.white,
@@ -45,5 +46,6 @@ export const styles = StyleSheet.create({
 		paddingVertical: 2,
 		borderRadius: 5,
 		overflow: 'hidden',
+		fontSize: 14,
 	},
 });

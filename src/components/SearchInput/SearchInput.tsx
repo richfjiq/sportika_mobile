@@ -5,7 +5,12 @@ import { useDebouncedValue } from '../../hooks';
 import { IProduct } from '../../interfaces';
 
 import { colors } from '../../theme/appTheme';
-import { responsiveFontSize, responsiveIcon, responsiveInputHeight } from '../../utils';
+import {
+	inputPadding,
+	responsiveFontSize,
+	responsiveIcon,
+	responsiveInputHeight,
+} from '../../utils';
 import { styles } from './SearchInput.style';
 
 interface Props {
@@ -42,7 +47,7 @@ const SearchInput = ({ onDebounce }: Props) => {
 						: { ...styles.inputContainer, ...responsiveInputHeight(40, width) }
 				}
 			>
-				<View style={styles.searchIcon}>
+				<View style={{ ...styles.searchIcon, ...responsiveInputHeight(30, width) }}>
 					<Icon name={'search-outline'} size={responsiveIcon(24, width)} color={colors.greyText} />
 				</View>
 				<TextInput
@@ -53,11 +58,13 @@ const SearchInput = ({ onDebounce }: Props) => {
 									...styles.searchInputAndroid,
 									...responsiveInputHeight(40, width),
 									...responsiveFontSize(16, width),
+									...inputPadding(width),
 							  }
 							: {
 									...styles.searchInput,
 									...responsiveInputHeight(30, width),
 									...responsiveFontSize(16, width),
+									...inputPadding(width),
 							  }
 					}
 					value={searchString}

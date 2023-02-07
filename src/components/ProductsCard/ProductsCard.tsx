@@ -1,5 +1,6 @@
-import { View, Text, ImageBackground, TouchableOpacity } from 'react-native';
+import { View, Text, ImageBackground, TouchableOpacity, useWindowDimensions } from 'react-native';
 import { IProduct } from '../../interfaces';
+import { responsiveFontSize } from '../../utils';
 import { styles } from './ProductsCard.style';
 
 interface Props {
@@ -8,6 +9,7 @@ interface Props {
 }
 
 const ProductsCard = ({ products, goToDetails }: Props) => {
+	const { width } = useWindowDimensions();
 	return (
 		<View style={styles.container}>
 			{products.map((item) => (
@@ -25,8 +27,12 @@ const ProductsCard = ({ products, goToDetails }: Props) => {
 						style={styles.imageBG}
 					>
 						<View style={styles.textContainer}>
-							<Text style={styles.textPrice}>{`$ ${item.price}`}</Text>
-							<Text style={styles.textTitle}>{item.title}</Text>
+							<Text
+								style={{ ...styles.textPrice, ...responsiveFontSize(14, width) }}
+							>{`$ ${item.price}`}</Text>
+							<Text style={{ ...styles.textTitle, ...responsiveFontSize(14, width) }}>
+								{item.title}
+							</Text>
 						</View>
 					</ImageBackground>
 				</TouchableOpacity>

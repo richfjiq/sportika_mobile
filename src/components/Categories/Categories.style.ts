@@ -11,10 +11,12 @@ export const styles = StyleSheet.create({
 		justifyContent: 'space-around',
 	},
 	textCategoriesActive: {
+		fontSize: 14,
 		textTransform: 'uppercase',
 		fontWeight: 'bold',
 	},
 	textCategoriesInactive: {
+		fontSize: 14,
 		textTransform: 'uppercase',
 		fontWeight: '400',
 		color: colors.greyText,

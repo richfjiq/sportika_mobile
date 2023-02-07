@@ -1,6 +1,6 @@
 import { useIsFocused } from '@react-navigation/native';
 import { useCallback, useEffect, useState } from 'react';
-import { View, Text, TouchableOpacity, Platform } from 'react-native';
+import { View, Text, TouchableOpacity, Platform, useWindowDimensions } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import Icon from 'react-native-vector-icons/Ionicons';
 import Config from 'react-native-config';
@@ -10,12 +10,13 @@ import { Loading, MenuCategories, MyAccount, MyOrders } from '../../components';
 import { MyAddress } from '../../components/MyAddress';
 import { useAuth, useCart, useOrders, useUser } from '../../store';
 import { colors } from '../../theme/appTheme';
-import { menuCategories } from '../../utils';
+import { menuCategories, responsiveFontSize, responsiveIcon } from '../../utils';
 import { styles } from './UserAccount.style';
 
 const googleClientId = Config.GOOGLE_CLIENT_ID;
 
 const UserAccount = () => {
+	const { width } = useWindowDimensions();
 	const [activeCategory, setActiveCategory] = useState(menuCategories[1]);
 	const { top } = useSafeAreaInsets();
 	const { logout, user } = useAuth();
@@ -68,9 +69,11 @@ const UserAccount = () => {
 	return (
 		<View style={{ paddingTop: Platform.OS === 'ios' ? top : 10, ...styles.container }}>
 			<View style={styles.headerRow}>
-				<Text style={styles.headerText}>{`Hi ${user?.name ?? ''}`}</Text>
+				<Text style={{ ...styles.headerText, ...responsiveFontSize(18, width) }}>{`Hi ${
+					user?.name ?? ''
+				}`}</Text>
 				<TouchableOpacity onPress={userLogout}>
-					<Icon name={'log-out-outline'} size={24} color={colors.black} />
+					<Icon name={'log-out-outline'} size={responsiveIcon(24, width)} color={colors.black} />
 				</TouchableOpacity>
 			</View>
 			<MenuCategories active={activeCategory} setActive={setActiveCategory} />
