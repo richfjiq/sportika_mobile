@@ -5,12 +5,20 @@ import {
 
 const ratio = 0.8;
 
-export const bgImageHeight = (width: number) => {
+export const bgImageHeight = (width: number, height = 0, platform = 'ios') => {
 	if (width >= 900) return { height: hp('86%') };
 	if (width >= 800) return { height: hp('84.5%') };
 	if (width >= 700) return { height: hp('81%') };
-	if (width >= 480) return { height: hp('82%') };
-	return {};
+	if (width >= 600) return { height: hp('82%') };
+	if (platform === 'ios') {
+		return { height: hp('80%') };
+	} else {
+		if (height >= 900) return { height: hp('86%') };
+		if (height >= 800) return { height: hp('87%') };
+		if (height >= 700) return { height: hp('86%') };
+		if (height >= 600) return { height: hp('82%') };
+		return { height: hp('80%') };
+	}
 };
 
 export const imgHeightProductsOrder = (width: number) => {

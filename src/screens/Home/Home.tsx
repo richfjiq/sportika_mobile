@@ -5,6 +5,7 @@ import {
 	ScrollView,
 	TouchableOpacity,
 	useWindowDimensions,
+	Platform,
 } from 'react-native';
 import { BottomTabScreenProps } from '@react-navigation/bottom-tabs';
 import Icon from 'react-native-vector-icons/Ionicons';
@@ -18,7 +19,7 @@ import { styles } from './Home.style';
 interface Props extends BottomTabScreenProps<RootTabsParams, 'Home'> {}
 
 const Home = ({ navigation }: Props) => {
-	const { width } = useWindowDimensions();
+	const { width, height } = useWindowDimensions();
 
 	const goToBuy = () => {
 		navigation.navigate('MenuStack' as never, { screen: 'Menu' } as never);
@@ -33,7 +34,7 @@ const Home = ({ navigation }: Props) => {
 					source={{
 						uri: 'https://res.cloudinary.com/dlz1bhh8j/image/upload/v1667854319/sportika/mxr83dkv3dpz6a71ysun.jpg',
 					}}
-					style={{ ...styles.imageBg, ...bgImageHeight(width) }}
+					style={{ ...styles.imageBg, ...bgImageHeight(width, height, Platform.OS) }}
 				>
 					<View style={styles.subContainer}>
 						<View style={styles.phraseContainer}>
@@ -57,7 +58,7 @@ const Home = ({ navigation }: Props) => {
 					source={{
 						uri: 'https://res.cloudinary.com/dlz1bhh8j/image/upload/v1667854317/sportika/cevbs41ko60aamjqccff.jpg',
 					}}
-					style={{ ...styles.imageBg, ...bgImageHeight(width) }}
+					style={{ ...styles.imageBg, ...bgImageHeight(width, height, Platform.OS) }}
 				>
 					<View style={styles.subContainer}>
 						<View style={styles.phraseContainer}>
@@ -81,7 +82,7 @@ const Home = ({ navigation }: Props) => {
 					source={{
 						uri: 'https://res.cloudinary.com/dlz1bhh8j/image/upload/v1667854318/sportika/il7fqjp3raji0l0hwl8r.jpg',
 					}}
-					style={{ ...styles.imageBg, ...bgImageHeight(width) }}
+					style={{ ...styles.imageBg, ...bgImageHeight(width, height, Platform.OS) }}
 				>
 					<View style={styles.subContainer}>
 						<View style={styles.phraseContainer}>
@@ -105,7 +106,7 @@ const Home = ({ navigation }: Props) => {
 					source={{
 						uri: 'https://res.cloudinary.com/dlz1bhh8j/image/upload/v1667854317/sportika/wkztkphlgr6b3dmjkxlq.jpg',
 					}}
-					style={{ ...styles.imageBg, ...bgImageHeight(width) }}
+					style={{ ...styles.imageBg, ...bgImageHeight(width, height, Platform.OS) }}
 				>
 					<View style={styles.subContainer}>
 						<View style={styles.phraseContainer}>

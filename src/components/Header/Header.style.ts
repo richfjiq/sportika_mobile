@@ -19,7 +19,7 @@ export const styles = StyleSheet.create({
 		justifyContent: 'space-between',
 	},
 	logo: {
-		width: 100,
-		height: 45,
+		width: 80,
+		height: 35,
 	},
 });
