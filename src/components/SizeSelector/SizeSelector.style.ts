@@ -14,5 +14,7 @@ export const styles = StyleSheet.create({
 		marginTop: 5,
 		height: Platform.OS === 'android' ? 45 : 40,
 		borderRadius: 5,
+		display: 'flex',
+		alignItems: 'center',
 	},
 });

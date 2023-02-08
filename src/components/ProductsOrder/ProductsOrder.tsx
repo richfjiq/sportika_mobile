@@ -1,9 +1,12 @@
-import { View, Text, TouchableOpacity, Image } from 'react-native';
+import { View, Text, TouchableOpacity, Image, useWindowDimensions } from 'react-native';
+
 import { useOrders } from '../../store';
+import { imgHeightProductsOrder, responsiveFontSize } from '../../utils';
 import { styles } from './ProductsOrder.style';
 
 const ProductsOrder = () => {
 	const { order } = useOrders();
+	const { width } = useWindowDimensions();
 
 	if (!order) return null;
 
@@ -14,20 +17,33 @@ const ProductsOrder = () => {
 			{orderItems.map((item) => (
 				<View key={`${item.slug}-${item.size}`} style={styles.itemRowContainer}>
 					<TouchableOpacity style={styles.imageContainer} activeOpacity={0.7}>
-						<Image source={{ uri: `${item.image}` }} style={styles.image} />
+						<Image
+							source={{ uri: `${item.image}` }}
+							style={{ ...styles.image, ...imgHeightProductsOrder(width) }}
+						/>
 					</TouchableOpacity>
 					<View style={styles.detailsContainer}>
 						<View style={styles.rowPrice}>
-							<Text style={styles.priceText}>$ {`${item.price}`}</Text>
+							<Text style={{ ...styles.priceText, ...responsiveFontSize(14, width) }}>
+								$ {`${item.price}`}
+							</Text>
 						</View>
-						<Text style={styles.itemText}>{item.title}</Text>
+						<Text style={{ ...styles.itemText, ...responsiveFontSize(14, width) }}>
+							{item.title}
+						</Text>
 						<View style={styles.rowSize}>
-							<Text style={styles.itemText}>Size: </Text>
-							<Text style={styles.itemText}>{item.size}</Text>
+							<Text style={{ ...styles.itemText, ...responsiveFontSize(14, width) }}>Size: </Text>
+							<Text style={{ ...styles.itemText, ...responsiveFontSize(14, width) }}>
+								{item.size}
+							</Text>
 						</View>
 						<View style={styles.quantityRow}>
-							<Text style={styles.itemText}>Quantity: </Text>
-							<Text style={styles.itemText}>{item.quantity}</Text>
+							<Text style={{ ...styles.itemText, ...responsiveFontSize(14, width) }}>
+								Quantity:{' '}
+							</Text>
+							<Text style={{ ...styles.itemText, ...responsiveFontSize(14, width) }}>
+								{item.quantity}
+							</Text>
 						</View>
 					</View>
 				</View>

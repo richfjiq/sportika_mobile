@@ -1,11 +1,13 @@
-import { View, Text, TouchableOpacity } from 'react-native';
+import { View, Text, TouchableOpacity, useWindowDimensions } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import moment from 'moment';
 
 import { useCart, useOrders } from '../../store';
 import { styles } from './OrdersTable.style';
+import { responsiveFontSize } from '../../utils';
 
 const OrdersTable = () => {
+	const { width } = useWindowDimensions();
 	const navigator = useNavigation();
 	const { allOrders } = useOrders();
 	const { setOrderId } = useCart();
@@ -37,22 +39,26 @@ const OrdersTable = () => {
 				return (
 					<View key={order._id} style={styles.rowContainer}>
 						<View style={styles.orderContainer}>
-							<Text style={styles.text}>{i + 1}</Text>
+							<Text style={{ ...styles.text, ...responsiveFontSize(14, width) }}>{i + 1}</Text>
 						</View>
 						<View style={styles.statusContainer}>
-							<Text style={styleStatus(days, order?.isPaid)}>
+							<Text
+								style={{ ...styleStatus(days, order?.isPaid), ...responsiveFontSize(14, width) }}
+							>
 								{orderStatus(days, order?.isPaid)}
 							</Text>
 						</View>
 						<View style={styles.dateContainer}>
-							<Text style={styles.text}>{moment(date).format('DD-MM-YYYY')}</Text>
+							<Text style={{ ...styles.text, ...responsiveFontSize(14, width) }}>
+								{moment(date).format('DD-MM-YYYY')}
+							</Text>
 						</View>
 						<View style={styles.detailsContainer}>
 							<TouchableOpacity
 								style={styles.button}
 								onPress={() => goToOrder(order._id as string)}
 							>
-								<Text style={styles.buttonText}>See</Text>
+								<Text style={{ ...styles.buttonText, ...responsiveFontSize(14, width) }}>See</Text>
 							</TouchableOpacity>
 						</View>
 					</View>

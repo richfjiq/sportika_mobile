@@ -10,11 +10,12 @@ import { MenuStackNav, MenuStackParams } from './MenuStackNav';
 import { UserStackNav } from './UserStackNav';
 import { useAuth, useCart, useOrders, useUser } from '../store';
 import { useProducts } from '../store';
-import { Alert, Text, View } from 'react-native';
+import { Alert, Text, useWindowDimensions, View } from 'react-native';
 import { styles } from './BottomTabsNav.style';
 import axios from 'axios';
 import Config from 'react-native-config';
 import { ICartProduct, IProduct } from '../interfaces';
+import { responsiveFontSize, responsiveIcon, tabBarHeight } from '../utils';
 
 const baseURL = Config.API_URL || '';
 
@@ -28,6 +29,7 @@ export type RootTabsParams = {
 const Tab = createBottomTabNavigator<RootTabsParams>();
 
 export const BottomTabsNav = () => {
+	const { width } = useWindowDimensions();
 	const { getOrdersByUser } = useOrders();
 	const { user, checkToken } = useAuth();
 	const { getUserAddress, setLoadingUserInfo } = useUser();
@@ -83,6 +85,14 @@ export const BottomTabsNav = () => {
 		getUserAccountInfo();
 	}, [getUserAccountInfo]);
 
+	const contStyle = () => {
+		if (width >= 900) return styles.cont900;
+		if (width >= 800) return styles.cont800;
+		if (width >= 700) return styles.cont700;
+		if (width >= 600) return styles.cont600;
+		return styles.container;
+	};
+
 	return (
 		<Tab.Navigator
 			sceneContainerStyle={{
@@ -94,15 +104,14 @@ export const BottomTabsNav = () => {
 					borderTopColor: colors.inactiveGrey,
 					borderTopWidth: 0.5,
 					elevation: 0,
+					height: tabBarHeight(width),
 				},
 				tabBarInactiveTintColor: colors.inactiveGrey,
 				tabBarLabel: () => null,
-				tabBarLabelStyle: {
-					fontSize: 15,
-				},
+				tabBarLabelStyle: responsiveFontSize(15, width),
 				tabBarIcon({ color }) {
 					let iconName = '';
-					let size = 20;
+					let size = responsiveIcon(20, width);
 
 					switch (route.name) {
 						case 'Home':
@@ -110,23 +119,25 @@ export const BottomTabsNav = () => {
 							break;
 						case 'MenuStack':
 							iconName = 'menu-outline';
-							size = 24;
+							size = responsiveIcon(24, width);
 							break;
 						case 'CartStack':
 							iconName = 'cart-outline';
-							size = 24;
+							size = responsiveIcon(24, width);
 							break;
 						case 'UserStack':
 							iconName = 'person-circle-outline';
-							size = 24;
+							size = responsiveIcon(24, width);
 							break;
 					}
 
 					if (route.name === 'CartStack' && numberOfItems !== 0) {
 						return (
 							<View>
-								<View style={styles.container}>
-									<Text style={styles.text}>{numberOfItems}</Text>
+								<View style={contStyle()}>
+									<Text style={{ ...styles.text, ...responsiveFontSize(8, width) }}>
+										{numberOfItems}
+									</Text>
 								</View>
 								<Icon name={iconName} size={size} color={color} />
 							</View>
@@ -136,6 +147,9 @@ export const BottomTabsNav = () => {
 					return <Icon name={iconName} size={size} color={color} />;
 				},
 				headerShown: false,
+				tabBarIconStyle: {
+					width: 70,
+				},
 			})}
 		>
 			<Tab.Screen name="Home" component={Home} />

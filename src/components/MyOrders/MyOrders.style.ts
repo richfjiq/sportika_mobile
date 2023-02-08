@@ -44,6 +44,7 @@ export const styles = StyleSheet.create({
 		alignItems: 'center',
 	},
 	headerText: {
+		fontSize: 14,
 		textTransform: 'uppercase',
 		fontWeight: '400',
 	},

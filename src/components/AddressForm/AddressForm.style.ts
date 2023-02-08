@@ -31,9 +31,14 @@ export const styles = StyleSheet.create({
 		marginBottom: 0,
 	},
 	selectInput: {
+		display: 'flex',
+		alignItems: 'center',
 		marginTop: 5,
 		height: Platform.OS === 'ios' ? 40 : 45,
 		borderRadius: 5,
+	},
+	selectWidthL: {
+		fontSize: 25,
 	},
 	input: {
 		borderWidth: 0.5,

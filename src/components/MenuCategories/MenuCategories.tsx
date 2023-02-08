@@ -1,6 +1,6 @@
-import { View, Text, TouchableOpacity } from 'react-native';
+import { View, Text, TouchableOpacity, useWindowDimensions } from 'react-native';
 
-import { menuCategories } from '../../utils';
+import { menuCategories, responsiveFontSize } from '../../utils';
 import { styles } from './MenuCategories.style';
 
 interface Props {
@@ -9,6 +9,7 @@ interface Props {
 }
 
 const MenuCategories = ({ active, setActive }: Props) => {
+	const { width } = useWindowDimensions();
 	const categoryStyle = (cat: string) => {
 		if (active === cat) return styles.textCategoriesActive;
 		return styles.textCategoriesInactive;
@@ -17,13 +18,19 @@ const MenuCategories = ({ active, setActive }: Props) => {
 	return (
 		<View style={styles.categories}>
 			<TouchableOpacity onPress={() => setActive(menuCategories[1])}>
-				<Text style={categoryStyle(menuCategories[1])}>Account</Text>
+				<Text style={{ ...categoryStyle(menuCategories[1]), ...responsiveFontSize(14, width) }}>
+					Account
+				</Text>
 			</TouchableOpacity>
 			<TouchableOpacity onPress={() => setActive(menuCategories[2])}>
-				<Text style={categoryStyle(menuCategories[2])}>Address</Text>
+				<Text style={{ ...categoryStyle(menuCategories[2]), ...responsiveFontSize(14, width) }}>
+					Address
+				</Text>
 			</TouchableOpacity>
 			<TouchableOpacity onPress={() => setActive(menuCategories[3])}>
-				<Text style={categoryStyle(menuCategories[3])}>Orders</Text>
+				<Text style={{ ...categoryStyle(menuCategories[3]), ...responsiveFontSize(14, width) }}>
+					Orders
+				</Text>
 			</TouchableOpacity>
 		</View>
 	);

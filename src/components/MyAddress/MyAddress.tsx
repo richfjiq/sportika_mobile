@@ -1,13 +1,15 @@
 import { useState } from 'react';
-import { View, Text, TouchableOpacity } from 'react-native';
+import { View, Text, TouchableOpacity, useWindowDimensions } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 
 import { useUser } from '../../store';
 import { colors } from '../../theme/appTheme';
+import { responsiveFontSize, responsiveIcon } from '../../utils';
 import { AddressForm } from '../AddressForm';
 import { styles } from './MyAddress.style';
 
 const MyAddress = () => {
+	const { width } = useWindowDimensions();
 	const { shippingAddress } = useUser();
 	const [isVisible, setIsVisible] = useState(false);
 
@@ -17,21 +19,27 @@ const MyAddress = () => {
 				<View style={styles.container}>
 					<View style={styles.addressContainer}>
 						<View style={styles.row}>
-							<Text style={styles.addressHeader}>Delivery Address</Text>
+							<Text style={{ ...styles.addressHeader, ...responsiveFontSize(16, width) }}>
+								Delivery Address
+							</Text>
 							<TouchableOpacity onPress={() => setIsVisible(!isVisible)}>
-								<Text style={styles.editText}>Edit</Text>
+								<Text style={{ ...styles.editText, ...responsiveFontSize(14, width) }}>Edit</Text>
 							</TouchableOpacity>
 						</View>
 						<Text
-							style={styles.addressText}
+							style={{ ...styles.addressText, ...responsiveFontSize(16, width) }}
 						>{`${shippingAddress?.firstName} ${shippingAddress?.lastName}`}</Text>
-						<Text style={styles.addressText}>{`${shippingAddress?.address}`}</Text>
 						<Text
-							style={styles.addressText}
+							style={{ ...styles.addressText, ...responsiveFontSize(16, width) }}
+						>{`${shippingAddress?.address}`}</Text>
+						<Text
+							style={{ ...styles.addressText, ...responsiveFontSize(16, width) }}
 						>{`${shippingAddress?.city}, ${shippingAddress?.state}, ${shippingAddress?.zip}`}</Text>
-						<Text style={styles.addressText}>{`${shippingAddress?.country}`}</Text>
 						<Text
-							style={styles.addressText}
+							style={{ ...styles.addressText, ...responsiveFontSize(16, width) }}
+						>{`${shippingAddress?.country}`}</Text>
+						<Text
+							style={{ ...styles.addressText, ...responsiveFontSize(16, width) }}
 						>{`${shippingAddress?.code} ${shippingAddress?.phone}`}</Text>
 					</View>
 				</View>
@@ -42,8 +50,14 @@ const MyAddress = () => {
 						activeOpacity={0.7}
 						onPress={() => setIsVisible(!isVisible)}
 					>
-						<Text style={styles.buttonText}>Add address</Text>
-						<Icon name={'arrow-forward-outline'} size={20} color={colors.white} />
+						<Text style={{ ...styles.buttonText, ...responsiveFontSize(14, width) }}>
+							Add address
+						</Text>
+						<Icon
+							name={'arrow-forward-outline'}
+							size={responsiveIcon(20, width)}
+							color={colors.white}
+						/>
 					</TouchableOpacity>
 				</View>
 			)}

@@ -8,6 +8,7 @@ import {
 	TouchableOpacity,
 	ActivityIndicator,
 	Platform,
+	useWindowDimensions,
 } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import Icon from 'react-native-vector-icons/Ionicons';
@@ -17,11 +18,13 @@ import { usePayment } from '../../hooks';
 import { CartStackParams } from '../../navigation/CartStackNav';
 import { useCart, useOrders } from '../../store';
 import { colors } from '../../theme/appTheme';
+import { responsiveFontSize, responsiveIcon } from '../../utils';
 import { styles } from './Order.style';
 
 interface Props extends StackScreenProps<CartStackParams, 'Order'> {}
 
 const Order = ({ navigation }: Props) => {
+	const { width } = useWindowDimensions();
 	const { orderId, setOrderConfirmed } = useCart();
 	const { top } = useSafeAreaInsets();
 	const { order, getOrderById, loading: loadingOrder, getOrdersByUser } = useOrders();
@@ -59,8 +62,11 @@ const Order = ({ navigation }: Props) => {
 	return (
 		<View style={{ paddingTop: Platform.OS === 'ios' ? top : 10, ...styles.container }}>
 			<View style={styles.headerContainer}>
-				<Text style={styles.title}>Order: </Text>
-				<Text style={styles.titleBold}> {orderId || order?._id}</Text>
+				<Text style={{ ...styles.title, ...responsiveFontSize(16, width) }}>Order: </Text>
+				<Text style={{ ...styles.titleBold, ...responsiveFontSize(16, width) }}>
+					{' '}
+					{orderId || order?._id}
+				</Text>
 			</View>
 			<View style={styles.separator} />
 			<ScrollView showsVerticalScrollIndicator={false} style={styles.bodyContainer}>
@@ -84,8 +90,14 @@ const Order = ({ navigation }: Props) => {
 								/>
 							) : (
 								<>
-									<Text style={styles.buttonText}>Pay now</Text>
-									<Icon name={'cash-outline'} size={20} color={colors.white} />
+									<Text style={{ ...styles.buttonText, ...responsiveFontSize(14, width) }}>
+										Pay now
+									</Text>
+									<Icon
+										name={'cash-outline'}
+										size={responsiveIcon(20, width)}
+										color={colors.white}
+									/>
 								</>
 							)}
 						</TouchableOpacity>
@@ -99,7 +111,9 @@ const Order = ({ navigation }: Props) => {
 							{loadingPS ? (
 								<ActivityIndicator size="small" color={colors.white} />
 							) : (
-								<Text style={styles.buttonText}>Pay Later</Text>
+								<Text style={{ ...styles.buttonText, ...responsiveFontSize(14, width) }}>
+									Pay Later
+								</Text>
 							)}
 						</TouchableOpacity>
 					</>
