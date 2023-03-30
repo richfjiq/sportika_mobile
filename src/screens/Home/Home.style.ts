@@ -21,7 +21,7 @@ export const styles = StyleSheet.create({
 		borderColor: colors.cultured,
 		shadowColor: colors.darkCharcoal,
 		shadowOffset: { width: -2, height: 4 },
-		shadowOpacity: 0.2,
+		shadowOpacity: 0.4,
 		shadowRadius: 3,
 	},
 	buttonText: {

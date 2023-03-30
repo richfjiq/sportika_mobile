@@ -51,7 +51,11 @@ const Home = ({ navigation }: Props) => {
 								like physical inactivity
 							</Text>
 						</View>
-						<TouchableOpacity style={styles.button} activeOpacity={0.7} onPress={goToBuy}>
+						<TouchableOpacity
+							style={{ ...styles.button, shadowColor: colors.cultured }}
+							activeOpacity={0.7}
+							onPress={goToBuy}
+						>
 							<Text style={{ ...styles.buttonText, ...responsiveFontSize(18, width) }}>
 								Buy now
 							</Text>
@@ -111,7 +115,11 @@ const Home = ({ navigation }: Props) => {
 								success is a choice
 							</Text>
 						</View>
-						<TouchableOpacity style={styles.button} activeOpacity={0.7} onPress={goToBuy}>
+						<TouchableOpacity
+							style={{ ...styles.button, shadowColor: colors.cultured }}
+							activeOpacity={0.7}
+							onPress={goToBuy}
+						>
 							<Text style={{ ...styles.buttonText, ...responsiveFontSize(18, width) }}>
 								Buy now
 							</Text>

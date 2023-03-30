@@ -6,7 +6,7 @@ export const styles = StyleSheet.create({
 		borderTopWidth: 1,
 		borderTopColor: colors.crocodileTooth,
 		paddingVertical: 20,
-		paddingHorizontal: 20,
+		paddingHorizontal: 16,
 	},
 	searchIcon: {
 		position: 'absolute',

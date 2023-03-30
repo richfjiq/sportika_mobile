@@ -27,7 +27,7 @@ const ItemQuantity = ({ quantity, updateQuantity, cart = false }: Props) => {
 			<Text
 				style={
 					cart
-						? { ...styles.subHeaderCart, ...responsiveFontSize(14, width) }
+						? { ...styles.subHeaderCart, ...responsiveFontSize(16, width) }
 						: { ...styles.subHeader, ...responsiveFontSize(16, width) }
 				}
 			>
@@ -38,7 +38,7 @@ const ItemQuantity = ({ quantity, updateQuantity, cart = false }: Props) => {
 					<Icon
 						name={'remove-circle-outline'}
 						size={cart ? responsiveIcon(20, width) : responsiveIcon(25, width)}
-						color={colors.black}
+						color={colors.darkCharcoal}
 					/>
 				</TouchableOpacity>
 				<Text
@@ -54,7 +54,7 @@ const ItemQuantity = ({ quantity, updateQuantity, cart = false }: Props) => {
 					<Icon
 						name={'add-circle-outline'}
 						size={cart ? responsiveIcon(20, width) : responsiveIcon(25, width)}
-						color={colors.black}
+						color={colors.darkCharcoal}
 					/>
 				</TouchableOpacity>
 			</View>

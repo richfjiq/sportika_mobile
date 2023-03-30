@@ -21,9 +21,9 @@ export const styles = StyleSheet.create({
 		marginBottom: 10,
 	},
 	subHeaderCart: {
-		fontSize: 14,
+		fontSize: 16,
 		textTransform: 'uppercase',
-		fontWeight: '400',
+		fontWeight: '500',
 		marginBottom: 5,
 	},
 	quantityCart: {
