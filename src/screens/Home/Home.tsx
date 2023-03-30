@@ -38,18 +38,27 @@ const Home = ({ navigation }: Props) => {
 				>
 					<View style={styles.subContainer}>
 						<View style={styles.phraseContainer}>
-							<Text style={{ ...styles.phraseText, ...responsiveFontSize(14, width) }}>
-								Reinvent your Impulse
+							<Text style={{ ...styles.phraseText, ...responsiveFontSize(18, width) }}>
+								Reinvent your impulse
+							</Text>
+							<Text style={{ ...styles.text, ...responsiveFontSize(16, width), marginTop: 15 }}>
+								Nothing exhausts and
+							</Text>
+							<Text style={{ ...styles.text, ...responsiveFontSize(16, width), marginTop: 5 }}>
+								destroys the human body like
+							</Text>
+							<Text style={{ ...styles.text, ...responsiveFontSize(16, width), marginTop: 5 }}>
+								like physical inactivity
 							</Text>
 						</View>
 						<TouchableOpacity style={styles.button} activeOpacity={0.7} onPress={goToBuy}>
-							<Text style={{ ...styles.buttonText, ...responsiveFontSize(14, width) }}>
+							<Text style={{ ...styles.buttonText, ...responsiveFontSize(18, width) }}>
 								Buy now
 							</Text>
 							<Icon
 								name={'arrow-forward-outline'}
 								size={responsiveIcon(20, width)}
-								color={colors.black}
+								color={colors.white}
 							/>
 						</TouchableOpacity>
 					</View>
@@ -64,6 +73,12 @@ const Home = ({ navigation }: Props) => {
 						<View style={styles.phraseContainer}>
 							<Text style={{ ...styles.phraseText, ...responsiveFontSize(14, width) }}>
 								Ready for a hit session?
+							</Text>
+							<Text style={{ ...styles.text, ...responsiveFontSize(16, width), marginTop: 15 }}>
+								All what you need in order
+							</Text>
+							<Text style={{ ...styles.text, ...responsiveFontSize(16, width), marginTop: 5 }}>
+								to achieve your training goals
 							</Text>
 						</View>
 						<TouchableOpacity style={styles.button} activeOpacity={0.7} onPress={goToBuy}>
@@ -89,6 +104,12 @@ const Home = ({ navigation }: Props) => {
 							<Text style={{ ...styles.phraseText, ...responsiveFontSize(14, width) }}>
 								Maximum Comfort, infinite poss...
 							</Text>
+							<Text style={{ ...styles.text, ...responsiveFontSize(16, width), marginTop: 15 }}>
+								Success is not an accident,
+							</Text>
+							<Text style={{ ...styles.text, ...responsiveFontSize(16, width), marginTop: 5 }}>
+								success is a choice
+							</Text>
 						</View>
 						<TouchableOpacity style={styles.button} activeOpacity={0.7} onPress={goToBuy}>
 							<Text style={{ ...styles.buttonText, ...responsiveFontSize(14, width) }}>
@@ -112,6 +133,9 @@ const Home = ({ navigation }: Props) => {
 						<View style={styles.phraseContainer}>
 							<Text style={{ ...styles.phraseText, ...responsiveFontSize(14, width) }}>
 								Imagine your world
+							</Text>
+							<Text style={{ ...styles.text, ...responsiveFontSize(16, width), marginTop: 15 }}>
+								One step at a time, never give up
 							</Text>
 						</View>
 						<TouchableOpacity style={styles.button} activeOpacity={0.7} onPress={goToBuy}>

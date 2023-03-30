@@ -1,7 +1,9 @@
 export const colors = {
+	darkCharcoal: '#2f2f2f',
 	black: '#000000',
 	inactiveGrey: '#DCDCDC',
-	white: '#FFFFFF',
+	cultured: '#f6f6f6',
+	white: '#ffffff',
 	greyText: '#A9A9A9',
 	error: '#FF0019',
 	link: '#0000FF',

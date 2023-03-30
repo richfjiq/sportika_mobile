@@ -65,7 +65,7 @@ export const responsiveIconContainer = (h: number, w: number, width: number) => 
 };
 
 export const responsiveIcon = (size: number, width: number) => {
-	if (width >= 480) return size * (width / 390) * ratio;
+	if (width >= 480) return size * (width / 390) * ratio * 1.2;
 	return size;
 };
 
