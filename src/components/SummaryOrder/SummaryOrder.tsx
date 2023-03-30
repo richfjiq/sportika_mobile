@@ -140,7 +140,7 @@ const SummaryOrder = ({ checkout = false }: Props) => {
 
 			<TouchableOpacity style={styles.button} activeOpacity={0.7} onPress={goToCheckout}>
 				{loading ? (
-					<ActivityIndicator size="small" color={colors.white} />
+					<ActivityIndicator size="small" color={colors.cultured} />
 				) : (
 					<Text style={{ ...styles.buttonText, ...responsiveFontSize(16, width) }}>
 						{checkout ? 'Confirm Order' : 'Checkout'}
