@@ -9,7 +9,7 @@ export const styles = StyleSheet.create({
 		marginBottom: 10,
 	},
 	headerText: {
-		fontSize: 20,
+		fontSize: 18,
 		fontWeight: 'bold',
 		textTransform: 'uppercase',
 	},

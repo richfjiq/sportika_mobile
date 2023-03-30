@@ -63,22 +63,22 @@ const SummaryOrder = ({ checkout = false }: Props) => {
 							Delivery Address
 						</Text>
 						<TouchableOpacity onPress={() => setModalFormVisible(!modalFormVisible)}>
-							<Text style={{ ...styles.removeText, ...responsiveFontSize(12, width) }}>Edit</Text>
+							<Text style={{ ...styles.removeText, ...responsiveFontSize(14, width) }}>Edit</Text>
 						</TouchableOpacity>
 					</View>
-					<Text style={{ ...styles.orderTextAddress, ...responsiveFontSize(15, width) }}>
+					<Text style={{ ...styles.orderTextAddress, ...responsiveFontSize(16, width) }}>
 						{clientName}
 					</Text>
-					<Text style={{ ...styles.orderTextAddress, ...responsiveFontSize(15, width) }}>
+					<Text style={{ ...styles.orderTextAddress, ...responsiveFontSize(16, width) }}>
 						{address}
 					</Text>
-					<Text style={{ ...styles.orderTextAddress, ...responsiveFontSize(15, width) }}>
+					<Text style={{ ...styles.orderTextAddress, ...responsiveFontSize(16, width) }}>
 						{city}
 					</Text>
-					<Text style={{ ...styles.orderTextAddress, ...responsiveFontSize(15, width) }}>
+					<Text style={{ ...styles.orderTextAddress, ...responsiveFontSize(16, width) }}>
 						{country}
 					</Text>
-					<Text style={{ ...styles.orderTextAddress, ...responsiveFontSize(15, width) }}>
+					<Text style={{ ...styles.orderTextAddress, ...responsiveFontSize(16, width) }}>
 						{phone}
 					</Text>
 				</>
@@ -86,7 +86,7 @@ const SummaryOrder = ({ checkout = false }: Props) => {
 		} else {
 			return (
 				<TouchableOpacity style={styles.button} activeOpacity={0.7} onPress={onAddAddress}>
-					<Text style={{ ...styles.buttonText, ...responsiveFontSize(14, width) }}>
+					<Text style={{ ...styles.buttonText, ...responsiveFontSize(16, width) }}>
 						Add Address
 					</Text>
 				</TouchableOpacity>
@@ -98,40 +98,42 @@ const SummaryOrder = ({ checkout = false }: Props) => {
 		<View style={styles.checkoutContainer}>
 			{renderAddress()}
 
-			{!checkout && <Text style={styles.orderTitle}>Order</Text>}
+			{!checkout && (
+				<Text style={{ ...styles.orderTitle, ...responsiveFontSize(16, width) }}>Order</Text>
+			)}
 
 			<View style={styles.separator} />
 			{checkout && (
 				<View style={styles.rowHeader}>
 					<Text style={{ ...styles.billText, ...responsiveFontSize(16, width) }}>Bill</Text>
 					<TouchableOpacity onPress={goToCart}>
-						<Text style={{ ...styles.removeText, ...responsiveFontSize(12, width) }}>Edit</Text>
+						<Text style={{ ...styles.removeText, ...responsiveFontSize(14, width) }}>Edit</Text>
 					</TouchableOpacity>
 				</View>
 			)}
 			<View style={styles.rowContainer}>
-				<Text style={{ ...styles.orderText, ...responsiveFontSize(15, width) }}>Items</Text>
-				<Text style={{ ...styles.orderText, ...responsiveFontSize(15, width) }}>
+				<Text style={{ ...styles.orderText, ...responsiveFontSize(16, width) }}>Items</Text>
+				<Text style={{ ...styles.orderText, ...responsiveFontSize(16, width) }}>
 					{numberOfItems}
 				</Text>
 			</View>
 			<View style={styles.rowContainer}>
-				<Text style={{ ...styles.orderText, ...responsiveFontSize(15, width) }}>Subtotal</Text>
-				<Text style={{ ...styles.orderText, ...responsiveFontSize(15, width) }}>
+				<Text style={{ ...styles.orderText, ...responsiveFontSize(16, width) }}>Subtotal</Text>
+				<Text style={{ ...styles.orderText, ...responsiveFontSize(16, width) }}>
 					{currencyFormat(subTotal)}
 				</Text>
 			</View>
 			<View style={styles.rowContainer}>
-				<Text style={{ ...styles.orderText, ...responsiveFontSize(15, width) }}>
+				<Text style={{ ...styles.orderText, ...responsiveFontSize(16, width) }}>
 					Tax ({Number(TAX_RATE) * 100} %)
 				</Text>
-				<Text style={{ ...styles.orderText, ...responsiveFontSize(15, width) }}>
+				<Text style={{ ...styles.orderText, ...responsiveFontSize(16, width) }}>
 					{currencyFormat(tax)}
 				</Text>
 			</View>
 			<View style={styles.rowContainer}>
-				<Text style={{ ...styles.totalText, ...responsiveFontSize(15, width) }}>Total</Text>
-				<Text style={{ ...styles.totalText, ...responsiveFontSize(15, width) }}>
+				<Text style={{ ...styles.totalText, ...responsiveFontSize(16, width) }}>Total</Text>
+				<Text style={{ ...styles.totalText, ...responsiveFontSize(16, width) }}>
 					{currencyFormat(total)}
 				</Text>
 			</View>
@@ -140,7 +142,7 @@ const SummaryOrder = ({ checkout = false }: Props) => {
 				{loading ? (
 					<ActivityIndicator size="small" color={colors.white} />
 				) : (
-					<Text style={{ ...styles.buttonText, ...responsiveFontSize(14, width) }}>
+					<Text style={{ ...styles.buttonText, ...responsiveFontSize(16, width) }}>
 						{checkout ? 'Confirm Order' : 'Checkout'}
 					</Text>
 				)}

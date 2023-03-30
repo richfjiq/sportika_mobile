@@ -65,7 +65,7 @@ export const styles = StyleSheet.create({
 		justifyContent: 'space-between',
 	},
 	separator: {
-		borderWidth: 0.5,
+		borderWidth: 1,
 		borderColor: colors.inactiveGrey,
 	},
 });

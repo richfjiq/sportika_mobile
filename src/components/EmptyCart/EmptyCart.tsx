@@ -20,9 +20,9 @@ const EmptyCart = () => {
 			<Header title="Shopping Cart" search={false} />
 			<View style={styles.bodyContainer}>
 				<Icon name={'cart-outline'} size={responsiveIcon(50, width)} color={colors.black} />
-				<Text style={{ ...responsiveFontSize(12, width) }}>The cart is empty</Text>
+				<Text style={{ ...styles.text, ...responsiveFontSize(16, width) }}>The cart is empty</Text>
 				<TouchableOpacity style={styles.button} activeOpacity={0.7} onPress={goToBuy}>
-					<Text style={{ ...styles.buttonText, ...responsiveFontSize(14, width) }}>Buy now</Text>
+					<Text style={{ ...styles.buttonText, ...responsiveFontSize(16, width) }}>Buy now</Text>
 					<Icon
 						name={'arrow-forward-outline'}
 						size={responsiveIcon(20, width)}

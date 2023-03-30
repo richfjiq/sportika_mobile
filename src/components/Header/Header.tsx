@@ -40,7 +40,7 @@ const Header = ({ title, search = true }: Props) => {
 					}}
 				/>
 			) : (
-				<Text style={{ ...styles.headerText, ...responsiveFontSize(20, width) }}>{title}</Text>
+				<Text style={{ ...styles.headerText, ...responsiveFontSize(18, width) }}>{title}</Text>
 			)}
 			<View
 				style={search ? { ...styles.searchContainer, ...headerIconsContainer(70, width) } : null}
