@@ -73,7 +73,11 @@ const UserAccount = () => {
 					user?.name ?? ''
 				}`}</Text>
 				<TouchableOpacity onPress={userLogout}>
-					<Icon name={'log-out-outline'} size={responsiveIcon(24, width)} color={colors.black} />
+					<Icon
+						name={'log-out-outline'}
+						size={responsiveIcon(24, width)}
+						color={colors.darkCharcoal}
+					/>
 				</TouchableOpacity>
 			</View>
 			<MenuCategories active={activeCategory} setActive={setActiveCategory} />

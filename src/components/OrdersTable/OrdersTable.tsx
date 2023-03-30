@@ -39,18 +39,18 @@ const OrdersTable = () => {
 				return (
 					<View key={order._id} style={styles.rowContainer}>
 						<View style={styles.orderContainer}>
-							<Text style={{ ...styles.text, ...responsiveFontSize(14, width) }}>{i + 1}</Text>
+							<Text style={{ ...styles.text, ...responsiveFontSize(16, width) }}>{i + 1}</Text>
 						</View>
 						<View style={styles.statusContainer}>
 							<Text
-								style={{ ...styleStatus(days, order?.isPaid), ...responsiveFontSize(14, width) }}
+								style={{ ...styleStatus(days, order?.isPaid), ...responsiveFontSize(16, width) }}
 							>
 								{orderStatus(days, order?.isPaid)}
 							</Text>
 						</View>
 						<View style={styles.dateContainer}>
-							<Text style={{ ...styles.text, ...responsiveFontSize(14, width) }}>
-								{moment(date).format('DD-MM-YYYY')}
+							<Text style={{ ...styles.text, ...responsiveFontSize(16, width) }}>
+								{moment(date).format('DD/MM/YY')}
 							</Text>
 						</View>
 						<View style={styles.detailsContainer}>
@@ -58,7 +58,7 @@ const OrdersTable = () => {
 								style={styles.button}
 								onPress={() => goToOrder(order._id as string)}
 							>
-								<Text style={{ ...styles.buttonText, ...responsiveFontSize(14, width) }}>See</Text>
+								<Text style={{ ...styles.buttonText, ...responsiveFontSize(16, width) }}>See</Text>
 							</TouchableOpacity>
 						</View>
 					</View>

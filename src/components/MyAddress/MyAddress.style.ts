@@ -3,19 +3,20 @@ import { colors } from '../../theme/appTheme';
 
 export const styles = StyleSheet.create({
 	addressContainer: {
-		borderWidth: 0.5,
-		borderColor: colors.greyText,
+		borderWidth: 1,
+		borderColor: colors.crocodileTooth,
 		borderRadius: 5,
 		padding: 15,
 	},
 	addressHeader: {
 		fontSize: 16,
-		fontWeight: '600',
+		fontWeight: '700',
 		textTransform: 'uppercase',
+		color: colors.darkCharcoal,
 	},
 	addressText: {
 		fontSize: 16,
-		fontWeight: '300',
+		fontWeight: '400',
 		textTransform: 'uppercase',
 		marginTop: 2,
 	},
@@ -30,7 +31,7 @@ export const styles = StyleSheet.create({
 		flex: 1,
 	},
 	button: {
-		backgroundColor: colors.black,
+		backgroundColor: colors.darkCharcoal,
 		width: '100%',
 		paddingHorizontal: 10,
 		paddingVertical: 10,
@@ -42,13 +43,13 @@ export const styles = StyleSheet.create({
 	},
 	buttonText: {
 		textTransform: 'uppercase',
-		fontSize: 14,
-		fontWeight: '500',
-		color: colors.white,
+		fontSize: 16,
+		fontWeight: 'bold',
+		color: colors.cultured,
 	},
 	editText: {
 		fontSize: 14,
-		fontWeight: '300',
+		fontWeight: '400',
 		textTransform: 'uppercase',
 		color: colors.link,
 	},
