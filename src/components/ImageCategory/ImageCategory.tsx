@@ -22,14 +22,17 @@ const ImageCategory = ({ category }: Props) => {
 						style={{ ...styles.image, ...catImgHeight(width) }}
 					/>
 					<View style={{ ...styles.textContainer, ...catImgHeight(width) }}>
-						<View style={styles.textSubContainer}>
-							<Text style={{ ...styles.textCategory, ...responsiveFontSize(12, width) }}>
+						<View style={styles.titleSubContainer}>
+							<Text style={{ ...styles.titleCategory, ...responsiveFontSize(18, width) }}>
 								{category}
 							</Text>
 						</View>
 						<View style={styles.textSubContainer}>
-							<Text style={{ ...styles.textCategory, ...responsiveFontSize(12, width) }}>
-								FREE SHIPPING STARTS TODAY! No minimum spend.
+							<Text style={{ ...styles.textCategory, ...responsiveFontSize(16, width) }}>
+								FREE SHIPPING STARTS TODAY!
+							</Text>
+							<Text style={{ ...styles.textCategory, ...responsiveFontSize(16, width) }}>
+								No minimum spend.
 							</Text>
 						</View>
 					</View>

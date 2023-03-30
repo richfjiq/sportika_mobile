@@ -58,7 +58,7 @@ const Home = ({ navigation }: Props) => {
 							<Icon
 								name={'arrow-forward-outline'}
 								size={responsiveIcon(20, width)}
-								color={colors.white}
+								color={colors.cultured}
 							/>
 						</TouchableOpacity>
 					</View>
@@ -71,7 +71,7 @@ const Home = ({ navigation }: Props) => {
 				>
 					<View style={styles.subContainer}>
 						<View style={styles.phraseContainer}>
-							<Text style={{ ...styles.phraseText, ...responsiveFontSize(14, width) }}>
+							<Text style={{ ...styles.phraseText, ...responsiveFontSize(18, width) }}>
 								Ready for a hit session?
 							</Text>
 							<Text style={{ ...styles.text, ...responsiveFontSize(16, width), marginTop: 15 }}>
@@ -82,13 +82,13 @@ const Home = ({ navigation }: Props) => {
 							</Text>
 						</View>
 						<TouchableOpacity style={styles.button} activeOpacity={0.7} onPress={goToBuy}>
-							<Text style={{ ...styles.buttonText, ...responsiveFontSize(14, width) }}>
+							<Text style={{ ...styles.buttonText, ...responsiveFontSize(18, width) }}>
 								Buy now
 							</Text>
 							<Icon
 								name={'arrow-forward-outline'}
 								size={responsiveIcon(20, width)}
-								color={colors.black}
+								color={colors.cultured}
 							/>
 						</TouchableOpacity>
 					</View>
@@ -101,7 +101,7 @@ const Home = ({ navigation }: Props) => {
 				>
 					<View style={styles.subContainer}>
 						<View style={styles.phraseContainer}>
-							<Text style={{ ...styles.phraseText, ...responsiveFontSize(14, width) }}>
+							<Text style={{ ...styles.phraseText, ...responsiveFontSize(18, width) }}>
 								Maximum Comfort, infinite poss...
 							</Text>
 							<Text style={{ ...styles.text, ...responsiveFontSize(16, width), marginTop: 15 }}>
@@ -112,13 +112,13 @@ const Home = ({ navigation }: Props) => {
 							</Text>
 						</View>
 						<TouchableOpacity style={styles.button} activeOpacity={0.7} onPress={goToBuy}>
-							<Text style={{ ...styles.buttonText, ...responsiveFontSize(14, width) }}>
+							<Text style={{ ...styles.buttonText, ...responsiveFontSize(18, width) }}>
 								Buy now
 							</Text>
 							<Icon
 								name={'arrow-forward-outline'}
 								size={responsiveIcon(20, width)}
-								color={colors.black}
+								color={colors.cultured}
 							/>
 						</TouchableOpacity>
 					</View>
@@ -131,7 +131,7 @@ const Home = ({ navigation }: Props) => {
 				>
 					<View style={styles.subContainer}>
 						<View style={styles.phraseContainer}>
-							<Text style={{ ...styles.phraseText, ...responsiveFontSize(14, width) }}>
+							<Text style={{ ...styles.phraseText, ...responsiveFontSize(18, width) }}>
 								Imagine your world
 							</Text>
 							<Text style={{ ...styles.text, ...responsiveFontSize(16, width), marginTop: 15 }}>
@@ -139,13 +139,13 @@ const Home = ({ navigation }: Props) => {
 							</Text>
 						</View>
 						<TouchableOpacity style={styles.button} activeOpacity={0.7} onPress={goToBuy}>
-							<Text style={{ ...styles.buttonText, ...responsiveFontSize(14, width) }}>
+							<Text style={{ ...styles.buttonText, ...responsiveFontSize(18, width) }}>
 								Buy now
 							</Text>
 							<Icon
 								name={'arrow-forward-outline'}
 								size={responsiveIcon(20, width)}
-								color={colors.black}
+								color={colors.cultured}
 							/>
 						</TouchableOpacity>
 					</View>

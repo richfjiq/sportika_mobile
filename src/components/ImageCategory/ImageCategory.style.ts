@@ -17,21 +17,36 @@ export const styles = StyleSheet.create({
 	},
 	textContainer: {
 		position: 'absolute',
-		width: '85%',
+		width: '100%',
 		height: wp('65%'),
 		justifyContent: 'space-between',
 	},
-	textCategory: {
-		backgroundColor: colors.white,
+	titleCategory: {
+		backgroundColor: colors.cultured,
 		textTransform: 'uppercase',
 		marginVertical: 20,
-		marginLeft: 20,
+		marginLeft: 16,
 		paddingVertical: 5,
 		paddingHorizontal: 10,
-		fontSize: 14,
+		fontSize: 18,
+		fontWeight: '700',
+		color: colors.darkCharcoal,
+	},
+	textCategory: {
+		backgroundColor: colors.cultured,
+		textTransform: 'uppercase',
+		marginRight: 16,
+		paddingVertical: 5,
+		paddingHorizontal: 10,
+		fontSize: 16,
 		fontWeight: '500',
+		color: colors.darkCharcoal,
+	},
+	titleSubContainer: {
+		alignItems: 'flex-start',
 	},
 	textSubContainer: {
-		alignItems: 'flex-start',
+		alignItems: 'flex-end',
+		paddingVertical: 20,
 	},
 });

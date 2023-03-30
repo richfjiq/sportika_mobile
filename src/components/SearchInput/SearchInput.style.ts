@@ -3,8 +3,8 @@ import { colors } from '../../theme/appTheme';
 
 export const styles = StyleSheet.create({
 	searchContainer: {
-		borderTopWidth: 0.5,
-		borderTopColor: colors.inactiveGrey,
+		borderTopWidth: 1,
+		borderTopColor: colors.crocodileTooth,
 		paddingVertical: 20,
 		paddingHorizontal: 20,
 	},
@@ -33,24 +33,24 @@ export const styles = StyleSheet.create({
 	},
 	inputContainerAndroid: {
 		borderWidth: 1,
-		borderColor: colors.inactiveGrey,
+		borderColor: colors.crocodileTooth,
 		height: 40,
 		justifyContent: 'center',
 		borderRadius: 10,
 	},
 	inputContainer: {
-		borderWidth: 0.5,
-		borderColor: colors.inactiveGrey,
+		borderWidth: 1,
+		borderColor: colors.crocodileTooth,
 		height: 40,
 		justifyContent: 'center',
 		borderRadius: 10,
-		shadowColor: '#000',
-		shadowOffset: {
-			width: 0,
-			height: 2,
-		},
-		shadowOpacity: 0.25,
-		shadowRadius: 3.84,
-		elevation: 5,
+		// shadowColor: '#000',
+		// shadowOffset: {
+		// 	width: 0,
+		// 	height: 2,
+		// },
+		// shadowOpacity: 0.25,
+		// shadowRadius: 3.84,
+		// elevation: 5,
 	},
 });

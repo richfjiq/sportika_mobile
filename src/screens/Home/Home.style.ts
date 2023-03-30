@@ -19,6 +19,10 @@ export const styles = StyleSheet.create({
 		borderRadius: 5,
 		borderWidth: 3,
 		borderColor: colors.cultured,
+		shadowColor: colors.darkCharcoal,
+		shadowOffset: { width: -2, height: 4 },
+		shadowOpacity: 0.2,
+		shadowRadius: 3,
 	},
 	buttonText: {
 		textTransform: 'uppercase',

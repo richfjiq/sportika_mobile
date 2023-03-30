@@ -9,4 +9,5 @@ export const colors = {
 	link: '#0000FF',
 	red: '#DC3535',
 	green: '#379237',
+	crocodileTooth: '#d1ccc0',
 };
