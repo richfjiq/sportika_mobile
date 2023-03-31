@@ -113,219 +113,243 @@ const AddressForm = ({ visible, setVisible }: Props) => {
 							{shippingAddress ? 'Update Address' : 'Add Address'}
 						</Text>
 						<TouchableOpacity onPress={() => setVisible(!visible)}>
-							<Icon name={'close-outline'} size={responsiveIcon(28, width)} color={colors.black} />
+							<Icon
+								name={'close-outline'}
+								size={responsiveIcon(28, width)}
+								color={colors.darkCharcoal}
+							/>
 						</TouchableOpacity>
 					</View>
 
 					<View style={styles.formContainer}>
 						<Text style={{ ...styles.label, ...responsiveFontSize(16, width) }}>Name</Text>
-						<Controller
-							control={control}
-							name="firstName"
-							render={({ field: { value, onChange, onBlur } }) => (
-								<TextInput
-									style={{
-										...styles.input,
-										...responsiveFontSize(16, width),
-										...responsiveInputHeight(40, width),
-									}}
-									value={value}
-									onChangeText={onChange}
-									onBlur={onBlur}
-								/>
-							)}
-							rules={{ required: true }}
-						/>
-						<Text style={styles.errorText}>{errors.firstName?.message}</Text>
+						<View style={styles.controllerContainer}>
+							<Controller
+								control={control}
+								name="firstName"
+								render={({ field: { value, onChange, onBlur } }) => (
+									<TextInput
+										style={{
+											...styles.input,
+											...responsiveFontSize(16, width),
+											...responsiveInputHeight(40, width),
+										}}
+										value={value}
+										onChangeText={onChange}
+										onBlur={onBlur}
+									/>
+								)}
+								rules={{ required: true }}
+							/>
+							<Text style={styles.errorText}>{errors.firstName?.message}</Text>
+						</View>
 
 						<Text style={{ ...styles.label, ...responsiveFontSize(16, width) }}>Last Name</Text>
-						<Controller
-							control={control}
-							name="lastName"
-							render={({ field: { value, onChange, onBlur } }) => (
-								<TextInput
-									style={{
-										...styles.input,
-										...responsiveFontSize(16, width),
-										...responsiveInputHeight(40, width),
-									}}
-									value={value}
-									onChangeText={onChange}
-									onBlur={onBlur}
-								/>
-							)}
-							rules={{ required: true }}
-						/>
-						<Text style={styles.errorText}>{errors.lastName?.message}</Text>
+						<View style={styles.controllerContainer}>
+							<Controller
+								control={control}
+								name="lastName"
+								render={({ field: { value, onChange, onBlur } }) => (
+									<TextInput
+										style={{
+											...styles.input,
+											...responsiveFontSize(16, width),
+											...responsiveInputHeight(40, width),
+										}}
+										value={value}
+										onChangeText={onChange}
+										onBlur={onBlur}
+									/>
+								)}
+								rules={{ required: true }}
+							/>
+							<Text style={styles.errorText}>{errors.lastName?.message}</Text>
+						</View>
 
 						<Text style={{ ...styles.label, ...responsiveFontSize(16, width) }}>Address</Text>
-						<Controller
-							control={control}
-							name="address"
-							render={({ field: { value, onChange, onBlur } }) => (
-								<TextInput
-									style={{
-										...styles.input,
-										...responsiveFontSize(16, width),
-										...responsiveInputHeight(40, width),
-									}}
-									value={value}
-									onChangeText={onChange}
-									onBlur={onBlur}
-								/>
-							)}
-							rules={{ required: true }}
-						/>
-						<Text style={styles.errorText}>{errors.address?.message}</Text>
+						<View style={styles.controllerContainer}>
+							<Controller
+								control={control}
+								name="address"
+								render={({ field: { value, onChange, onBlur } }) => (
+									<TextInput
+										style={{
+											...styles.input,
+											...responsiveFontSize(16, width),
+											...responsiveInputHeight(40, width),
+										}}
+										value={value}
+										onChangeText={onChange}
+										onBlur={onBlur}
+									/>
+								)}
+								rules={{ required: true }}
+							/>
+							<Text style={styles.errorText}>{errors.address?.message}</Text>
+						</View>
 
 						<View style={styles.inputsRow}>
 							<View style={styles.inputContainer}>
 								<Text style={{ ...styles.label, ...responsiveFontSize(16, width) }}>Zip Code</Text>
-								<Controller
-									control={control}
-									name="zip"
-									render={({ field: { value, onChange, onBlur } }) => (
-										<TextInput
-											style={{
-												...styles.input,
-												...responsiveFontSize(16, width),
-												...responsiveInputHeight(40, width),
-											}}
-											value={value}
-											onChangeText={onChange}
-											onBlur={onBlur}
-										/>
-									)}
-									rules={{ required: true }}
-								/>
-								<Text style={styles.errorText}>{errors.zip?.message}</Text>
+								<View style={styles.controllerContainer}>
+									<Controller
+										control={control}
+										name="zip"
+										render={({ field: { value, onChange, onBlur } }) => (
+											<TextInput
+												style={{
+													...styles.input,
+													...responsiveFontSize(16, width),
+													...responsiveInputHeight(40, width),
+												}}
+												value={value}
+												onChangeText={onChange}
+												onBlur={onBlur}
+											/>
+										)}
+										rules={{ required: true }}
+									/>
+									<Text style={styles.errorText}>{errors.zip?.message}</Text>
+								</View>
 							</View>
 
 							<View style={styles.inputContainer}>
 								<Text style={{ ...styles.label, ...responsiveFontSize(16, width) }}>City</Text>
-								<Controller
-									control={control}
-									name="city"
-									render={({ field: { value, onChange, onBlur } }) => (
-										<TextInput
-											style={{
-												...styles.input,
-												...responsiveFontSize(16, width),
-												...responsiveInputHeight(40, width),
-											}}
-											value={value}
-											onChangeText={onChange}
-											onBlur={onBlur}
-										/>
-									)}
-									rules={{ required: true }}
-								/>
-								<Text style={styles.errorText}>{errors.city?.message}</Text>
+								<View style={styles.controllerContainer}>
+									<Controller
+										control={control}
+										name="city"
+										render={({ field: { value, onChange, onBlur } }) => (
+											<TextInput
+												style={{
+													...styles.input,
+													...responsiveFontSize(16, width),
+													...responsiveInputHeight(40, width),
+												}}
+												value={value}
+												onChangeText={onChange}
+												onBlur={onBlur}
+											/>
+										)}
+										rules={{ required: true }}
+									/>
+									<Text style={styles.errorText}>{errors.city?.message}</Text>
+								</View>
 							</View>
 						</View>
 
 						<View style={styles.inputsRow}>
 							<View style={styles.inputContainer}>
 								<Text style={{ ...styles.label, ...responsiveFontSize(16, width) }}>State</Text>
-								<Controller
-									control={control}
-									name="state"
-									render={({ field: { value, onChange, onBlur } }) => (
-										<TextInput
-											style={{
-												...styles.input,
-												...responsiveFontSize(16, width),
-												...responsiveInputHeight(40, width),
-											}}
-											value={value}
-											onChangeText={onChange}
-											onBlur={onBlur}
-										/>
-									)}
-									rules={{ required: true }}
-								/>
-								<Text style={styles.errorText}>{errors.state?.message}</Text>
+								<View style={styles.controllerContainer}>
+									<Controller
+										control={control}
+										name="state"
+										render={({ field: { value, onChange, onBlur } }) => (
+											<TextInput
+												style={{
+													...styles.input,
+													...responsiveFontSize(16, width),
+													...responsiveInputHeight(40, width),
+												}}
+												value={value}
+												onChangeText={onChange}
+												onBlur={onBlur}
+											/>
+										)}
+										rules={{ required: true }}
+									/>
+									<Text style={styles.errorText}>{errors.state?.message}</Text>
+								</View>
 							</View>
 
 							<View style={styles.inputContainer}>
 								<Text style={{ ...styles.label, ...responsiveFontSize(16, width) }}>Country</Text>
-								<Controller
-									control={control}
-									name="country"
-									render={({ field: { value, onChange } }) => (
-										<SelectList
-											searchPlaceholder="Select"
-											defaultOption={{ key: value, value }}
-											setSelected={(val: string) => onChange(val)}
-											data={[
-												{ key: 'CANADA', value: 'CANADA' },
-												{ key: 'MEXICO', value: 'MEXICO' },
-												{ key: 'US', value: 'US' },
-											]}
-											boxStyles={{
-												...styles.selectInput,
-												...responsiveInputHeight(40, width),
-											}}
-											inputStyles={responsiveFontSize(16, width)}
-											dropdownTextStyles={responsiveFontSize(16, width)}
-											search={false}
-										/>
-									)}
-									rules={{ required: true }}
-								/>
-								<Text style={styles.errorText}>{errors.country?.message}</Text>
+								<View style={styles.controllerContainer}>
+									<Controller
+										control={control}
+										name="country"
+										render={({ field: { value, onChange } }) => (
+											<SelectList
+												searchPlaceholder="Select"
+												defaultOption={{ key: value, value }}
+												setSelected={(val: string) => onChange(val)}
+												data={[
+													{ key: 'CANADA', value: 'CANADA' },
+													{ key: 'MEXICO', value: 'MEXICO' },
+													{ key: 'US', value: 'US' },
+												]}
+												boxStyles={{
+													...styles.selectInput,
+													...responsiveInputHeight(40, width),
+												}}
+												inputStyles={responsiveFontSize(16, width)}
+												dropdownTextStyles={responsiveFontSize(16, width)}
+												search={false}
+											/>
+										)}
+										rules={{ required: true }}
+									/>
+									<Text style={styles.errorText}>{errors.country?.message}</Text>
+								</View>
 							</View>
 						</View>
 
 						<View style={styles.inputsRow}>
 							<View style={styles.inputContainer}>
 								<Text style={{ ...styles.label, ...responsiveFontSize(16, width) }}>Code</Text>
-								<Controller
-									control={control}
-									name="code"
-									render={({ field: { value, onChange } }) => (
-										<SelectList
-											searchPlaceholder="Select"
-											defaultOption={{ key: value, value }}
-											setSelected={(val: string) => onChange(val)}
-											data={[
-												{ key: '+1', value: '+1' },
-												{ key: '+52', value: '+52' },
-											]}
-											boxStyles={{
-												...styles.selectInput,
-												...responsiveInputHeight(40, width),
-											}}
-											search={false}
-											inputStyles={responsiveFontSize(16, width)}
-											dropdownTextStyles={responsiveFontSize(16, width)}
-										/>
-									)}
-									rules={{ required: true }}
-								/>
-								<Text style={styles.errorText}>{errors.code?.message}</Text>
+								<View style={styles.controllerContainer}>
+									<Controller
+										control={control}
+										name="code"
+										render={({ field: { value, onChange } }) => (
+											<SelectList
+												searchPlaceholder="Select"
+												defaultOption={{ key: value, value }}
+												setSelected={(val: string) => onChange(val)}
+												data={[
+													{ key: '+1', value: '+1' },
+													{ key: '+52', value: '+52' },
+												]}
+												boxStyles={{
+													...styles.selectInput,
+													...responsiveInputHeight(40, width),
+												}}
+												search={false}
+												inputStyles={responsiveFontSize(16, width)}
+												dropdownTextStyles={responsiveFontSize(16, width)}
+											/>
+										)}
+										rules={{ required: true }}
+									/>
+									<Text style={styles.errorText}>{errors.code?.message}</Text>
+								</View>
 							</View>
 
 							<View style={styles.inputContainer}>
 								<Text style={{ ...styles.label, ...responsiveFontSize(16, width) }}>Phone</Text>
-								<Controller
-									control={control}
-									name="phone"
-									render={({ field: { value, onChange, onBlur } }) => (
-										<TextInput
-											style={{
-												...styles.input,
-												...responsiveFontSize(16, width),
-												...responsiveInputHeight(40, width),
-											}}
-											value={value}
-											onChangeText={onChange}
-											onBlur={onBlur}
-										/>
-									)}
-									rules={{ required: true }}
-								/>
-								<Text style={styles.errorText}>{errors.phone?.message}</Text>
+								<View style={styles.controllerContainer}>
+									<Controller
+										control={control}
+										name="phone"
+										render={({ field: { value, onChange, onBlur } }) => (
+											<TextInput
+												style={{
+													...styles.input,
+													...responsiveFontSize(16, width),
+													...responsiveInputHeight(40, width),
+												}}
+												value={value}
+												onChangeText={onChange}
+												onBlur={onBlur}
+												keyboardType="numeric"
+												maxLength={10}
+											/>
+										)}
+										rules={{ required: true }}
+									/>
+									<Text style={styles.errorText}>{errors.phone?.message}</Text>
+								</View>
 							</View>
 						</View>
 
@@ -338,10 +362,19 @@ const AddressForm = ({ visible, setVisible }: Props) => {
 							{loading ? (
 								<ActivityIndicator size="small" color={colors.white} />
 							) : (
-								<Text style={{ ...styles.buttonText, ...responsiveFontSize(14, width) }}>
+								<Text style={{ ...styles.buttonText, ...responsiveFontSize(16, width) }}>
 									{shippingAddress ? 'Update Address' : 'Save Address'}
 								</Text>
 							)}
+						</TouchableOpacity>
+
+						<TouchableOpacity
+							style={styles.cancelButton}
+							activeOpacity={0.7}
+							onPress={() => setVisible(false)}
+							disabled={loading}
+						>
+							<Text style={{ ...styles.buttonText, ...responsiveFontSize(16, width) }}>Cancel</Text>
 						</TouchableOpacity>
 					</View>
 				</ScrollView>

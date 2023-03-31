@@ -12,6 +12,13 @@ export const styles = StyleSheet.create({
 	},
 	imageContainer: {
 		width: '30%',
+		borderWidth: 0.5,
+		borderRadius: 5,
+		borderColor: colors.crocodileTooth,
+		shadowColor: colors.darkCharcoal,
+		shadowOffset: { width: -2, height: 4 },
+		shadowOpacity: 0.2,
+		shadowRadius: 3,
 	},
 	image: {
 		width: '100%',
@@ -33,18 +40,18 @@ export const styles = StyleSheet.create({
 		flexDirection: 'row',
 	},
 	priceText: {
-		fontSize: 14,
+		fontSize: 16,
 		textTransform: 'uppercase',
 		fontWeight: '600',
 	},
 	itemText: {
-		fontSize: 14,
+		fontSize: 16,
 		textTransform: 'uppercase',
 		fontWeight: '400',
 		marginBottom: 2,
 	},
 	removeText: {
-		fontSize: 12,
+		fontSize: 14,
 		textTransform: 'uppercase',
 		fontWeight: '400',
 		color: colors.link,

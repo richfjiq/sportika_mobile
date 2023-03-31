@@ -62,8 +62,8 @@ const Order = ({ navigation }: Props) => {
 	return (
 		<View style={{ paddingTop: Platform.OS === 'ios' ? top : 10, ...styles.container }}>
 			<View style={styles.headerContainer}>
-				<Text style={{ ...styles.title, ...responsiveFontSize(16, width) }}>Order: </Text>
-				<Text style={{ ...styles.titleBold, ...responsiveFontSize(16, width) }}>
+				<Text style={{ ...styles.title, ...responsiveFontSize(18, width) }}>Order: </Text>
+				<Text style={{ ...styles.titleBold, ...responsiveFontSize(18, width) }}>
 					{' '}
 					{orderId || order?._id}
 				</Text>
@@ -109,9 +109,9 @@ const Order = ({ navigation }: Props) => {
 							disabled={loadingPS}
 						>
 							{loadingPS ? (
-								<ActivityIndicator size="small" color={colors.white} />
+								<ActivityIndicator size="small" color={colors.cultured} />
 							) : (
-								<Text style={{ ...styles.buttonText, ...responsiveFontSize(14, width) }}>
+								<Text style={{ ...styles.buttonText, ...responsiveFontSize(16, width) }}>
 									Pay Later
 								</Text>
 							)}

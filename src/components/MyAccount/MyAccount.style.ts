@@ -10,7 +10,7 @@ export const styles = StyleSheet.create({
 		paddingTop: 15,
 		paddingBottom: 10,
 		borderWidth: 0.5,
-		borderColor: colors.greyText,
+		borderColor: colors.crocodileTooth,
 	},
 	editRow: {
 		flexDirection: 'row',
@@ -19,18 +19,18 @@ export const styles = StyleSheet.create({
 	},
 	editText: {
 		fontSize: 14,
-		fontWeight: '300',
+		fontWeight: '400',
 		textTransform: 'uppercase',
 		color: colors.link,
 	},
 	headerText: {
 		fontSize: 16,
-		fontWeight: '600',
+		fontWeight: '700',
 		textTransform: 'uppercase',
 	},
 	text: {
 		fontSize: 16,
-		fontWeight: '300',
+		fontWeight: '400',
 		textTransform: 'uppercase',
 		marginBottom: 5,
 	},

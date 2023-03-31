@@ -48,7 +48,11 @@ const SearchInput = ({ onDebounce }: Props) => {
 				}
 			>
 				<View style={{ ...styles.searchIcon, ...responsiveInputHeight(30, width) }}>
-					<Icon name={'search-outline'} size={responsiveIcon(24, width)} color={colors.greyText} />
+					<Icon
+						name={'search-outline'}
+						size={responsiveIcon(24, width)}
+						color={colors.crocodileTooth}
+					/>
 				</View>
 				<TextInput
 					ref={inputRef}
@@ -69,6 +73,7 @@ const SearchInput = ({ onDebounce }: Props) => {
 					}
 					value={searchString}
 					onChangeText={setSearchString}
+					placeholder="Search"
 				/>
 				{searchString && (
 					<TouchableOpacity

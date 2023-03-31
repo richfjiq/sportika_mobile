@@ -1,4 +1,5 @@
 import { StyleSheet } from 'react-native';
+
 import { colors } from '../../theme/appTheme';
 
 export const styles = StyleSheet.create({
@@ -10,31 +11,32 @@ export const styles = StyleSheet.create({
 		paddingHorizontal: 16,
 		justifyContent: 'space-between',
 		alignItems: 'center',
-		marginVertical: 16,
+		marginVertical: 10,
 	},
 	headerRow: {
 		flexDirection: 'row',
+		alignItems: 'center',
 	},
 	headerText: {
-		fontSize: 16,
-		fontWeight: '300',
+		fontSize: 18,
+		fontWeight: '700',
 		textTransform: 'uppercase',
 	},
 	headerTitle: {
 		fontSize: 16,
-		fontWeight: '600',
+		fontWeight: '400',
 		textTransform: 'uppercase',
 	},
 	divider: {
-		borderWidth: 0.5,
-		borderColor: colors.inactiveGrey,
+		borderWidth: 1,
+		borderColor: colors.crocodileTooth,
 	},
 	scrollContainer: {
 		paddingTop: 15,
 		paddingHorizontal: 16,
 	},
 	button: {
-		backgroundColor: colors.black,
+		backgroundColor: colors.darkCharcoal,
 		width: '100%',
 		paddingHorizontal: 20,
 		paddingVertical: 10,
@@ -45,7 +47,7 @@ export const styles = StyleSheet.create({
 		marginTop: 20,
 	},
 	buttonCenter: {
-		backgroundColor: colors.black,
+		backgroundColor: colors.darkCharcoal,
 		width: '100%',
 		paddingHorizontal: 20,
 		paddingVertical: 10,
@@ -57,8 +59,8 @@ export const styles = StyleSheet.create({
 	},
 	buttonText: {
 		textTransform: 'uppercase',
-		fontSize: 14,
-		fontWeight: '500',
-		color: colors.white,
+		fontSize: 16,
+		fontWeight: '700',
+		color: colors.cultured,
 	},
 });

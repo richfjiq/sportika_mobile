@@ -18,17 +18,17 @@ const MenuCategories = ({ active, setActive }: Props) => {
 	return (
 		<View style={styles.categories}>
 			<TouchableOpacity onPress={() => setActive(menuCategories[1])}>
-				<Text style={{ ...categoryStyle(menuCategories[1]), ...responsiveFontSize(14, width) }}>
+				<Text style={{ ...categoryStyle(menuCategories[1]), ...responsiveFontSize(16, width) }}>
 					Account
 				</Text>
 			</TouchableOpacity>
 			<TouchableOpacity onPress={() => setActive(menuCategories[2])}>
-				<Text style={{ ...categoryStyle(menuCategories[2]), ...responsiveFontSize(14, width) }}>
+				<Text style={{ ...categoryStyle(menuCategories[2]), ...responsiveFontSize(16, width) }}>
 					Address
 				</Text>
 			</TouchableOpacity>
 			<TouchableOpacity onPress={() => setActive(menuCategories[3])}>
-				<Text style={{ ...categoryStyle(menuCategories[3]), ...responsiveFontSize(14, width) }}>
+				<Text style={{ ...categoryStyle(menuCategories[3]), ...responsiveFontSize(16, width) }}>
 					Orders
 				</Text>
 			</TouchableOpacity>

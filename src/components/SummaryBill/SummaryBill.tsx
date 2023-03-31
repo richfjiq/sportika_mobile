@@ -23,31 +23,31 @@ const SummaryBill = () => {
 			<Text style={{ ...styles.orderTitleAddress, ...responsiveFontSize(16, width) }}>
 				Delivery Address
 			</Text>
-			<Text style={{ ...styles.orderTextAddress, ...responsiveFontSize(15, width) }}>
+			<Text style={{ ...styles.orderTextAddress, ...responsiveFontSize(16, width) }}>
 				{clientName}
 			</Text>
-			<Text style={{ ...styles.orderTextAddress, ...responsiveFontSize(15, width) }}>
+			<Text style={{ ...styles.orderTextAddress, ...responsiveFontSize(16, width) }}>
 				{address}
 			</Text>
-			<Text style={{ ...styles.orderTextAddress, ...responsiveFontSize(15, width) }}>{city}</Text>
-			<Text style={{ ...styles.orderTextAddress, ...responsiveFontSize(15, width) }}>
+			<Text style={{ ...styles.orderTextAddress, ...responsiveFontSize(16, width) }}>{city}</Text>
+			<Text style={{ ...styles.orderTextAddress, ...responsiveFontSize(16, width) }}>
 				{country}
 			</Text>
-			<Text style={{ ...styles.orderTextAddress, ...responsiveFontSize(15, width) }}>{phone}</Text>
+			<Text style={{ ...styles.orderTextAddress, ...responsiveFontSize(16, width) }}>{phone}</Text>
 
 			<View style={styles.separator} />
 
 			<Text style={{ ...styles.billText, ...responsiveFontSize(16, width) }}>Bill</Text>
 
 			<View style={styles.rowContainer}>
-				<Text style={{ ...styles.orderText, ...responsiveFontSize(15, width) }}>Items</Text>
-				<Text style={{ ...styles.orderText, ...responsiveFontSize(15, width) }}>
+				<Text style={{ ...styles.orderText, ...responsiveFontSize(16, width) }}>Items</Text>
+				<Text style={{ ...styles.orderText, ...responsiveFontSize(16, width) }}>
 					{numberOfItems}
 				</Text>
 			</View>
 			<View style={styles.rowContainer}>
-				<Text style={{ ...styles.orderText, ...responsiveFontSize(15, width) }}>Subtotal</Text>
-				<Text style={{ ...styles.orderText, ...responsiveFontSize(15, width) }}>
+				<Text style={{ ...styles.orderText, ...responsiveFontSize(16, width) }}>Subtotal</Text>
+				<Text style={{ ...styles.orderText, ...responsiveFontSize(16, width) }}>
 					{currencyFormat(subTotal)}
 				</Text>
 			</View>

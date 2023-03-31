@@ -11,16 +11,18 @@ export const styles = StyleSheet.create({
 		justifyContent: 'space-between',
 		alignItems: 'center',
 		paddingBottom: 10,
-		borderBottomWidth: 0.5,
-		borderColor: colors.inactiveGrey,
+		borderBottomWidth: 1,
+		borderColor: colors.crocodileTooth,
 	},
 	headerText: {
 		fontSize: 18,
 		textTransform: 'uppercase',
 		fontWeight: '700',
+		color: colors.darkCharcoal,
 	},
 	logoutText: {
-		fontWeight: '500',
+		fontSize: 16,
+		fontWeight: '400',
 		textTransform: 'uppercase',
 	},
 	loaderContainer: {

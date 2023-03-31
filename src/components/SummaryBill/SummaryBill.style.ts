@@ -4,15 +4,15 @@ import { colors } from '../../theme/appTheme';
 
 export const styles = StyleSheet.create({
 	checkoutContainer: {
-		borderWidth: 0.5,
-		borderColor: colors.inactiveGrey,
+		borderWidth: 1,
+		borderColor: colors.crocodileTooth,
 		borderRadius: 10,
 		padding: 16,
 	},
 	separator: {
 		marginVertical: 10,
-		borderWidth: 0.5,
-		borderColor: colors.inactiveGrey,
+		borderWidth: 1,
+		borderColor: colors.crocodileTooth,
 	},
 	rowContainer: {
 		flexDirection: 'row',
@@ -22,22 +22,22 @@ export const styles = StyleSheet.create({
 	orderTitleAddress: {
 		fontSize: 16,
 		textTransform: 'uppercase',
-		fontWeight: '600',
+		fontWeight: '700',
 		marginBottom: 10,
 	},
 	orderText: {
-		fontSize: 15,
+		fontSize: 16,
 		textTransform: 'uppercase',
 		fontWeight: '400',
 	},
 	orderTextAddress: {
-		fontSize: 15,
+		fontSize: 16,
 		textTransform: 'uppercase',
 		fontWeight: '400',
 		marginBottom: 5,
 	},
 	totalText: {
-		fontSize: 15,
+		fontSize: 16,
 		textTransform: 'uppercase',
 		fontWeight: '700',
 		marginTop: 10,
@@ -45,7 +45,7 @@ export const styles = StyleSheet.create({
 	billText: {
 		fontSize: 16,
 		textTransform: 'uppercase',
-		fontWeight: '600',
+		fontWeight: '700',
 		marginBottom: 10,
 	},
 });

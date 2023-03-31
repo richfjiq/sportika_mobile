@@ -15,7 +15,7 @@ import { styles } from './BottomTabsNav.style';
 import axios from 'axios';
 import Config from 'react-native-config';
 import { ICartProduct, IProduct } from '../interfaces';
-import { responsiveFontSize, responsiveIcon, tabBarHeight } from '../utils';
+import { responsiveFontSize, responsiveIcon } from '../utils';
 
 const baseURL = Config.API_URL || '';
 
@@ -35,6 +35,7 @@ export const BottomTabsNav = () => {
 	const { getUserAddress, setLoadingUserInfo } = useUser();
 	const { setAllProducts } = useProducts();
 	const { numberOfItems, addCartFromCookies } = useCart();
+	// useBottomTabBarHeight();
 
 	const getProducts = async () => {
 		try {
@@ -96,15 +97,15 @@ export const BottomTabsNav = () => {
 	return (
 		<Tab.Navigator
 			sceneContainerStyle={{
-				backgroundColor: 'white',
+				backgroundColor: colors.cultured,
 			}}
 			screenOptions={({ route }) => ({
-				tabBarActiveTintColor: 'black',
+				tabBarActiveTintColor: colors.darkCharcoal,
 				tabBarStyle: {
 					borderTopColor: colors.inactiveGrey,
-					borderTopWidth: 0.5,
+					borderTopWidth: 1,
 					elevation: 0,
-					height: tabBarHeight(width),
+					height: 85,
 				},
 				tabBarInactiveTintColor: colors.inactiveGrey,
 				tabBarLabel: () => null,

@@ -63,8 +63,8 @@ const PayOrder = ({ navigation }: Props) => {
 					<ActivityIndicator size="small" color={colors.white} />
 				) : (
 					<>
-						<Text style={{ ...styles.buttonText, ...responsiveFontSize(14, width) }}>Pay now</Text>
-						<Icon name={'cash-outline'} size={responsiveIcon(20, width)} color={colors.white} />
+						<Text style={{ ...styles.buttonText, ...responsiveFontSize(16, width) }}>Pay now</Text>
+						<Icon name={'cash-outline'} size={responsiveIcon(20, width)} color={colors.cultured} />
 					</>
 				)}
 			</TouchableOpacity>
@@ -79,7 +79,11 @@ const PayOrder = ({ navigation }: Props) => {
 					<Text style={{ ...styles.headerTitle, ...responsiveFontSize(16, width) }}>{orderId}</Text>
 				</View>
 				<TouchableOpacity onPress={closeScreen}>
-					<Icon name={'close-outline'} size={responsiveIcon(28, width)} color={colors.black} />
+					<Icon
+						name={'close-outline'}
+						size={responsiveIcon(28, width)}
+						color={colors.darkCharcoal}
+					/>
 				</TouchableOpacity>
 			</View>
 			<View style={styles.divider} />

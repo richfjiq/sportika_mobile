@@ -154,7 +154,7 @@ const LoginForm = () => {
 					}}
 					style={{ ...styles.logo, ...logoHeader(200, 110, width) }}
 				/>
-				<Text style={{ ...styles.title, ...responsiveFontSize(20, width) }}>
+				<Text style={{ ...styles.title, ...responsiveFontSize(18, width) }}>
 					{register ? 'Register' : 'Login'}
 				</Text>
 
@@ -177,7 +177,7 @@ const LoginForm = () => {
 						)}
 						rules={{ required: true }}
 					/>
-					<Text style={{ ...styles.errorText, ...responsiveFontSize(12, width) }}>
+					<Text style={{ ...styles.errorText, ...responsiveFontSize(14, width) }}>
 						{errors.email?.message}
 					</Text>
 				</View>
@@ -200,7 +200,7 @@ const LoginForm = () => {
 								/>
 							)}
 						/>
-						<Text style={{ ...styles.errorText, ...responsiveFontSize(12, width) }}>
+						<Text style={{ ...styles.errorText, ...responsiveFontSize(14, width) }}>
 							{errors.name?.message}
 						</Text>
 					</View>
@@ -245,7 +245,7 @@ const LoginForm = () => {
 							</View>
 						)}
 					/>
-					<Text style={{ ...styles.errorText, ...responsiveFontSize(12, width) }}>
+					<Text style={{ ...styles.errorText, ...responsiveFontSize(14, width) }}>
 						{errors.password?.message}
 					</Text>
 				</View>
@@ -298,29 +298,29 @@ const LoginForm = () => {
 								</View>
 							)}
 						/>
-						<Text style={{ ...styles.errorText, ...responsiveFontSize(12, width) }}>
+						<Text style={{ ...styles.errorText, ...responsiveFontSize(14, width) }}>
 							{errors.passwordRepeat?.message}
 						</Text>
 					</View>
 				)}
 				<View style={styles.textContainer}>
-					<Text style={{ ...styles.accountText, ...responsiveFontSize(12, width) }}>
+					<Text style={{ ...styles.accountText, ...responsiveFontSize(14, width) }}>
 						{register ? 'Have an account?' : `Don't have an account?`}{' '}
 					</Text>
 					<TouchableOpacity activeOpacity={0.7} onPress={toggleRegister}>
-						<Text style={{ ...styles.link, ...responsiveFontSize(12, width) }}>
+						<Text style={{ ...styles.link, ...responsiveFontSize(14, width) }}>
 							{register ? 'Log in here' : 'Sign Up'}
 						</Text>
 					</TouchableOpacity>
 				</View>
 				<TouchableOpacity style={styles.button} activeOpacity={0.7} onPress={handleSubmit(submit)}>
-					<Text style={{ ...styles.buttonText, ...responsiveFontSize(14, width) }}>
+					<Text style={{ ...styles.buttonText, ...responsiveFontSize(16, width) }}>
 						{register ? 'Register' : 'Login'}
 					</Text>
 					<Icon
 						name={'arrow-forward-outline'}
 						size={responsiveIcon(20, width)}
-						color={colors.white}
+						color={colors.cultured}
 					/>
 				</TouchableOpacity>
 				<View style={styles.socialAuthContainer}>

@@ -28,9 +28,9 @@ const ProductsCard = ({ products, goToDetails }: Props) => {
 					>
 						<View style={styles.textContainer}>
 							<Text
-								style={{ ...styles.textPrice, ...responsiveFontSize(14, width) }}
+								style={{ ...styles.textPrice, ...responsiveFontSize(16, width) }}
 							>{`$ ${item.price}`}</Text>
-							<Text style={{ ...styles.textTitle, ...responsiveFontSize(14, width) }}>
+							<Text style={{ ...styles.textTitle, ...responsiveFontSize(16, width) }}>
 								{item.title}
 							</Text>
 						</View>

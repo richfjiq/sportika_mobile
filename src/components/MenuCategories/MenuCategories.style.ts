@@ -4,19 +4,20 @@ import { colors } from '../../theme/appTheme';
 export const styles = StyleSheet.create({
 	categories: {
 		flexDirection: 'row',
-		borderBottomWidth: 0.5,
-		borderBottomColor: colors.inactiveGrey,
+		borderBottomWidth: 1,
+		borderBottomColor: colors.crocodileTooth,
 		paddingVertical: 15,
 		paddingHorizontal: 10,
 		justifyContent: 'space-around',
 	},
 	textCategoriesActive: {
-		fontSize: 14,
+		fontSize: 16,
 		textTransform: 'uppercase',
 		fontWeight: 'bold',
+		color: colors.darkCharcoal,
 	},
 	textCategoriesInactive: {
-		fontSize: 14,
+		fontSize: 16,
 		textTransform: 'uppercase',
 		fontWeight: '400',
 		color: colors.greyText,

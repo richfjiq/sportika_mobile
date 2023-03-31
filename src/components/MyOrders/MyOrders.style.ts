@@ -16,13 +16,13 @@ export const styles = StyleSheet.create({
 		textTransform: 'uppercase',
 		fontWeight: '400',
 		color: colors.red,
-		fontSize: 12,
+		fontSize: 14,
 	},
 	rowContainer: {
 		flexDirection: 'row',
 		paddingVertical: 10,
-		borderBottomWidth: 0.5,
-		borderColor: colors.inactiveGrey,
+		borderBottomWidth: 1,
+		borderColor: colors.crocodileTooth,
 	},
 	orderContainer: {
 		width: '18%',
@@ -44,9 +44,9 @@ export const styles = StyleSheet.create({
 		alignItems: 'center',
 	},
 	headerText: {
-		fontSize: 14,
+		fontSize: 16,
 		textTransform: 'uppercase',
-		fontWeight: '400',
+		fontWeight: '500',
 	},
 	noOrders: {
 		flexDirection: 'row',
@@ -56,7 +56,7 @@ export const styles = StyleSheet.create({
 	noOrdersText: {
 		textTransform: 'uppercase',
 		fontWeight: '500',
-		fontSize: 18,
+		fontSize: 16,
 	},
 	loaderContainer: {
 		flex: 1,

@@ -2,6 +2,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 
 import { Checkout, Order, ShoppingCart } from '../screens';
 import { useCart } from '../store';
+import { colors } from '../theme/appTheme';
 
 export type CartStackParams = {
 	ShoppingCart: undefined;
@@ -22,7 +23,7 @@ export const CartStackNav = () => {
 					shadowColor: 'transparent',
 				},
 				cardStyle: {
-					backgroundColor: 'white',
+					backgroundColor: colors.cultured,
 				},
 				headerShown: false,
 				gestureEnabled: false,

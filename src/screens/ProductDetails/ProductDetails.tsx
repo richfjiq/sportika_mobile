@@ -80,18 +80,18 @@ const ProductDetails = ({ route, navigation }: Props) => {
 	return (
 		<View style={{ paddingTop: Platform.OS === 'ios' ? top : 10, ...styles.container }}>
 			<View style={styles.headerContainer}>
-				<Text style={{ ...styles.headerTitle, ...responsiveFontSize(16, width) }}>
+				<Text style={{ ...styles.headerTitle, ...responsiveFontSize(18, width) }}>
 					{product?.title}
 				</Text>
 				<TouchableOpacity onPress={() => navigation.goBack()}>
-					<Icon name={'close-outline'} size={responsiveIcon(28, width)} color={colors.black} />
+					<Icon name={'close-outline'} size={responsiveIcon(30, width)} color={colors.black} />
 				</TouchableOpacity>
 			</View>
 			<ScrollView showsVerticalScrollIndicator={false}>
 				<ImageCarousel data={product?.images as string[]} />
 
 				<View style={styles.infoContainer}>
-					<Text style={{ ...styles.infoTitle, ...responsiveFontSize(16, width) }}>
+					<Text style={{ ...styles.infoTitle, ...responsiveFontSize(18, width) }}>
 						{product?.title}
 					</Text>
 					<Text style={{ ...styles.infoPrice, ...responsiveFontSize(16, width) }}>
@@ -107,10 +107,10 @@ const ProductDetails = ({ route, navigation }: Props) => {
 					/>
 
 					<TouchableOpacity style={styles.button} activeOpacity={0.7} onPress={onAddProduct}>
-						<Text style={{ ...styles.buttonText, ...responsiveFontSize(14, width) }}>
+						<Text style={{ ...styles.buttonText, ...responsiveFontSize(16, width) }}>
 							{tempCartProducts.size ? 'Add to cart' : 'Choose a size'}
 						</Text>
-						<Icon name={'add-outline'} size={responsiveIcon(20, width)} color={colors.white} />
+						<Icon name={'add-outline'} size={responsiveIcon(20, width)} color={colors.cultured} />
 					</TouchableOpacity>
 					<Text style={{ ...styles.subHeader, ...responsiveFontSize(16, width) }}>Description</Text>
 					<Text style={{ ...styles.description, ...responsiveFontSize(16, width) }}>

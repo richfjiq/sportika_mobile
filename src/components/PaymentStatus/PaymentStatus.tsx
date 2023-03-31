@@ -25,7 +25,7 @@ const PaymentStatus = ({ isPaid = false, timeInDays = 0 }: Props) => {
 					size={responsiveIcon(25, width)}
 					color={colors.greyText}
 				/>
-				<Text style={{ ...styles.textCanceled, ...responsiveFontSize(14, width) }}>
+				<Text style={{ ...styles.textCanceled, ...responsiveFontSize(16, width) }}>
 					Order Canceled
 				</Text>
 			</View>
@@ -42,8 +42,8 @@ const PaymentStatus = ({ isPaid = false, timeInDays = 0 }: Props) => {
 			<Text
 				style={
 					isPaid
-						? { ...styles.textPaid, ...responsiveFontSize(14, width) }
-						: { ...styles.textPending, ...responsiveFontSize(14, width) }
+						? { ...styles.textPaid, ...responsiveFontSize(16, width) }
+						: { ...styles.textPending, ...responsiveFontSize(16, width) }
 				}
 			>
 				{isPaid ? 'Order Paid' : 'Pending Payment'}

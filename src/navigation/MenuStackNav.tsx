@@ -1,6 +1,7 @@
 import { createStackNavigator } from '@react-navigation/stack';
 
 import { Menu, ProductDetails, Search } from '../screens';
+import { colors } from '../theme/appTheme';
 
 export type MenuStackParams = {
 	Menu: undefined;
@@ -19,7 +20,7 @@ export const MenuStackNav = () => {
 					shadowColor: 'transparent',
 				},
 				cardStyle: {
-					backgroundColor: 'white',
+					backgroundColor: colors.cultured,
 				},
 				gestureEnabled: false,
 			}}
