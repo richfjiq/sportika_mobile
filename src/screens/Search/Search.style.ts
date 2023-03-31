@@ -15,7 +15,7 @@ export const styles = StyleSheet.create({
 		textTransform: 'uppercase',
 	},
 	headerText: {
-		fontSize: 20,
+		fontSize: 18,
 		fontWeight: 'bold',
 		textTransform: 'uppercase',
 	},

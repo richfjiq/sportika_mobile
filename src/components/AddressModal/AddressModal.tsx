@@ -35,9 +35,9 @@ const AddressModal = ({ visible, setVisible }: Props) => {
 			<TouchableOpacity style={styles.container} onPress={() => setVisible(false)}>
 				<TouchableWithoutFeedback>
 					<View style={styles.messageContainer}>
-						<Text style={{ ...styles.text, ...responsiveFontSize(18, width) }}>Please Log In</Text>
+						<Text style={{ ...styles.text, ...responsiveFontSize(16, width) }}>Please Log In</Text>
 						<TouchableOpacity style={styles.button} activeOpacity={0.7} onPress={goToLogIn}>
-							<Text style={{ ...styles.buttonText, ...responsiveFontSize(14, width) }}>Log In</Text>
+							<Text style={{ ...styles.buttonText, ...responsiveFontSize(16, width) }}>Log In</Text>
 						</TouchableOpacity>
 					</View>
 				</TouchableWithoutFeedback>

@@ -10,9 +10,9 @@ export const styles = StyleSheet.create({
 		alignItems: 'center',
 	},
 	button: {
-		backgroundColor: colors.black,
+		backgroundColor: colors.darkCharcoal,
 		width: '100%',
-		paddingHorizontal: 10,
+		paddingHorizontal: 20,
 		paddingVertical: 10,
 		flexDirection: 'row',
 		justifyContent: 'center',
@@ -23,13 +23,13 @@ export const styles = StyleSheet.create({
 	},
 	buttonText: {
 		textTransform: 'uppercase',
-		fontSize: 14,
-		fontWeight: '500',
-		color: colors.white,
+		fontSize: 16,
+		fontWeight: '700',
+		color: colors.cultured,
 	},
 	messageContainer: {
 		width: '80%',
-		backgroundColor: colors.white,
+		backgroundColor: colors.cultured,
 		borderRadius: 10,
 		paddingHorizontal: 20,
 		paddingVertical: 40,
@@ -37,9 +37,9 @@ export const styles = StyleSheet.create({
 		alignItems: 'center',
 	},
 	text: {
-		fontSize: 18,
+		fontSize: 16,
 		textTransform: 'uppercase',
-		fontWeight: '400',
+		fontWeight: '700',
 		textAlign: 'center',
 	},
 });

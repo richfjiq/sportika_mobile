@@ -102,12 +102,12 @@ const PasswordForm = ({ visible, setVisible }: Props) => {
 				<View
 					style={{
 						borderRadius: 10,
-						backgroundColor: 'white',
+						backgroundColor: colors.cultured,
 						width: '100%',
 					}}
 				>
 					<View style={styles.headerContainer}>
-						<Text style={{ ...styles.headerTitle, ...responsiveFontSize(18, width) }}>
+						<Text style={{ ...styles.headerTitle, ...responsiveFontSize(16, width) }}>
 							Update Password
 						</Text>
 					</View>
@@ -115,148 +115,144 @@ const PasswordForm = ({ visible, setVisible }: Props) => {
 						<Text style={{ ...styles.label, ...responsiveFontSize(16, width) }}>
 							Current Password
 						</Text>
-						<Controller
-							control={control}
-							name="currentPassword"
-							render={({ field: { value, onChange, onBlur } }) => (
-								<View>
-									<TextInput
-										style={{
-											...styles.input,
-											...responsiveFontSize(16, width),
-											...responsiveInputHeight(40, width),
-										}}
-										value={value}
-										onChangeText={onChange}
-										onBlur={onBlur}
-										secureTextEntry={!showPassword['currentPassword']}
-									/>
-									<View
-										style={{ ...styles.iconContainer, ...responsiveIconContainer(40, 50, width) }}
-									>
-										<TouchableOpacity onPress={() => passwordVisible('currentPassword')}>
-											{showPassword['currentPassword'] ? (
-												<Icon
-													name={'eye-off-outline'}
-													size={responsiveIcon(25, width)}
-													color={colors.black}
-												/>
-											) : (
-												<Icon
-													name={'eye-outline'}
-													size={responsiveIcon(25, width)}
-													color={colors.black}
-												/>
-											)}
-										</TouchableOpacity>
+						<View>
+							<Controller
+								control={control}
+								name="currentPassword"
+								render={({ field: { value, onChange, onBlur } }) => (
+									<View>
+										<TextInput
+											style={{
+												...styles.input,
+												...responsiveFontSize(16, width),
+												...responsiveInputHeight(40, width),
+											}}
+											value={value}
+											onChangeText={onChange}
+											onBlur={onBlur}
+											secureTextEntry={!showPassword['currentPassword']}
+										/>
+										<View
+											style={{ ...styles.iconContainer, ...responsiveIconContainer(40, 50, width) }}
+										>
+											<TouchableOpacity onPress={() => passwordVisible('currentPassword')}>
+												{showPassword['currentPassword'] ? (
+													<Icon
+														name={'eye-off-outline'}
+														size={responsiveIcon(25, width)}
+														color={colors.darkCharcoal}
+													/>
+												) : (
+													<Icon
+														name={'eye-outline'}
+														size={responsiveIcon(25, width)}
+														color={colors.darkCharcoal}
+													/>
+												)}
+											</TouchableOpacity>
+										</View>
 									</View>
-								</View>
-							)}
-							rules={{ required: true }}
-						/>
-						<Text style={{ ...styles.errorText, ...responsiveFontSize(12, width) }}>
-							{errors.currentPassword?.message}
-						</Text>
+								)}
+								rules={{ required: true }}
+							/>
+							<Text style={{ ...styles.errorText, ...responsiveFontSize(14, width) }}>
+								{errors.currentPassword?.message}
+							</Text>
+						</View>
 
 						<Text style={{ ...styles.label, ...responsiveFontSize(16, width) }}>New Password</Text>
-						<Controller
-							control={control}
-							name="newPassword"
-							render={({ field: { value, onChange, onBlur } }) => (
-								<View>
-									<TextInput
-										style={{
-											...styles.input,
-											...responsiveFontSize(16, width),
-											...responsiveInputHeight(40, width),
-										}}
-										value={value}
-										onChangeText={onChange}
-										onBlur={onBlur}
-										secureTextEntry={!showPassword['newPassword']}
-									/>
-									<View
-										style={{ ...styles.iconContainer, ...responsiveIconContainer(40, 50, width) }}
-									>
-										<TouchableOpacity onPress={() => passwordVisible('newPassword')}>
-											{showPassword['newPassword'] ? (
-												<Icon
-													name={'eye-off-outline'}
-													size={responsiveIcon(25, width)}
-													color={colors.black}
-												/>
-											) : (
-												<Icon
-													name={'eye-outline'}
-													size={responsiveIcon(25, width)}
-													color={colors.black}
-												/>
-											)}
-										</TouchableOpacity>
+						<View>
+							<Controller
+								control={control}
+								name="newPassword"
+								render={({ field: { value, onChange, onBlur } }) => (
+									<View>
+										<TextInput
+											style={{
+												...styles.input,
+												...responsiveFontSize(16, width),
+												...responsiveInputHeight(40, width),
+											}}
+											value={value}
+											onChangeText={onChange}
+											onBlur={onBlur}
+											secureTextEntry={!showPassword['newPassword']}
+										/>
+										<View
+											style={{ ...styles.iconContainer, ...responsiveIconContainer(40, 50, width) }}
+										>
+											<TouchableOpacity onPress={() => passwordVisible('newPassword')}>
+												{showPassword['newPassword'] ? (
+													<Icon
+														name={'eye-off-outline'}
+														size={responsiveIcon(25, width)}
+														color={colors.darkCharcoal}
+													/>
+												) : (
+													<Icon
+														name={'eye-outline'}
+														size={responsiveIcon(25, width)}
+														color={colors.darkCharcoal}
+													/>
+												)}
+											</TouchableOpacity>
+										</View>
 									</View>
-								</View>
-							)}
-							rules={{ required: true }}
-						/>
-						<Text style={{ ...styles.errorText, ...responsiveFontSize(12, width) }}>
-							{errors.newPassword?.message}
-						</Text>
+								)}
+								rules={{ required: true }}
+							/>
+							<Text style={{ ...styles.errorText, ...responsiveFontSize(14, width) }}>
+								{errors.newPassword?.message}
+							</Text>
+						</View>
 
 						<Text style={{ ...styles.label, ...responsiveFontSize(16, width) }}>
 							Repeat Password
 						</Text>
-						<Controller
-							control={control}
-							name="repeatPassword"
-							render={({ field: { value, onChange, onBlur } }) => (
-								<View>
-									<TextInput
-										style={{
-											...styles.input,
-											...responsiveFontSize(16, width),
-											...responsiveInputHeight(40, width),
-										}}
-										value={value}
-										onChangeText={onChange}
-										onBlur={onBlur}
-										secureTextEntry={!showPassword['repeatPassword']}
-									/>
-									<View
-										style={{ ...styles.iconContainer, ...responsiveIconContainer(40, 50, width) }}
-									>
-										<TouchableOpacity onPress={() => passwordVisible('repeatPassword')}>
-											{showPassword['repeatPassword'] ? (
-												<Icon
-													name={'eye-off-outline'}
-													size={responsiveIcon(25, width)}
-													color={colors.black}
-												/>
-											) : (
-												<Icon
-													name={'eye-outline'}
-													size={responsiveIcon(25, width)}
-													color={colors.black}
-												/>
-											)}
-										</TouchableOpacity>
+						<View>
+							<Controller
+								control={control}
+								name="repeatPassword"
+								render={({ field: { value, onChange, onBlur } }) => (
+									<View>
+										<TextInput
+											style={{
+												...styles.input,
+												...responsiveFontSize(16, width),
+												...responsiveInputHeight(40, width),
+											}}
+											value={value}
+											onChangeText={onChange}
+											onBlur={onBlur}
+											secureTextEntry={!showPassword['repeatPassword']}
+										/>
+										<View
+											style={{ ...styles.iconContainer, ...responsiveIconContainer(40, 50, width) }}
+										>
+											<TouchableOpacity onPress={() => passwordVisible('repeatPassword')}>
+												{showPassword['repeatPassword'] ? (
+													<Icon
+														name={'eye-off-outline'}
+														size={responsiveIcon(25, width)}
+														color={colors.darkCharcoal}
+													/>
+												) : (
+													<Icon
+														name={'eye-outline'}
+														size={responsiveIcon(25, width)}
+														color={colors.darkCharcoal}
+													/>
+												)}
+											</TouchableOpacity>
+										</View>
 									</View>
-								</View>
-							)}
-							rules={{ required: true }}
-						/>
-						<Text style={{ ...styles.errorText, ...responsiveFontSize(12, width) }}>
-							{errors.repeatPassword?.message}
-						</Text>
-
-						<TouchableOpacity
-							style={styles.cancelButton}
-							activeOpacity={0.7}
-							onPress={() => setVisible(!visible)}
-							disabled={loading}
-						>
-							<Text style={{ ...styles.buttonText, ...responsiveFontSize(14, width) }}>Cancel</Text>
-						</TouchableOpacity>
-
+								)}
+								rules={{ required: true }}
+							/>
+							<Text style={{ ...styles.errorText, ...responsiveFontSize(14, width) }}>
+								{errors.repeatPassword?.message}
+							</Text>
+						</View>
 						<TouchableOpacity
 							style={styles.button}
 							activeOpacity={0.7}
@@ -265,10 +261,19 @@ const PasswordForm = ({ visible, setVisible }: Props) => {
 							{loading ? (
 								<ActivityIndicator color={colors.white} size="small" />
 							) : (
-								<Text style={{ ...styles.buttonText, ...responsiveFontSize(14, width) }}>
+								<Text style={{ ...styles.buttonText, ...responsiveFontSize(16, width) }}>
 									Update
 								</Text>
 							)}
+						</TouchableOpacity>
+
+						<TouchableOpacity
+							style={styles.cancelButton}
+							activeOpacity={0.7}
+							onPress={() => setVisible(!visible)}
+							disabled={loading}
+						>
+							<Text style={{ ...styles.buttonText, ...responsiveFontSize(16, width) }}>Cancel</Text>
 						</TouchableOpacity>
 					</View>
 				</View>

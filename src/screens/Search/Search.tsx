@@ -46,7 +46,7 @@ const Search = ({ navigation }: Props) => {
 	return (
 		<View style={{ ...styles.container, marginTop: top }}>
 			<View style={styles.header}>
-				<Text style={{ ...styles.headerText, ...responsiveFontSize(20, width) }}>
+				<Text style={{ ...styles.headerText, ...responsiveFontSize(18, width) }}>
 					Search Products
 				</Text>
 				<TouchableOpacity onPress={() => navigation.goBack()}>

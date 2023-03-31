@@ -50,13 +50,13 @@ const MyAddress = () => {
 						activeOpacity={0.7}
 						onPress={() => setIsVisible(!isVisible)}
 					>
-						<Text style={{ ...styles.buttonText, ...responsiveFontSize(14, width) }}>
+						<Text style={{ ...styles.buttonText, ...responsiveFontSize(16, width) }}>
 							Add address
 						</Text>
 						<Icon
 							name={'arrow-forward-outline'}
 							size={responsiveIcon(20, width)}
-							color={colors.white}
+							color={colors.cultured}
 						/>
 					</TouchableOpacity>
 				</View>
