@@ -28,12 +28,16 @@ const ImageCategory = ({ category }: Props) => {
 							</Text>
 						</View>
 						<View style={styles.textSubContainer}>
-							<Text style={{ ...styles.textCategory, ...responsiveFontSize(16, width) }}>
-								FREE SHIPPING STARTS TODAY!
-							</Text>
-							<Text style={{ ...styles.textCategory, ...responsiveFontSize(16, width) }}>
-								No minimum spend.
-							</Text>
+							<View style={styles.phraseText}>
+								<Text style={{ ...styles.textCategory, ...responsiveFontSize(16, width) }}>
+									FREE SHIPPING STARTS TODAY!
+								</Text>
+							</View>
+							<View style={styles.phraseText}>
+								<Text style={{ ...styles.textCategory, ...responsiveFontSize(16, width) }}>
+									No minimum spend.
+								</Text>
+							</View>
 						</View>
 					</View>
 				</View>

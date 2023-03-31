@@ -10,6 +10,7 @@ import {
 	TextInput,
 	ActivityIndicator,
 	useWindowDimensions,
+	TouchableWithoutFeedback,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 
@@ -102,73 +103,27 @@ const AccountForm = ({ visible, setVisible }: Props) => {
 
 	return (
 		<Modal animationType="fade" transparent={true} visible={visible}>
-			<View style={styles.modalBg}>
-				<View
-					style={{
-						borderRadius: 10,
-						backgroundColor: colors.cultured,
-						width: '100%',
-					}}
-				>
-					<View style={styles.headerContainer}>
-						<Text style={{ ...styles.headerTitle, ...responsiveFontSize(16, width) }}>
-							Update User Data
-						</Text>
-					</View>
-					<View style={styles.formContainer}>
-						<Text style={{ ...styles.label, ...responsiveFontSize(16, width) }}>Name</Text>
-						<Controller
-							control={control}
-							name="name"
-							render={({ field: { value, onChange, onBlur } }) => (
-								<TextInput
-									style={{
-										...styles.input,
-										...responsiveFontSize(16, width),
-										...responsiveInputHeight(40, width),
-									}}
-									value={value}
-									onChangeText={onChange}
-									onBlur={onBlur}
-								/>
-							)}
-							rules={{ required: true }}
-						/>
-						<Text style={{ ...styles.errorText, ...responsiveFontSize(12, width) }}>
-							{errors.name?.message}
-						</Text>
-
-						<Text style={{ ...styles.label, ...responsiveFontSize(16, width) }}>email</Text>
-						<Controller
-							control={control}
-							name="email"
-							render={({ field: { value, onChange, onBlur } }) => (
-								<TextInput
-									style={{
-										...styles.input,
-										...responsiveFontSize(16, width),
-										...responsiveInputHeight(40, width),
-									}}
-									value={value}
-									onChangeText={onChange}
-									onBlur={onBlur}
-								/>
-							)}
-							rules={{ required: true }}
-						/>
-						<Text style={{ ...styles.errorText, ...responsiveFontSize(12, width) }}>
-							{errors.email?.message}
-						</Text>
-
-						<Text style={{ ...styles.label, ...responsiveFontSize(16, width) }}>
-							Current Password
-						</Text>
-						<View>
-							<Controller
-								control={control}
-								name="currentPassword"
-								render={({ field: { value, onChange, onBlur } }) => (
-									<View>
+			<TouchableWithoutFeedback onPress={() => setVisible(false)}>
+				<View style={styles.modalBg}>
+					<TouchableWithoutFeedback>
+						<View
+							style={{
+								borderRadius: 10,
+								backgroundColor: colors.cultured,
+								width: '100%',
+							}}
+						>
+							<View style={styles.headerContainer}>
+								<Text style={{ ...styles.headerTitle, ...responsiveFontSize(16, width) }}>
+									Update User Data
+								</Text>
+							</View>
+							<View style={styles.formContainer}>
+								<Text style={{ ...styles.label, ...responsiveFontSize(16, width) }}>Name</Text>
+								<Controller
+									control={control}
+									name="name"
+									render={({ field: { value, onChange, onBlur } }) => (
 										<TextInput
 											style={{
 												...styles.input,
@@ -178,61 +133,116 @@ const AccountForm = ({ visible, setVisible }: Props) => {
 											value={value}
 											onChangeText={onChange}
 											onBlur={onBlur}
-											secureTextEntry={!showPassword['currentPassword']}
 										/>
-										<View
-											style={{ ...styles.iconContainer, ...responsiveIconContainer(40, 50, width) }}
-										>
-											<TouchableOpacity onPress={() => passwordVisible('currentPassword')}>
-												{showPassword['currentPassword'] ? (
-													<Icon
-														name={'eye-off-outline'}
-														size={responsiveIcon(25, width)}
-														color={colors.black}
-													/>
-												) : (
-													<Icon
-														name={'eye-outline'}
-														size={responsiveIcon(25, width)}
-														color={colors.black}
-													/>
-												)}
-											</TouchableOpacity>
-										</View>
-									</View>
-								)}
-								rules={{ required: true }}
-							/>
-							<Text style={{ ...styles.errorText, ...responsiveFontSize(12, width) }}>
-								{errors.currentPassword?.message}
-							</Text>
-						</View>
-
-						<TouchableOpacity
-							style={styles.button}
-							activeOpacity={0.7}
-							onPress={handleSubmit(submit)}
-						>
-							{loading ? (
-								<ActivityIndicator color={colors.white} size="small" />
-							) : (
-								<Text style={{ ...styles.buttonText, ...responsiveFontSize(14, width) }}>
-									Update
+									)}
+									rules={{ required: true }}
+								/>
+								<Text style={{ ...styles.errorText, ...responsiveFontSize(12, width) }}>
+									{errors.name?.message}
 								</Text>
-							)}
-						</TouchableOpacity>
 
-						<TouchableOpacity
-							style={styles.cancelButton}
-							activeOpacity={0.7}
-							onPress={() => setVisible(!visible)}
-							disabled={loading}
-						>
-							<Text style={{ ...styles.buttonText, ...responsiveFontSize(14, width) }}>Cancel</Text>
-						</TouchableOpacity>
-					</View>
+								<Text style={{ ...styles.label, ...responsiveFontSize(16, width) }}>email</Text>
+								<Controller
+									control={control}
+									name="email"
+									render={({ field: { value, onChange, onBlur } }) => (
+										<TextInput
+											style={{
+												...styles.input,
+												...responsiveFontSize(16, width),
+												...responsiveInputHeight(40, width),
+											}}
+											value={value}
+											onChangeText={onChange}
+											onBlur={onBlur}
+										/>
+									)}
+									rules={{ required: true }}
+								/>
+								<Text style={{ ...styles.errorText, ...responsiveFontSize(12, width) }}>
+									{errors.email?.message}
+								</Text>
+
+								<Text style={{ ...styles.label, ...responsiveFontSize(16, width) }}>
+									Current Password
+								</Text>
+								<View>
+									<Controller
+										control={control}
+										name="currentPassword"
+										render={({ field: { value, onChange, onBlur } }) => (
+											<View>
+												<TextInput
+													style={{
+														...styles.input,
+														...responsiveFontSize(16, width),
+														...responsiveInputHeight(40, width),
+													}}
+													value={value}
+													onChangeText={onChange}
+													onBlur={onBlur}
+													secureTextEntry={!showPassword['currentPassword']}
+												/>
+												<View
+													style={{
+														...styles.iconContainer,
+														...responsiveIconContainer(40, 50, width),
+													}}
+												>
+													<TouchableOpacity onPress={() => passwordVisible('currentPassword')}>
+														{showPassword['currentPassword'] ? (
+															<Icon
+																name={'eye-off-outline'}
+																size={responsiveIcon(25, width)}
+																color={colors.black}
+															/>
+														) : (
+															<Icon
+																name={'eye-outline'}
+																size={responsiveIcon(25, width)}
+																color={colors.black}
+															/>
+														)}
+													</TouchableOpacity>
+												</View>
+											</View>
+										)}
+										rules={{ required: true }}
+									/>
+									<Text style={{ ...styles.errorText, ...responsiveFontSize(12, width) }}>
+										{errors.currentPassword?.message}
+									</Text>
+								</View>
+
+								<TouchableOpacity
+									style={styles.button}
+									activeOpacity={0.7}
+									onPress={handleSubmit(submit)}
+								>
+									{loading ? (
+										<ActivityIndicator color={colors.white} size="small" />
+									) : (
+										<Text style={{ ...styles.buttonText, ...responsiveFontSize(14, width) }}>
+											Update
+										</Text>
+									)}
+								</TouchableOpacity>
+
+								<TouchableOpacity
+									style={styles.cancelButton}
+									activeOpacity={0.7}
+									onPress={() => setVisible(!visible)}
+									disabled={loading}
+								>
+									<Text style={{ ...styles.buttonText, ...responsiveFontSize(14, width) }}>
+										Cancel
+									</Text>
+								</TouchableOpacity>
+							</View>
+						</View>
+					</TouchableWithoutFeedback>
 				</View>
-			</View>
+			</TouchableWithoutFeedback>
 		</Modal>
 	);
 };
