@@ -1,7 +1,7 @@
 import { View, Text, TouchableOpacity, Image, useWindowDimensions } from 'react-native';
 
 import { useOrders } from '../../store';
-import { imgHeightProductsOrder, responsiveFontSize } from '../../utils';
+import { responsiveFontSize } from '../../utils';
 import { styles } from './ProductsOrder.style';
 
 const ProductsOrder = () => {
@@ -17,10 +17,7 @@ const ProductsOrder = () => {
 			{orderItems.map((item) => (
 				<View key={`${item.slug}-${item.size}`} style={styles.itemRowContainer}>
 					<TouchableOpacity style={styles.imageContainer} activeOpacity={0.7}>
-						<Image
-							source={{ uri: `${item.image}` }}
-							style={{ ...styles.image, ...imgHeightProductsOrder(width) }}
-						/>
+						<Image source={{ uri: `${item.image}` }} style={styles.image} />
 					</TouchableOpacity>
 					<View style={styles.detailsContainer}>
 						<View style={styles.rowPrice}>

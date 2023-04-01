@@ -10,4 +10,5 @@ export const colors = {
 	red: '#DC3535',
 	green: '#379237',
 	crocodileTooth: '#d1ccc0',
+	radiantYellow: '#cd6133',
 };

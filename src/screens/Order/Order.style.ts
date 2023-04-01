@@ -91,4 +91,26 @@ export const styles = StyleSheet.create({
 		borderWidth: 1,
 		borderColor: colors.crocodileTooth,
 	},
+	testingDataContainer: {
+		borderWidth: 1,
+		borderColor: colors.crocodileTooth,
+		borderRadius: 10,
+		padding: 16,
+		marginTop: 20,
+	},
+	titleData: {
+		fontSize: 16,
+		textTransform: 'uppercase',
+		color: colors.radiantYellow,
+		fontWeight: '600',
+		textAlign: 'center',
+		marginBottom: 10,
+	},
+	textData: {
+		fontSize: 16,
+		textTransform: 'uppercase',
+		color: colors.radiantYellow,
+		fontWeight: '400',
+		marginBottom: 5,
+	},
 });

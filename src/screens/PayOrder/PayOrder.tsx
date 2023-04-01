@@ -71,6 +71,17 @@ const PayOrder = ({ navigation }: Props) => {
 		);
 	};
 
+	const testingData = () => {
+		if (loading) return null;
+		return (
+			<View style={styles.testingDataContainer}>
+				<Text style={styles.titleData}>Testing Data</Text>
+				<Text style={styles.textData}>Card Number: 4242 4242 4242 4242</Text>
+				<Text style={styles.textData}>CVC: 424</Text>
+			</View>
+		);
+	};
+
 	return (
 		<View style={{ paddingTop: Platform.OS === 'ios' ? top : 0, ...styles.container }}>
 			<View style={styles.headerContainer}>
@@ -91,6 +102,7 @@ const PayOrder = ({ navigation }: Props) => {
 				<PaymentStatus isPaid={order?.isPaid as boolean} timeInDays={timeInDays} />
 				<ProductsOrder />
 				<SummaryBill />
+				{testingData()}
 				{renderButton()}
 				<View style={{ height: 50 }} />
 			</ScrollView>
