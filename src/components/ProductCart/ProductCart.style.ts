@@ -11,6 +11,7 @@ export const styles = StyleSheet.create({
 	},
 	imageContainer: {
 		width: '30%',
+		elevation: 15,
 		shadowColor: colors.darkCharcoal,
 		shadowOffset: { width: -2, height: 4 },
 		shadowOpacity: 0.2,
@@ -21,8 +22,8 @@ export const styles = StyleSheet.create({
 		height: wp('30%'),
 		borderRadius: 5,
 		overflow: 'hidden',
-		borderWidth: 0.5,
-		borderColor: colors.inactiveGrey,
+		borderWidth: 1,
+		borderColor: colors.crocodileTooth,
 	},
 	detailsContainer: {
 		flex: 1,

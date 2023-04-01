@@ -65,6 +65,7 @@ export const styles = StyleSheet.create({
 		paddingHorizontal: 15,
 		paddingVertical: 3,
 		borderRadius: 10,
+		elevation: 15,
 		shadowColor: colors.darkCharcoal,
 		shadowOffset: { width: -2, height: 4 },
 		shadowOpacity: 0.4,

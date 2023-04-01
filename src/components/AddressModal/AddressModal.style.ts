@@ -20,6 +20,7 @@ export const styles = StyleSheet.create({
 		alignSelf: 'center',
 		marginTop: 25,
 		marginBottom: 15,
+		elevation: 15,
 		shadowColor: colors.darkCharcoal,
 		shadowOffset: { width: -2, height: 4 },
 		shadowOpacity: 0.4,

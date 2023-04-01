@@ -10,6 +10,7 @@ export const styles = StyleSheet.create({
 		flexDirection: 'row',
 		flexWrap: 'wrap',
 		justifyContent: 'space-between',
+		elevation: 45,
 		shadowColor: colors.darkCharcoal,
 		shadowOffset: { width: -2, height: 4 },
 		shadowOpacity: 0.2,
@@ -18,7 +19,7 @@ export const styles = StyleSheet.create({
 	cardContainer: {
 		width: '47%',
 		height: wp('47%'),
-		borderWidth: 0.5,
+		borderWidth: 1,
 		borderColor: colors.crocodileTooth,
 		marginBottom: 16,
 		borderRadius: 8,
