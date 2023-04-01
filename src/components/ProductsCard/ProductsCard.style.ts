@@ -52,4 +52,15 @@ export const styles = StyleSheet.create({
 		overflow: 'hidden',
 		fontSize: 16,
 	},
+	noProductsContainer: {
+		paddingHorizontal: 16,
+		alignItems: 'center',
+		width: '100%',
+	},
+	text: {
+		fontSize: 18,
+		fontWeight: '500',
+		color: colors.darkCharcoal,
+		textTransform: 'uppercase',
+	},
 });

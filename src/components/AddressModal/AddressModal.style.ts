@@ -20,6 +20,11 @@ export const styles = StyleSheet.create({
 		alignSelf: 'center',
 		marginTop: 25,
 		marginBottom: 15,
+		shadowColor: colors.darkCharcoal,
+		shadowOffset: { width: -2, height: 4 },
+		shadowOpacity: 0.4,
+		shadowRadius: 3,
+		borderRadius: 5,
 	},
 	buttonText: {
 		textTransform: 'uppercase',

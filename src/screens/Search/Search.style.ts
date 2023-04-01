@@ -1,5 +1,7 @@
 import { StyleSheet } from 'react-native';
 
+import { colors } from '../../theme/appTheme';
+
 export const styles = StyleSheet.create({
 	container: {
 		flex: 1,
@@ -18,5 +20,6 @@ export const styles = StyleSheet.create({
 		fontSize: 18,
 		fontWeight: 'bold',
 		textTransform: 'uppercase',
+		color: colors.darkCharcoal,
 	},
 });

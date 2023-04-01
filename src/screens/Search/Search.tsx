@@ -43,13 +43,17 @@ const Search = ({ navigation }: Props) => {
 		navigation.navigate('ProductDetails', { slug });
 	};
 
+	const goToMenu = () => {
+		navigation.navigate('Menu');
+	};
+
 	return (
 		<View style={{ ...styles.container, marginTop: top }}>
 			<View style={styles.header}>
 				<Text style={{ ...styles.headerText, ...responsiveFontSize(18, width) }}>
 					Search Products
 				</Text>
-				<TouchableOpacity onPress={() => navigation.goBack()}>
+				<TouchableOpacity onPress={goToMenu}>
 					<Icon
 						name={'close-circle-outline'}
 						size={responsiveIcon(25, width)}

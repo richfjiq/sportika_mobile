@@ -10,6 +10,17 @@ interface Props {
 
 const ProductsCard = ({ products, goToDetails }: Props) => {
 	const { width } = useWindowDimensions();
+
+	if (products.length === 0) {
+		return (
+			<View style={styles.container}>
+				<View style={styles.noProductsContainer}>
+					<Text style={styles.text}>Product/s not found</Text>
+				</View>
+			</View>
+		);
+	}
+
 	return (
 		<View style={styles.container}>
 			{products.map((item) => (
