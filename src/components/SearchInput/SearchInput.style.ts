@@ -44,13 +44,5 @@ export const styles = StyleSheet.create({
 		height: 40,
 		justifyContent: 'center',
 		borderRadius: 10,
-		// shadowColor: '#000',
-		// shadowOffset: {
-		// 	width: 0,
-		// 	height: 2,
-		// },
-		// shadowOpacity: 0.25,
-		// shadowRadius: 3.84,
-		// elevation: 5,
 	},
 });

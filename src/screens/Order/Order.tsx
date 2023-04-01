@@ -59,6 +59,17 @@ const Order = ({ navigation }: Props) => {
 		removeCartFromStorage();
 	}, [removeCartFromStorage, order]);
 
+	const testingData = () => {
+		if (loadingOrder) return null;
+		return (
+			<View style={styles.testingDataContainer}>
+				<Text style={styles.titleData}>Testing Data</Text>
+				<Text style={styles.textData}>Card Number: 4242 4242 4242 4242</Text>
+				<Text style={styles.textData}>CVC: 424</Text>
+			</View>
+		);
+	};
+
 	return (
 		<View style={{ paddingTop: Platform.OS === 'ios' ? top : 10, ...styles.container }}>
 			<View style={styles.headerContainer}>
@@ -73,6 +84,7 @@ const Order = ({ navigation }: Props) => {
 				<PaymentStatus isPaid={order?.isPaid as boolean} />
 				<ProductsOrder />
 				<SummaryBill />
+				{testingData()}
 
 				{!loadingOrder && !order?.isPaid && (
 					<>

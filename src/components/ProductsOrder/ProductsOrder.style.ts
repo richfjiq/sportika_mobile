@@ -1,4 +1,6 @@
 import { StyleSheet } from 'react-native';
+import { widthPercentageToDP as wp } from 'react-native-responsive-screen';
+
 import { colors } from '../../theme/appTheme';
 
 export const styles = StyleSheet.create({
@@ -12,9 +14,7 @@ export const styles = StyleSheet.create({
 	},
 	imageContainer: {
 		width: '30%',
-		borderWidth: 0.5,
-		borderRadius: 5,
-		borderColor: colors.crocodileTooth,
+		elevation: 15,
 		shadowColor: colors.darkCharcoal,
 		shadowOffset: { width: -2, height: 4 },
 		shadowOpacity: 0.2,
@@ -22,9 +22,11 @@ export const styles = StyleSheet.create({
 	},
 	image: {
 		width: '100%',
-		height: 100,
+		height: wp('30%'),
 		borderRadius: 5,
 		overflow: 'hidden',
+		borderWidth: 0.5,
+		borderColor: colors.inactiveGrey,
 	},
 	detailsContainer: {
 		flex: 1,
