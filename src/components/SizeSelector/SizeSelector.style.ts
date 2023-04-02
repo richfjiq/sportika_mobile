@@ -12,7 +12,7 @@ export const styles = StyleSheet.create({
 	},
 	selectInput: {
 		marginTop: 5,
-		height: Platform.OS === 'android' ? 45 : 40,
+		height: Platform.OS === 'android' ? 45 : 45,
 		borderRadius: 5,
 		display: 'flex',
 		alignItems: 'center',

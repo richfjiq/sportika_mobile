@@ -13,7 +13,7 @@ export const styles = StyleSheet.create({
 		width: '30%',
 		elevation: 15,
 		shadowColor: colors.darkCharcoal,
-		shadowOffset: { width: -2, height: 4 },
+		shadowOffset: { width: 2, height: 4 },
 		shadowOpacity: 0.2,
 		shadowRadius: 3,
 	},

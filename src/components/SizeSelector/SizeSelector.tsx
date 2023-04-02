@@ -25,7 +25,7 @@ const SizeSelector = ({ selectedSize, sizes, onSelectedSize }: Props) => {
 					searchPlaceholder="Select"
 					boxStyles={{
 						...styles.selectInput,
-						...responsiveInputHeight(40, width),
+						...responsiveInputHeight(45, width),
 					}}
 					inputStyles={responsiveFontSize(16, width)}
 					dropdownTextStyles={responsiveFontSize(16, width)}

@@ -378,6 +378,8 @@ PODS:
     - React-perflogger (= 0.70.4)
   - RNCAsyncStorage (1.17.11):
     - React-Core
+  - RNDeviceInfo (10.5.1):
+    - React-Core
   - RNGestureHandler (2.8.0):
     - React-Core
   - RNGoogleSignin (8.2.1):
@@ -516,6 +518,7 @@ DEPENDENCIES:
   - React-runtimeexecutor (from `../node_modules/react-native/ReactCommon/runtimeexecutor`)
   - ReactCommon/turbomodule/core (from `../node_modules/react-native/ReactCommon`)
   - "RNCAsyncStorage (from `../node_modules/@react-native-async-storage/async-storage`)"
+  - RNDeviceInfo (from `../node_modules/react-native-device-info`)
   - RNGestureHandler (from `../node_modules/react-native-gesture-handler`)
   - "RNGoogleSignin (from `../node_modules/@react-native-google-signin/google-signin`)"
   - RNReanimated (from `../node_modules/react-native-reanimated`)
@@ -625,6 +628,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon"
   RNCAsyncStorage:
     :path: "../node_modules/@react-native-async-storage/async-storage"
+  RNDeviceInfo:
+    :path: "../node_modules/react-native-device-info"
   RNGestureHandler:
     :path: "../node_modules/react-native-gesture-handler"
   RNGoogleSignin:
@@ -693,6 +698,7 @@ SPEC CHECKSUMS:
   React-runtimeexecutor: 5407e26b5aaafa9b01a08e33653255f8247e7c31
   ReactCommon: abf3605a56f98b91671d0d1327addc4ffb87af77
   RNCAsyncStorage: 8616bd5a58af409453ea4e1b246521bb76578d60
+  RNDeviceInfo: fb81318c9cd5ebe30ebf12bcd046d818c87f9b53
   RNGestureHandler: 62232ba8f562f7dea5ba1b3383494eb5bf97a4d3
   RNGoogleSignin: 3db2d849581299f425f5b61b90cb482a9e68c7af
   RNReanimated: ce445c233a6ff5600223484a88ad5704945d972a

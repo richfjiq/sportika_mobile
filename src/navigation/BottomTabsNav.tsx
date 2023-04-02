@@ -1,21 +1,22 @@
+import { Alert, Platform, Text, useWindowDimensions, View } from 'react-native';
 import { useCallback, useEffect } from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Icon from 'react-native-vector-icons/Ionicons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import DeviceInfo from 'react-native-device-info';
+import Config from 'react-native-config';
+import axios from 'axios';
 
-import { Home } from '../screens';
-import { colors } from '../theme/appTheme';
 import { CartStackNav } from './CartStackNav';
 import { MenuStackNav, MenuStackParams } from './MenuStackNav';
 import { UserStackNav } from './UserStackNav';
+import { Home } from '../screens';
+import { colors } from '../theme/appTheme';
 import { useAuth, useCart, useOrders, useUser } from '../store';
 import { useProducts } from '../store';
-import { Alert, Text, useWindowDimensions, View } from 'react-native';
 import { styles } from './BottomTabsNav.style';
-import axios from 'axios';
-import Config from 'react-native-config';
 import { ICartProduct, IProduct } from '../interfaces';
-import { responsiveFontSize, responsiveIcon } from '../utils';
+import { responsiveFontSize, responsiveIcon, tabBarHeight, tabBarPadding } from '../utils';
 
 const baseURL = Config.API_URL || '';
 
@@ -35,7 +36,6 @@ export const BottomTabsNav = () => {
 	const { getUserAddress, setLoadingUserInfo } = useUser();
 	const { setAllProducts } = useProducts();
 	const { numberOfItems, addCartFromCookies } = useCart();
-	// useBottomTabBarHeight();
 
 	const getProducts = async () => {
 		try {
@@ -105,7 +105,12 @@ export const BottomTabsNav = () => {
 					borderTopColor: colors.inactiveGrey,
 					borderTopWidth: 1,
 					elevation: 0,
-					height: 85,
+					height: tabBarHeight(width, Platform.OS, DeviceInfo.isTablet(), DeviceInfo.hasNotch()),
+					paddingBottom: tabBarPadding(
+						Platform.OS,
+						DeviceInfo.getSystemName(),
+						DeviceInfo.hasNotch(),
+					),
 				},
 				tabBarInactiveTintColor: colors.inactiveGrey,
 				tabBarLabel: () => null,

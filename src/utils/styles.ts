@@ -92,13 +92,24 @@ export const googleBtnCont = (h: number, width: number) => {
 	return {};
 };
 
-export const tabBarHeight = (width: number) => {
-	if (width >= 900) return 85;
-	if (width >= 800) return 75;
-	if (width >= 700) return 70;
-	if (width >= 600) return 65;
-	if (width >= 480) return 60;
-	return 50;
+export const tabBarHeight = (
+	width: number,
+	platform: string,
+	isTablet = false,
+	hasNotch = false,
+) => {
+	const height = 50;
+	if (platform === 'ios' && isTablet) return height * (width / 390) * ratio * 1.2;
+	if (platform === 'ios' && !hasNotch) return height;
+	if (platform === 'ios') return height * (width / 390) + 25;
+	if (platform === 'android' && isTablet) return height * (width / 390) * ratio * 1.2;
+	return height * (width / 390);
+};
+
+export const tabBarPadding = (platform: string, system = '', hasNotch = false) => {
+	if (platform === 'ios' && system === 'iPadOS') return 0;
+	if (hasNotch) return 30;
+	return 0;
 };
 
 export const inputPadding = (width: number) => {
